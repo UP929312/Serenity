@@ -6,6 +6,7 @@ A virtual AI therapist
 - Speech to Text (user) - Done
 - Text to Speech (bot) - In progress
 - Digital Face with expressions
+- Face reading, for emotion
 - Natural pauses and mannerisms
 - Remember everything the user has done so far, to build a report (store in fast vector database)
 - Refer back to previous sessions, to track/measure progress
