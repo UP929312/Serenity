@@ -1,0 +1,8 @@
+numpy
+wikipedia
+openapi-python-client
+opencv-contrib-python
+pyaudio
+boto3
+websockets
+requests

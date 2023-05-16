@@ -10,7 +10,7 @@ with open("keys/openai_key.txt", "r") as file:
 
 class AgentInterface:
     def __init__(self) -> None:
-        template = prompts["starter_prompt"]+"""
+        template = prompts["system"]+"""
 
         {history}
         Human: {human_input}
@@ -19,7 +19,7 @@ class AgentInterface:
         prompt = PromptTemplate(input_variables=["history", "human_input"], template=template)
 
         self.chatgpt_chain = LLMChain(
-            llm=OpenAI(temperature=0, openai_api_key=api_key), 
+            llm=OpenAI(temperature=0, openai_api_key=api_key),  # model="gpt-3.5-turbo-0301" <- Not sure where to put this
             prompt=prompt, 
             verbose=True, 
             memory=ConversationBufferWindowMemory(k=2),
