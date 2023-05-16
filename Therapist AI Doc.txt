@@ -1,0 +1,14 @@
+A virtual AI therapist
+
+- Immersive as possible (no uncanny voices or faces)
+- Also has to respond relatively quickly to avoid long awkward pauses.
+
+- Speech to Text (user) - Done
+- Text to Speech (bot) - In progress
+- Digital Face with expressions
+- Natural pauses and mannerisms
+- Remember everything the user has done so far, to build a report (store in fast vector database)
+- Refer back to previous sessions, to track/measure progress
+ 
+- Build it's own list of goals for the user, which they can slowly check off when progressing
+
