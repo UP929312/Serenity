@@ -13,7 +13,7 @@ def get_aws_sts_assume_role_credentials():
     return credentials["Credentials"]
 #aws_access_key_id, aws_secret_access_key, aws_session_token = get_aws_sts_assume_role_credentials()
 """
-with open("aws_access_keys.txt", "r") as file:
+with open("keys/aws_access_keys.txt", "r") as file:
     aws_access_key_id, aws_secret_access_key = file.read().strip().split("\n")
 aws_session_token = None
 

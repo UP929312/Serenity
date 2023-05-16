@@ -9,3 +9,7 @@
 
 # https://studio.blender.org/characters/einar/v1/
 # This guy is kind of fun, but not realistic.
+
+
+# Using this:
+# https://github.com/joeVenner/control-3d-character-using-python

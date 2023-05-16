@@ -1,5 +1,6 @@
 keys/openai_key.txt
 keys/aws_access_keys.txt
+assemblyai_key.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

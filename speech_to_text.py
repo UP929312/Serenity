@@ -1,6 +1,6 @@
 import pyaudio
  
-FRAMES_PER_BUFFER = 3200
+FRAMES_PER_BUFFER = int(3200)
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 16000
@@ -15,18 +15,27 @@ stream = p.open(
    frames_per_buffer=FRAMES_PER_BUFFER
 )
 
+# https://www.assemblyai.com/docs/Models/entity_detection
+
 import websockets
 import asyncio
 import base64
 import json
 
-auth_key = "bfd3654370d543e4bfe90e485637161a"
+with open("keys/assemblyai_key.txt", "r") as file:
+    auth_key = file.read()
 
 # the AssemblyAI endpoint we're going to hit
 URL = "wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000"
 
+import time
+
+# "format_text": False  <- Removes punctuation, to stop sentences being broken up incorrectly
+# "disfluencies": True  <- Keeps the "ums" and "uhs"
+
 async def send_receive():
    print(f'Connecting websocket to url ${URL}')
+   start = time.time()
    async with websockets.connect(URL, extra_headers=(("Authorization", auth_key),), ping_interval=5, ping_timeout=20) as _ws:
        await asyncio.sleep(0.1)
        #print("Receiving SessionBegins ...")
@@ -37,8 +46,10 @@ async def send_receive():
            while True:
                try:
                    data = stream.read(FRAMES_PER_BUFFER)
+
                    data = base64.b64encode(data).decode("utf-8")
-                   json_data = json.dumps({"audio_data":str(data)})
+                   #print(f"{data=}")
+                   json_data = json.dumps({"audio_data": str(data)})
                    await _ws.send(json_data)
                except websockets.exceptions.ConnectionClosedError as e:
                    print(e)
@@ -54,6 +65,7 @@ async def send_receive():
                try:
                    result_str = await _ws.recv()
                    print(json.loads(result_str)['text'])
+                   print(f"Time elapsed: {time.time() - start}")
                except websockets.exceptions.ConnectionClosedError as e:
                    print(e)
                    assert e.code == 4008

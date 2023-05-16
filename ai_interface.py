@@ -1,7 +1,6 @@
 import openai
-from polly import convert_text_to_speech
 
-with open("openai_key.txt", "r") as file:
+with open("keys/openai_key.txt", "r") as file:
     openai.api_key = file.read().strip()
 
 """
