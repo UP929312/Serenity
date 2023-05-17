@@ -16,3 +16,16 @@ while True:
     convert_text_to_speech(reply, play_message=True)
     messages.append({"role": "assistant", "content": reply})
 """
+
+"""
+def get_aws_sts_assume_role_credentials():
+    sts_client = boto3.client("sts")
+    aws_assume_role_arn = "arn:aws:iam::025756472661:user/main_user"
+
+    credentials = sts_client.assume_role(
+        RoleArn=aws_assume_role_arn, RoleSessionName="SessionName", DurationSeconds=42_000  # Roughly 12 hours
+    )
+
+    return credentials["Credentials"]
+#aws_access_key_id, aws_secret_access_key, aws_session_token = get_aws_sts_assume_role_credentials()
+"""

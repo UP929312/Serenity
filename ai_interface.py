@@ -29,6 +29,9 @@ class AgentInterface:
     def continue_chain(self, human_input) -> str:
         output = self.chatgpt_chain.predict(human_input=human_input)
         return output
+    
+    #def gauge_tone(self, message: str) -> str:
+    #    return "neutral"
 
 while True:
     agent = AgentInterface()

@@ -2,9 +2,10 @@ from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
 from conversation_store import store_conversation_row
 from keyboard_detection import KeyboardDetection
-from polly import convert_text_to_speech
 from pyaudio_interface import start_recording, stop_recording
+from sentiment_analysis import detect_sentiment
 from speech_to_text import convert_speech_to_text
+from text_to_speech import convert_text_to_speech
 
 import cv2
 from pyaudio import Stream
@@ -22,6 +23,8 @@ class Handler:
         self.keyboard_detection = KeyboardDetection("b", self.on_press_speak_key, self.on_release_speak_key)
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
+        self.last_agent_response = ""
+        self.last_human_response = ""
 
     def on_press_speak_key(self) -> None:
         ''' Start recording mic data'''
@@ -33,22 +36,26 @@ class Handler:
         ''' Stop recording mic data '''
         cv2.imshow(WINDOW_NAME, inactive)
         print("Key released")
-        return
+        #return
         speech_segment = stop_recording(self.stream)
-        text = convert_speech_to_text(speech_segment)
-        store_conversation_row(text, "user", None)
+        user_input = convert_speech_to_text(speech_segment)
+        user_sentiment = detect_sentiment(user_input)
+        store_conversation_row(user_input, "user", user_sentiment)
 
-        output = self.agent.continue_chain(human_input=text)
-        store_conversation_row(text, "agent", None)
+        agent_output = self.agent.continue_chain(human_input=user_input)
+        agent_sentiment = detect_sentiment(agent_output)
+        store_conversation_row(agent_output, "agent", agent_sentiment)
 
-        convert_text_to_speech(output, play_message=True)
+        convert_text_to_speech(agent_output, play_message=True)
         #print(output)
 
 
     def main_loop(self) -> None:
         while True:
             #print("Main loop")
+            # Handle keypresses
             self.keyboard_detection.handle_thread()
-            #print("Next")
+            # Handle agent avatar
+            self.agent_avatar.animate(self.agent.gauge_tone(self.last_agent_response))
             
 handler = Handler().main_loop()
