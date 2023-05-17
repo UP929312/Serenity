@@ -29,3 +29,6 @@ def get_aws_sts_assume_role_credentials():
     return credentials["Credentials"]
 #aws_access_key_id, aws_secret_access_key, aws_session_token = get_aws_sts_assume_role_credentials()
 """
+
+# self.last_agent_response = ""
+        # self.last_human_response = ""

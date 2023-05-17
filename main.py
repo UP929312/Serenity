@@ -25,15 +25,14 @@ inactive = cv2.imread("not_being_pressed.png")
 
 class Handler:
     def __init__(self, username: str) -> None:
+        cv2.imshow(WINDOW_NAME, inactive)
+
         self.username = username
         self.stream: Stream | None = None
-        cv2.imshow(WINDOW_NAME, inactive)
         self.keyboard_detection = KeyboardDetection("b", self.on_press_speak_key, self.on_release_speak_key)
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
 
-        # self.last_agent_response = ""
-        # self.last_human_response = ""
         self.last_agent_response_sentiment = "neutral"
 
     def on_press_speak_key(self) -> None:
@@ -67,8 +66,9 @@ class Handler:
             # print("Main loop")
             # Handle keypresses
             # self.keyboard_detection.handle_thread()
+            self.keyboard_detection.detect_key_press()
             # Handle agent avatar
-            self.agent_avatar.animate(self.last_agent_response_sentiment)
+            self.agent_avatar.animate(self.last_agent_response_sentiment)  # Should be threaded, but currently does nothing
 
 
 if test_camera_accessible():
