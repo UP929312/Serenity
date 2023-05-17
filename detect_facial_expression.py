@@ -3,6 +3,18 @@ from hsemotion.facial_emotions import HSEmotionRecognizer
 
 EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise")
 
+def test_camera_accessible() -> bool:
+    try:
+        camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+        _, image = camera.read()
+        camera.release()
+        cv2.imshow("Camera accessible", image)
+        #cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        #print("All worked fine")
+        return True
+    except:
+        return False
 
 def get_facial_emotion() -> tuple[str, dict[str, float]]:
     try:

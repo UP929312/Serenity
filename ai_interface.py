@@ -33,8 +33,9 @@ class AgentInterface:
     #def gauge_tone(self, message: str) -> str:
     #    return "neutral"
 
-while True:
-    agent = AgentInterface()
-    human_input = input("Human: ")
-    output = agent.continue_chain(human_input)
-    print(output)
+if __name__ == "__main__":
+    while True:
+        agent = AgentInterface()
+        human_input = input("Human: ")
+        output = agent.continue_chain(human_input)
+        print(output)

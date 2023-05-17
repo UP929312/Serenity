@@ -3,7 +3,7 @@ from datetime import datetime
 from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
 from conversation_store import store_conversation_row
-from detect_facial_expression import get_facial_emotion
+from detect_facial_expression import get_facial_emotion, test_camera_accessible
 from keyboard_detection import KeyboardDetection
 from pyaudio_interface import start_recording, stop_recording
 from sentiment_analysis import detect_sentiment
@@ -18,7 +18,6 @@ WINDOW_NAME = "Serenity"
 
 active = cv2.imread("being_pressed.png")
 inactive = cv2.imread("not_being_pressed.png")
-cv2.namedWindow(WINDOW_NAME)
 
 class Handler:
     def __init__(self, username: str) -> None:
@@ -28,8 +27,10 @@ class Handler:
         self.keyboard_detection = KeyboardDetection("b", self.on_press_speak_key, self.on_release_speak_key)
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
+
         self.last_agent_response = ""
         self.last_human_response = ""
+        self.last_agent_response_sentiment = "neutral"
 
     def on_press_speak_key(self) -> None:
         ''' Start recording mic data'''
@@ -41,7 +42,7 @@ class Handler:
         ''' Stop recording mic data '''
         cv2.imshow(WINDOW_NAME, inactive)
         print("Key released")
-        #return
+        return
         #emotion = get_facial_emotion()  # Currently Unused
         speech_segment = stop_recording(self.stream)
         user_input = convert_speech_to_text(speech_segment)
@@ -49,8 +50,8 @@ class Handler:
         store_conversation_row(self.username, user_input, "user", user_sentiment)
 
         agent_output = self.agent.continue_chain(human_input=user_input)
-        agent_sentiment = detect_sentiment(agent_output)
-        store_conversation_row(self.username, agent_output, "agent", agent_sentiment)
+        self.last_agent_response_sentiment = detect_sentiment(agent_output)
+        store_conversation_row(self.username, agent_output, "agent", self.last_agent_response_sentiment)
 
         convert_text_to_speech(agent_output, play_message=True)
         #print(output)
@@ -59,8 +60,13 @@ class Handler:
         while True:
             #print("Main loop")
             # Handle keypresses
-            self.keyboard_detection.handle_thread()
+            #self.keyboard_detection.handle_thread()
             # Handle agent avatar
-            self.agent_avatar.animate(self.agent.gauge_tone(self.last_agent_response))
-            
-handler = Handler().main_loop()
+            self.agent_avatar.animate(self.last_agent_response_sentiment)
+
+if test_camera_accessible():
+    cv2.namedWindow(WINDOW_NAME)
+    handler = Handler(username).main_loop()
+else:
+    cv2.imshow("Camera not accessible", cv2.imread("camera_not_accessible.png"))
+    cv2.waitKey(0)

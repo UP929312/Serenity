@@ -6,7 +6,7 @@ import asyncio
 import base64
 import json
 
-from pyaudio_interface import stream, FRAMES_PER_BUFFER
+#from pyaudio_interface import FRAMES_PER_BUFFER
 
 with open("keys/assemblyai_key.txt", "r") as file:
     auth_key = file.read()
@@ -17,12 +17,10 @@ URL = "wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000"
 # "format_text": False  <- Removes punctuation, to stop sentences being broken up incorrectly
 # "disfluencies": True  <- Keeps the "ums" and "uhs"
 
-async def send(_ws):
+async def send(_ws, audio_data):
     while True:
         try:
-            data = stream.read(FRAMES_PER_BUFFER)
-
-            data = base64.b64encode(data).decode("utf-8")
+            data = base64.b64encode(audio_data).decode("utf-8")
             #print(f"{data=}")
             json_data = json.dumps({"audio_data": str(data)})
             await _ws.send(json_data)
@@ -48,16 +46,16 @@ async def receive(_ws):
             assert False, "Not a websocket 4008 error"
       
 
-async def send_receive():
+async def send_receive(audio_data: bytes):
    print(f'Connecting websocket to url ${URL}')
 
    async with websockets.connect(URL, extra_headers=(("Authorization", auth_key),), ping_interval=5, ping_timeout=20) as _ws:
        await asyncio.sleep(0.1)
        await _ws.recv()
-       send_result, receive_result = await asyncio.gather(send(_ws), receive(_ws))
+       send_result, receive_result = await asyncio.gather(send(_ws, audio_data), receive(_ws))
 
 #while True:
 #    asyncio.run(send_receive())
 
-async def convert_speech_to_text():
-    asyncio.run(send_receive())
+async def convert_speech_to_text(audio_data: bytes) -> str:
+    asyncio.run(send_receive(audio_data))
