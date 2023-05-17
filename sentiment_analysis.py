@@ -1,3 +1,4 @@
+from typing import TypedDict
 import boto3
 
 with open("keys/aws_access_keys.txt", "r", encoding="utf-8") as file:
@@ -14,13 +15,10 @@ comprehend = boto3.client(
     aws_session_token=aws_session_token,
 )
 
-
-def detect_sentiment(text: str) -> dict[str, str | int]:
+def detect_sentiment(text: str) -> tuple[str, int]:
     data = comprehend.detect_sentiment(Text=text, LanguageCode="en")
-    return {
-        "sentiment": data["Sentiment"],
-        "confidence": data["SentimentScore"][data["Sentiment"].title()],
-    }
+    sentiment = data["Sentiment"]
+    return sentiment, data["SentimentScore"][sentiment.title()]
 
 
 if __name__ == "__main__":

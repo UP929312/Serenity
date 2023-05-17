@@ -30,6 +30,8 @@ class AgentInterface:
 
     def continue_chain(self, human_input) -> str:
         output = self.chatgpt_chain.predict(human_input=human_input)
+        if "As an AI language model" in output:
+            print("Nooooooo, we need to account for thissssss")  # Todo
         return output
 
     # def gauge_tone(self, message: str) -> str:

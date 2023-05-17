@@ -1,10 +1,11 @@
+from datetime import datetime
 import pyaudio
 import wave
 
 CHUNK_SIZE = 4096
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
-RATE = 16000  # Maybe up it to 44100?
+RATE = 16000  # Maybe up it to 44100? 16000 is the minimum that sounds 'okay'
 p = pyaudio.PyAudio()
 
 
@@ -22,7 +23,8 @@ def save_audio_file(data: bytes, duration_in_seconds: int, file_name: str) -> No
         file.setframerate(RATE)
         file.writeframes(b''.join(frames))
 
-def start_recording() -> pyaudio.Stream:
+
+def start_recording() -> tuple[pyaudio.Stream, datetime]:
     stream: pyaudio._Stream = p.open(
         format=FORMAT,
         channels=CHANNELS,
@@ -30,10 +32,11 @@ def start_recording() -> pyaudio.Stream:
         input=True,
         frames_per_buffer=CHUNK_SIZE,
     )
-    return stream
+    return stream, datetime.now()
 
 
-def stop_recording(stream: pyaudio.Stream, duration_in_seconds: int, file_name: str | None = None) -> bytes:
+def stop_recording(stream: pyaudio.Stream, start_datetime: datetime, file_name: str | None = None) -> bytes:
+    duration_in_seconds = int((datetime.now() - start_datetime).total_seconds())
     data = stream.read(CHUNK_SIZE)
     if file_name:
         save_audio_file(data, duration_in_seconds, file_name)
@@ -44,10 +47,7 @@ def stop_recording(stream: pyaudio.Stream, duration_in_seconds: int, file_name: 
 if __name__ == "__main__":
     import time
     print("Starting recording")
-    start_recording_time = time.time()
-    stream = start_recording()
+    stream, start_datetime = start_recording()
     time.sleep(3)
-    finish_recording_time = time.time()
-    duration_in_seconds = int((finish_recording_time - start_recording_time))
     print("Finished recording")
-    stop_recording(stream, duration_in_seconds, "audio_recording.mp3")
+    stop_recording(stream, start_datetime, "audio_recording.mp3")

@@ -39,21 +39,23 @@ class Handler:
         """Start recording mic data"""
         print("Key pressed")
         cv2.imshow(WINDOW_NAME, active)
-        self.stream = start_recording()
+        self.stream, self.start_recording_datetime = start_recording()
 
     def on_release_speak_key(self) -> None:
         """Stop recording mic data"""
         cv2.imshow(WINDOW_NAME, inactive)
         print("Key released")
-        return
+        #return
         # emotion = get_facial_emotion()  # Currently Unused
-        speech_segment = stop_recording(self.stream)
-        user_input = convert_speech_to_text(speech_segment)
-        user_sentiment = detect_sentiment(user_input)
-        store_conversation_row(self.username, user_input, "user", datetime.now(), user_sentiment, facial_emotion=None)  # fmt: ignore
+        assert self.stream is not None
+        speech_segment = stop_recording(self.stream, self.start_recording_datetime)
+        #user_input = convert_speech_to_text(speech_segment)
+        user_input = "Hello there"
+        user_sentiment, confidence = detect_sentiment(user_input)
+        store_conversation_row(self.username, user_input, "user", datetime.now(), user_sentiment if confidence > 0.1 else None, facial_emotion=None)  # fmt: ignore
 
         agent_output = self.agent.continue_chain(human_input=user_input)
-        self.last_agent_response_sentiment = detect_sentiment(agent_output)
+        self.last_agent_response_sentiment = detect_sentiment(agent_output)[0]
         store_conversation_row(
             self.username, agent_output, "agent", datetime.now(), self.last_agent_response_sentiment, facial_emotion=None
         )  # fmt: ignore
