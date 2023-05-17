@@ -23,7 +23,7 @@ class AgentAvatar:
 # Using this:
 # https://github.com/joeVenner/control-3d-character-using-python
 
-'''
+"""
 import bpy
 import cv2
 import time
@@ -50,12 +50,12 @@ import numpy
 
 # Windows:
 # Open Command Prompt as Administrator
-# cd "C:\Program Files\Blender Foundation\Blender 2.82\2.82\python\bin"
+# cd "C:\\Program Files\\Blender Foundation\\Blender 2.82\\2.82\\python\\bin"
 # python -m pip install --upgrade pip
 # python -m pip install opencv-contrib-python numpy
 
 class OpenCVAnimOperator(bpy.types.Operator):
-    """Operator which runs its self from a timer"""
+    '''Operator which runs its self from a timer'''
     bl_idname = "wm.opencv_operator"
     bl_label = "OpenCV Animation Operator"
     
@@ -269,4 +269,4 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-'''
+"""

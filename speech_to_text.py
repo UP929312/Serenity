@@ -26,7 +26,7 @@ async def send(_ws, audio_data) -> Literal[True]:
             # print(f"{data=}")
             json_data = json.dumps({"audio_data": str(data)})
             await _ws.send(json_data)
-        except websockets.exceptions.ConnectionClosedError as e:
+        except websockets.exceptions.ConnectionClosedError as e:  # type: ignore
             print(e)
             assert e.code == 4008
             break
@@ -41,7 +41,7 @@ async def receive(_ws) -> None:
         try:
             result_str = await _ws.recv()
             print(json.loads(result_str)["text"])
-        except websockets.exceptions.ConnectionClosedError as e:
+        except websockets.exceptions.ConnectionClosedError as e:  # type: ignore
             print(e)
             assert e.code == 4008
             break

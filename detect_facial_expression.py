@@ -3,6 +3,7 @@ from hsemotion.facial_emotions import HSEmotionRecognizer
 
 EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise")  # fmt: ignore
 
+NO_FEATURES_DETECTED = {emotion: 0.0 for emotion in EMOTION_NAMES}
 
 def test_camera_accessible() -> bool:
     try:
@@ -32,15 +33,15 @@ def get_facial_emotion(testing_mode: bool = False) -> tuple[str, dict[str, float
         camera.release()
         # print("Release")
     except:
-        return "camera_being_used_already", {emotion: 0.0 for emotion in EMOTION_NAMES}
+        return "camera_being_used_already", NO_FEATURES_DETECTED
 
     if frame is None:
-        return "no_camera_detected", {emotion: 0.0 for emotion in EMOTION_NAMES}
+        return "no_camera_detected", NO_FEATURES_DETECTED
     # print("Taken!")
     if testing_mode:
         # cv2.imshow("test", frame)
         # cv2.waitKey(0)
-        return
+        return "testing_mode", NO_FEATURES_DETECTED
 
     model_name = "enet_b0_8_best_afew"
     fer = HSEmotionRecognizer(model_name=model_name, device="cpu")  # device is cpu or gpu
