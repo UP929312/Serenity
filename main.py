@@ -10,6 +10,7 @@ from text_to_speech import convert_text_to_speech
 import cv2
 from pyaudio import Stream
 
+username = "test_user"
 WINDOW_NAME = "Serenity"
 
 active = cv2.imread("being_pressed.png")
@@ -17,7 +18,8 @@ inactive = cv2.imread("not_being_pressed.png")
 cv2.namedWindow(WINDOW_NAME)
 
 class Handler:
-    def __init__(self) -> None:
+    def __init__(self, username: str) -> None:
+        self.username = username
         self.stream: Stream = None
         cv2.imshow(WINDOW_NAME, inactive)
         self.keyboard_detection = KeyboardDetection("b", self.on_press_speak_key, self.on_release_speak_key)
@@ -40,11 +42,11 @@ class Handler:
         speech_segment = stop_recording(self.stream)
         user_input = convert_speech_to_text(speech_segment)
         user_sentiment = detect_sentiment(user_input)
-        store_conversation_row(user_input, "user", user_sentiment)
+        store_conversation_row(self.username, user_input, "user", user_sentiment)
 
         agent_output = self.agent.continue_chain(human_input=user_input)
         agent_sentiment = detect_sentiment(agent_output)
-        store_conversation_row(agent_output, "agent", agent_sentiment)
+        store_conversation_row(self.username, agent_output, "agent", agent_sentiment)
 
         convert_text_to_speech(agent_output, play_message=True)
         #print(output)
