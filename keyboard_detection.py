@@ -1,6 +1,6 @@
 from threading import Thread
 from typing import Callable
-import cv2
+import cv2  # type: ignore[import]
 
 WINDOW_NAME = "Serenity"
 

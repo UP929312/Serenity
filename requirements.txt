@@ -9,4 +9,23 @@ requests
 
 hsemotion
 timm-0.6.11
-#hsemotion-onnx
+
+types-playsound
+types-boto3
+types-pyaudio
+
+types-PyYAML
+types-Pygments
+types-annoy
+types-beautifulsoup4
+types-colorama
+types-commonmark
+types-google-cloud-ndb
+types-playsound
+types-protobuf
+types-pywin32
+types-redis
+types-regex
+types-setuptools
+types-tabulate
+types-tqdm

@@ -50,7 +50,7 @@ async def receive(_ws):
 async def send_receive(audio_data: bytes):
     print(f"Connecting websocket to url ${URL}")
 
-    async with websockets.connect(URL, extra_headers=(("Authorization", auth_key),), ping_interval=5, ping_timeout=20) as _ws:
+    async with websockets.connect(URL, extra_headers=(("Authorization", auth_key),), ping_interval=5, ping_timeout=20) as _ws:  # type: ignore[attr-defined]
         await asyncio.sleep(0.1)
         await _ws.recv()
         send_result, receive_result = await asyncio.gather(send(_ws, audio_data), receive(_ws))
@@ -62,3 +62,4 @@ async def send_receive(audio_data: bytes):
 
 async def convert_speech_to_text(audio_data: bytes) -> str:
     asyncio.run(send_receive(audio_data))
+    return "I NEVER UPDATED THIS, AHH"

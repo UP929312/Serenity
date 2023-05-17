@@ -26,7 +26,7 @@ class AgentInterface:
             verbose=True,
             memory=ConversationBufferWindowMemory(k=2),
         )
-        tools = load_tools(["wikipedia"], llm=self.chatgpt_chain)
+        # tools = load_tools(["wikipedia"], llm=self.chatgpt_chain)  # In the future
 
     def continue_chain(self, human_input) -> str:
         output = self.chatgpt_chain.predict(human_input=human_input)

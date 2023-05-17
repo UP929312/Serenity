@@ -1,5 +1,5 @@
 from datetime import datetime
-from mypy import TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
@@ -11,7 +11,7 @@ from sentiment_analysis import detect_sentiment
 from speech_to_text import convert_speech_to_text
 from text_to_speech import convert_text_to_speech
 
-import cv2
+import cv2  # type: ignore[import]
 
 if TYPE_CHECKING:
     from pyaudio import Stream
@@ -26,7 +26,7 @@ inactive = cv2.imread("not_being_pressed.png")
 class Handler:
     def __init__(self, username: str) -> None:
         self.username = username
-        self.stream: Stream = None
+        self.stream: Stream|None = None
         cv2.imshow(WINDOW_NAME, inactive)
         self.keyboard_detection = KeyboardDetection("b", self.on_press_speak_key, self.on_release_speak_key)
         self.agent = AgentInterface()
@@ -55,7 +55,9 @@ class Handler:
 
         agent_output = self.agent.continue_chain(human_input=user_input)
         self.last_agent_response_sentiment = detect_sentiment(agent_output)
-        store_conversation_row(self.username, agent_output, "agent", datetime.now(), self.last_agent_response_sentiment, facial_emotion=None)
+        store_conversation_row(
+            self.username, agent_output, "agent", datetime.now(), self.last_agent_response_sentiment, facial_emotion=None
+        )
 
         convert_text_to_speech(agent_output, play_message=True)
         # print(output)
@@ -71,7 +73,8 @@ class Handler:
 
 if test_camera_accessible():
     cv2.namedWindow(WINDOW_NAME)
-    handler = Handler(username).main_loop()
+    handler = Handler(username)
+    handler.main_loop()
 else:
     cv2.imshow("Camera not accessible", cv2.imread("camera_not_accessible.png"))
     cv2.waitKey(0)

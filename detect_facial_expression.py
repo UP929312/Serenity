@@ -1,5 +1,5 @@
-import cv2
-from hsemotion.facial_emotions import HSEmotionRecognizer
+import cv2  # type: ignore[import]
+from hsemotion.facial_emotions import HSEmotionRecognizer  # type: ignore[import]
 
 EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise")
 
@@ -37,9 +37,9 @@ def get_facial_emotion() -> tuple[str, dict[str, float]]:
     model_name = "enet_b0_8_best_afew"
     fer = HSEmotionRecognizer(model_name=model_name, device="cpu")  # device is cpu or gpu
     emotion, scores = fer.predict_emotions(frame, logits=True)
-    scores = dict(list(zip(EMOTION_NAMES, scores)))
-    sorted_scores = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    return emotion, sorted_scores
+    scores = list(zip(EMOTION_NAMES, scores))
+    sorted_scores = dict(sorted(scores, key=lambda x: x[1], reverse=True))
+    return str(emotion), sorted_scores
 
 
 if __name__ == "__main__":
