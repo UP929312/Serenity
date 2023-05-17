@@ -1,7 +1,7 @@
 import cv2  # type: ignore[import]
 from hsemotion.facial_emotions import HSEmotionRecognizer  # type: ignore[import]
 
-EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise")
+EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise")  # fmt: ignore
 
 
 def test_camera_accessible() -> bool:

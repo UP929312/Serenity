@@ -51,13 +51,11 @@ class Handler:
         speech_segment = stop_recording(self.stream)
         user_input = convert_speech_to_text(speech_segment)
         user_sentiment = detect_sentiment(user_input)
-        store_conversation_row(self.username, user_input, "user", datetime.now(), user_sentiment, facial_emotion=None)
+        store_conversation_row(self.username, user_input, "user", datetime.now(), user_sentiment, facial_emotion=None)  # fmt: ignore
 
         agent_output = self.agent.continue_chain(human_input=user_input)
         self.last_agent_response_sentiment = detect_sentiment(agent_output)
-        store_conversation_row(
-            self.username, agent_output, "agent", datetime.now(), self.last_agent_response_sentiment, facial_emotion=None
-        )
+        store_conversation_row(self.username, agent_output, "agent", datetime.now(), self.last_agent_response_sentiment, facial_emotion=None)  # fmt: ignore
 
         convert_text_to_speech(agent_output, play_message=True)
         # print(output)
