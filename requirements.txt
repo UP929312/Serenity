@@ -6,3 +6,7 @@ pyaudio
 boto3
 websockets
 requests
+
+hsemotion
+timm-0.6.11
+#hsemotion-onnx

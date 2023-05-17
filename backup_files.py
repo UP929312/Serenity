@@ -1,4 +1,4 @@
-import openai
+#import openai
 #openai.api_key
 
 """
@@ -20,7 +20,7 @@ while True:
 """
 def get_aws_sts_assume_role_credentials():
     sts_client = boto3.client("sts")
-    aws_assume_role_arn = "arn:aws:iam::025756472661:user/main_user"
+    aws_assume_role_arn = ""
 
     credentials = sts_client.assume_role(
         RoleArn=aws_assume_role_arn, RoleSessionName="SessionName", DurationSeconds=42_000  # Roughly 12 hours

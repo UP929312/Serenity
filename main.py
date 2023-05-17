@@ -1,6 +1,9 @@
+from datetime import datetime
+
 from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
 from conversation_store import store_conversation_row
+from detect_facial_expression import get_facial_emotion
 from keyboard_detection import KeyboardDetection
 from pyaudio_interface import start_recording, stop_recording
 from sentiment_analysis import detect_sentiment
@@ -39,6 +42,7 @@ class Handler:
         cv2.imshow(WINDOW_NAME, inactive)
         print("Key released")
         #return
+        #emotion = get_facial_emotion()  # Currently Unused
         speech_segment = stop_recording(self.stream)
         user_input = convert_speech_to_text(speech_segment)
         user_sentiment = detect_sentiment(user_input)
@@ -50,7 +54,6 @@ class Handler:
 
         convert_text_to_speech(agent_output, play_message=True)
         #print(output)
-
 
     def main_loop(self) -> None:
         while True:

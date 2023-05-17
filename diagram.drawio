@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="MKs6Hx3hVW7b_2Y0VP6X" name="Page-1">
-        <mxGraphModel dx="667" dy="410" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1183" dy="338" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -236,11 +236,14 @@
                 <mxCell id="97" value="" style="group" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="420" y="90" width="120.07106781186553" height="60.071067811865476" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="Read user's facial data for mood" style="rounded=0;whiteSpace=wrap;html=1;" parent="97" vertex="1">
+                <mxCell id="113" value="" style="group" vertex="1" connectable="0" parent="97">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="86" value="" style="shape=cross;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF3333;rotation=45;" parent="97" vertex="1">
-                    <mxGeometry x="108" y="48" width="10" height="10" as="geometry"/>
+                <mxCell id="23" value="Read user's facial data for mood" style="rounded=0;whiteSpace=wrap;html=1;" parent="113" vertex="1">
+                    <mxGeometry width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="112" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" vertex="1" parent="113">
+                    <mxGeometry x="110.03999999999996" y="48" width="8" height="10" as="geometry"/>
                 </mxCell>
                 <mxCell id="99" value="" style="group" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="420" y="10" width="120.07106781186548" height="61.071067811865476" as="geometry"/>
