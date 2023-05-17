@@ -29,7 +29,7 @@ class DatetimeDecoder(json.JSONDecoder):
 
 def store_conversation_row(username: str, message: str, user: str, dt: datetime, tone: str | None, facial_emotion: str | None) -> None:
     # print("Storing conversation row")
-    with open("file_store.json", "r") as file:
+    with open("file_store.json", "r", encoding="utf-8") as file:
         data = json.load(file)
     data[username].append(
         {
@@ -46,6 +46,6 @@ def store_conversation_row(username: str, message: str, user: str, dt: datetime,
 
 def load_conversation_history(username: str) -> list[dict]:
     # print("Loading conversation history")
-    with open("file_store.json", "r") as file:
+    with open("file_store.json", "r", encoding="utf-8") as file:
         data = json.load(file, cls=DatetimeDecoder)
     return data[username]

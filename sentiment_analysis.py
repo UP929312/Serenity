@@ -1,6 +1,6 @@
 import boto3
 
-with open("keys/aws_access_keys.txt", "r") as file:
+with open("keys/aws_access_keys.txt", "r", encoding="utf-8") as file:
     aws_access_key_id, aws_secret_access_key, aws_session_token = (
         *file.read().strip().split("\n"),
         None,
@@ -15,7 +15,7 @@ comprehend = boto3.client(
 )
 
 
-def detect_sentiment(text) -> dict[str, str | int]:
+def detect_sentiment(text: str) -> dict[str, str | int]:
     data = comprehend.detect_sentiment(Text=text, LanguageCode="en")
     return {
         "sentiment": data["Sentiment"],

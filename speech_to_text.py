@@ -5,6 +5,8 @@ import asyncio
 import base64
 import json
 
+from typing import Literal
+
 # from pyaudio_interface import FRAMES_PER_BUFFER
 
 with open("keys/assemblyai_key.txt", "r") as file:
@@ -17,7 +19,7 @@ URL = "wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000"
 # "disfluencies": True  <- Keeps the "ums" and "uhs"
 
 
-async def send(_ws, audio_data):
+async def send(_ws, audio_data) -> Literal[True]:
     while True:
         try:
             data = base64.b64encode(audio_data).decode("utf-8")
@@ -34,7 +36,7 @@ async def send(_ws, audio_data):
     return True
 
 
-async def receive(_ws):
+async def receive(_ws) -> None:
     while True:
         try:
             result_str = await _ws.recv()
