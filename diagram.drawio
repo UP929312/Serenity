@@ -1,12 +1,9 @@
 <mxfile host="65bd71144e">
     <diagram id="MKs6Hx3hVW7b_2Y0VP6X" name="Page-1">
-        <mxGraphModel dx="979" dy="463" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1179" dy="672" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="186" value="" style="whiteSpace=wrap;html=1;fontSize=11.5;dashed=1;dashPattern=12 12;rounded=1;" vertex="1" parent="1">
-                    <mxGeometry x="1034.93" y="220" width="370.07" height="111.6" as="geometry"/>
-                </mxCell>
                 <mxCell id="148" value="" style="whiteSpace=wrap;html=1;fontSize=11.5;dashed=1;dashPattern=12 12;rounded=1;" vertex="1" parent="1">
                     <mxGeometry x="240" y="350" width="380" height="340" as="geometry"/>
                 </mxCell>
@@ -106,7 +103,7 @@
                 <mxCell id="113" value="" style="group" parent="97" vertex="1" connectable="0">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="Capture&amp;nbsp;user's facial data for emotion" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FF3333;" parent="113" vertex="1">
+                <mxCell id="23" value="Capture&amp;nbsp;user's facial data for emotion from camera" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FF3333;" parent="113" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="112" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="113" vertex="1">
@@ -115,7 +112,7 @@
                 <mxCell id="103" value="" style="group;fillColor=none;" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="1059.93" y="130.67" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="104" value="&lt;font style=&quot;font-size: 11.5px;&quot;&gt;Run Sentiment Analysis on User Text&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFB366;" parent="103" vertex="1">
+                <mxCell id="104" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;Run sentiment analysis on text using AWS comprehend&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFB366;" parent="103" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="105" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="103" vertex="1">
@@ -124,7 +121,7 @@
                 <mxCell id="108" value="" style="group" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="1260" y="370" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="35" value="Semantically analyse expression/tone" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFB366;" parent="108" vertex="1">
+                <mxCell id="35" value="Semantically analyse tone using AWS comprehend" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFB366;" parent="108" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="107" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="108" vertex="1">
@@ -180,15 +177,6 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="120" value="" style="group" parent="1" vertex="1" connectable="0">
-                    <mxGeometry x="1260" y="250.59999999999997" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="30" value="Receive Agent response" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#AAE321;" parent="120" vertex="1">
-                    <mxGeometry width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="119" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="120" vertex="1">
-                    <mxGeometry x="108" y="47" width="8" height="10" as="geometry"/>
-                </mxCell>
                 <mxCell id="129" value="" style="group" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="460" y="130.6" width="120.07106781186553" height="60.071067811865476" as="geometry"/>
                 </mxCell>
@@ -209,9 +197,6 @@
                 <mxCell id="137" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=default;strokeWidth=1;fontSize=13;endSize=7;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" parent="1" source="20" target="104" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="139" style="edgeStyle=none;html=1;exitX=1.026;exitY=0.508;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;strokeWidth=1;fontSize=13;endSize=7;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;exitPerimeter=0;" parent="1" source="26" target="30" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
                 <mxCell id="144" value="" style="group" vertex="1" connectable="0" parent="1">
                     <mxGeometry x="460" y="610.53" width="120" height="60" as="geometry"/>
                 </mxCell>
@@ -224,7 +209,7 @@
                 <mxCell id="145" value="" style="group" vertex="1" connectable="0" parent="1">
                     <mxGeometry x="460" y="370.53" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="Poll Keyboard For&lt;br&gt;Correct Key" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FF3333;" parent="145" vertex="1">
+                <mxCell id="3" value="Poll Keyboard For&lt;br&gt;Correct Key (PTT)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FF3333;" parent="145" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="93" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF8000;" parent="145" vertex="1">
@@ -247,18 +232,6 @@
                 </mxCell>
                 <mxCell id="149" value="Microphone/input" style="text;align=center;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=12 12;fontSize=21;fillColor=none;fontColor=#808080;" vertex="1" parent="1">
                     <mxGeometry x="320.07000000000005" y="625" width="60" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="161" value="" style="group" vertex="1" connectable="0" parent="1">
-                    <mxGeometry x="1059.9299999999998" y="249.53" width="340.07000000000016" height="71.07" as="geometry"/>
-                </mxCell>
-                <mxCell id="99" value="" style="group" parent="161" vertex="1" connectable="0">
-                    <mxGeometry width="340.07000000000016" height="71.07" as="geometry"/>
-                </mxCell>
-                <mxCell id="26" value="Compile data and send to LLM/AI" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#AAE321;" parent="99" vertex="1">
-                    <mxGeometry width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="90" value="" style="shape=cross;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF3333;rotation=45;" parent="161" vertex="1">
-                    <mxGeometry x="107" y="48" width="10" height="10" as="geometry"/>
                 </mxCell>
                 <mxCell id="162" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=6;fontColor=#FFB366;" edge="1" parent="1" source="104" target="26">
                     <mxGeometry relative="1" as="geometry"/>
@@ -337,7 +310,7 @@
                 <mxCell id="180" value="" style="whiteSpace=wrap;html=1;fontSize=11.5;dashed=1;dashPattern=12 12;rounded=1;" vertex="1" parent="102">
                     <mxGeometry x="-220" y="-30" width="370" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="Receive transcribed audio" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#546BE6;" parent="102" vertex="1">
+                <mxCell id="20" value="Receive transcribed audio as text" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#546BE6;" parent="102" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="77" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="102" vertex="1">
@@ -352,7 +325,7 @@
                 <mxCell id="79" value="" style="group;strokeColor=none;" parent="178" vertex="1" connectable="0">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="Send audio to &lt;br&gt;transcription API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#546BE6;" parent="79" vertex="1">
+                <mxCell id="18" value="Send audio to &lt;br&gt;AssemblyAI (speech-to-text)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#546BE6;" parent="79" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="75" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="178" vertex="1">
@@ -366,13 +339,10 @@
                         <mxPoint x="1190" y="175.83333333333337" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="196" value="&lt;font style=&quot;font-size: 20px;&quot; color=&quot;#808080&quot;&gt;LangChain/OpenAI&lt;/font&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=12 12;strokeWidth=0.2;fontSize=20;fontColor=#FF3333;" vertex="1" parent="1">
-                    <mxGeometry x="1154.97" y="219.53" width="130" height="30" as="geometry"/>
-                </mxCell>
                 <mxCell id="197" value="" style="group" vertex="1" connectable="0" parent="1">
                     <mxGeometry x="860" y="370.53" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="Play audio track" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#00CCCC;" parent="197" vertex="1">
+                <mxCell id="38" value="Play audio track of Agent's response" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#00CCCC;" parent="197" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="82" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="197" vertex="1">
@@ -416,6 +386,39 @@
                 </mxCell>
                 <mxCell id="85" value="" style="shape=cross;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF3333;rotation=45;" parent="199" vertex="1">
                     <mxGeometry x="109" y="49" width="10" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="200" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="1034.93" y="219.53" width="370.06999999999994" height="112.07000000000002" as="geometry"/>
+                </mxCell>
+                <mxCell id="186" value="" style="whiteSpace=wrap;html=1;fontSize=11.5;dashed=1;dashPattern=12 12;rounded=1;" vertex="1" parent="200">
+                    <mxGeometry y="0.46999999999999886" width="370.07" height="111.6" as="geometry"/>
+                </mxCell>
+                <mxCell id="120" value="" style="group" parent="200" vertex="1" connectable="0">
+                    <mxGeometry x="225.06999999999994" y="31.069999999999965" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="Receive Agent response" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#AAE321;" parent="120" vertex="1">
+                    <mxGeometry width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="119" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="120" vertex="1">
+                    <mxGeometry x="108" y="47" width="8" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="139" style="edgeStyle=none;html=1;exitX=1.026;exitY=0.508;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=default;strokeWidth=1;fontSize=13;endSize=7;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;exitPerimeter=0;" parent="200" source="26" target="30" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="161" value="" style="group" vertex="1" connectable="0" parent="200">
+                    <mxGeometry x="24.999999999999773" y="30" width="340.07000000000016" height="71.07" as="geometry"/>
+                </mxCell>
+                <mxCell id="99" value="" style="group" parent="161" vertex="1" connectable="0">
+                    <mxGeometry width="340.07000000000016" height="71.07" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Compile data and send to LLM/AI" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#AAE321;" parent="99" vertex="1">
+                    <mxGeometry width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" value="" style="shape=cross;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF3333;rotation=45;" parent="161" vertex="1">
+                    <mxGeometry x="107" y="48" width="10" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="196" value="&lt;font style=&quot;font-size: 20px;&quot; color=&quot;#808080&quot;&gt;LangChain/OpenAI&lt;/font&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=12 12;strokeWidth=0.2;fontSize=20;fontColor=#FF3333;" vertex="1" parent="200">
+                    <mxGeometry x="120.03999999999996" width="130" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
