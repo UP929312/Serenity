@@ -6,11 +6,7 @@ WINDOW_NAME = "Serenity"
 
 
 class KeyboardDetection:
-    def __init__(self, 
-                 key_to_press: str, 
-                 on_key_press: Callable[..., Any], 
-                 on_key_release: Callable[..., Any]
-        ) -> None:
+    def __init__(self, key_to_press: str, on_key_press: Callable[..., Any], on_key_release: Callable[..., Any]) -> None:
         self.key_to_press = key_to_press
         self.key_pressed = False
         self.on_key_press = on_key_press
