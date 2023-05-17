@@ -1,3 +1,6 @@
+class AgentAvatar:
+    pass
+
 # https://www.turbosquid.com/3d-models/3d-model-joy-realistic-character---1597570
 # Would love to use that, except it's $44
 

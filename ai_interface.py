@@ -30,8 +30,8 @@ class AgentInterface:
         output = self.chatgpt_chain.predict(human_input=human_input)
         return output
 
-agent = AgentInterface()
 while True:
+    agent = AgentInterface()
     human_input = input("Human: ")
     output = agent.continue_chain(human_input)
     print(output)

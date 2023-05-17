@@ -12,4 +12,5 @@ A virtual AI therapist
 - Refer back to previous sessions, to track/measure progress
  
 - Build it's own list of goals for the user, which they can slowly check off when progressing
-
+- The AI should permanently remember previous conversations, and refer back to them when needed.
+- All learned facts about the user should also be included in the report, and used to help the user.

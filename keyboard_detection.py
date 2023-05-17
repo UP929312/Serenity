@@ -2,6 +2,8 @@ from threading import Thread
 from typing import Callable
 import cv2
 
+WINDOW_NAME = "Serenity"
+
 class KeyboardDetection:
     def __init__(self, key_to_press: str, on_key_press: Callable, on_key_release: Callable) -> None:
         self.key_to_press = key_to_press
@@ -55,7 +57,7 @@ def on_key_release() -> None:
 
 if __name__ == "__main__":
     img = cv2.imread('not_being_pressed.png')
-    cv2.imshow('img', img); 
+    cv2.imshow(WINDOW_NAME, img); 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     keyboard_detection = KeyboardDetection("b", on_key_press, on_key_release)

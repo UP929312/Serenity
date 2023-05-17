@@ -58,3 +58,6 @@ async def send_receive():
 
 #while True:
 #    asyncio.run(send_receive())
+
+async def convert_speech_to_text():
+    asyncio.run(send_receive())
