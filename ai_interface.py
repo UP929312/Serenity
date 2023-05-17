@@ -10,18 +10,20 @@ with open("keys/openai_key.txt", "r") as file:
 
 class AgentInterface:
     def __init__(self) -> None:
-        template = prompts["system"]+"""
+        # fmt: off
+        template = prompts["system"]+ """
 
         {history}
         Human: {human_input}
         Serenity:""".replace("        ", "")
+        # fmt: on
 
         prompt = PromptTemplate(input_variables=["history", "human_input"], template=template)
 
         self.chatgpt_chain = LLMChain(
             llm=OpenAI(temperature=0, openai_api_key=api_key),  # model="gpt-3.5-turbo-0301" <- Not sure where to put this
-            prompt=prompt, 
-            verbose=True, 
+            prompt=prompt,
+            verbose=True,
             memory=ConversationBufferWindowMemory(k=2),
         )
         tools = load_tools(["wikipedia"], llm=self.chatgpt_chain)
@@ -29,9 +31,10 @@ class AgentInterface:
     def continue_chain(self, human_input) -> str:
         output = self.chatgpt_chain.predict(human_input=human_input)
         return output
-    
-    #def gauge_tone(self, message: str) -> str:
+
+    # def gauge_tone(self, message: str) -> str:
     #    return "neutral"
+
 
 if __name__ == "__main__":
     while True:

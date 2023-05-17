@@ -1,4 +1,5 @@
 from datetime import datetime
+from mypy import TYPE_CHECKING
 
 from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
@@ -11,13 +12,16 @@ from speech_to_text import convert_speech_to_text
 from text_to_speech import convert_text_to_speech
 
 import cv2
-from pyaudio import Stream
+
+if TYPE_CHECKING:
+    from pyaudio import Stream
 
 username = "test_user"
 WINDOW_NAME = "Serenity"
 
 active = cv2.imread("being_pressed.png")
 inactive = cv2.imread("not_being_pressed.png")
+
 
 class Handler:
     def __init__(self, username: str) -> None:
@@ -28,41 +32,56 @@ class Handler:
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
 
-        self.last_agent_response = ""
-        self.last_human_response = ""
+        # self.last_agent_response = ""
+        # self.last_human_response = ""
         self.last_agent_response_sentiment = "neutral"
 
     def on_press_speak_key(self) -> None:
-        ''' Start recording mic data'''
+        """Start recording mic data"""
         print("Key pressed")
         cv2.imshow(WINDOW_NAME, active)
         self.stream = start_recording()
 
     def on_release_speak_key(self) -> None:
-        ''' Stop recording mic data '''
+        """Stop recording mic data"""
         cv2.imshow(WINDOW_NAME, inactive)
         print("Key released")
         return
-        #emotion = get_facial_emotion()  # Currently Unused
+        # emotion = get_facial_emotion()  # Currently Unused
         speech_segment = stop_recording(self.stream)
         user_input = convert_speech_to_text(speech_segment)
         user_sentiment = detect_sentiment(user_input)
-        store_conversation_row(self.username, user_input, "user", user_sentiment)
+        store_conversation_row(
+            self.username,
+            user_input,
+            "user",
+            datetime.now(),
+            user_sentiment,
+            facial_emotion=None,
+        )
 
         agent_output = self.agent.continue_chain(human_input=user_input)
         self.last_agent_response_sentiment = detect_sentiment(agent_output)
-        store_conversation_row(self.username, agent_output, "agent", self.last_agent_response_sentiment)
+        store_conversation_row(
+            self.username,
+            agent_output,
+            "agent",
+            datetime.now(),
+            self.last_agent_response_sentiment,
+            facial_emotion=None,
+        )
 
         convert_text_to_speech(agent_output, play_message=True)
-        #print(output)
+        # print(output)
 
     def main_loop(self) -> None:
         while True:
-            #print("Main loop")
+            # print("Main loop")
             # Handle keypresses
-            #self.keyboard_detection.handle_thread()
+            # self.keyboard_detection.handle_thread()
             # Handle agent avatar
             self.agent_avatar.animate(self.last_agent_response_sentiment)
+
 
 if test_camera_accessible():
     cv2.namedWindow(WINDOW_NAME)

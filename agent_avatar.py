@@ -3,8 +3,9 @@ class AgentAvatar:
         pass
 
     def animate(self, facial_emotion: str) -> None:
-        #print("Animating avatar")
+        # print("Animating avatar")
         pass
+
 
 # https://www.turbosquid.com/3d-models/3d-model-joy-realistic-character---1597570
 # Would love to use that, except it's $44
