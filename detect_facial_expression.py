@@ -5,6 +5,7 @@ EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral",
 
 NO_FEATURES_DETECTED = {emotion: 0.0 for emotion in EMOTION_NAMES}
 
+
 def test_camera_accessible() -> bool:
     try:
         camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)

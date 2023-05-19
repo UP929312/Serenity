@@ -46,14 +46,16 @@ class Handler:
         """Stop recording mic data"""
         cv2.imshow(WINDOW_NAME, inactive)
         print("Key released")
-        #return
+        # return
         # emotion = get_facial_emotion()  # Currently Unused
         assert self.stream is not None
         speech_segment = self.audio_handler.stop_recording()
-        #user_input = convert_speech_to_text(speech_segment)
+        # user_input = convert_speech_to_text(speech_segment)
         user_input = "Hello there"
         user_sentiment, confidence = detect_sentiment(user_input)
-        store_conversation_row(self.username, user_input, "user", datetime.now(), user_sentiment if confidence > 0.1 else None, facial_emotion=None)  # fmt: ignore
+        store_conversation_row(
+            self.username, user_input, "user", datetime.now(), user_sentiment if confidence > 0.1 else None, facial_emotion=None
+        )  # fmt: ignore
 
         agent_output = self.agent.continue_chain(human_input=user_input)
         self.last_agent_response_sentiment = detect_sentiment(agent_output)[0]
