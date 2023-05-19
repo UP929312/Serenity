@@ -1,10 +1,13 @@
 import cv2  # type: ignore[import]
 from hsemotion.facial_emotions import HSEmotionRecognizer
+from PIL import Image  # type: ignore[import]
 
 EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise")  # fmt: ignore
 
 NO_FEATURES_DETECTED = {emotion: 0.0 for emotion in EMOTION_NAMES}
 
+class CameraNotAccessible(Exception):
+    pass
 
 def test_camera_accessible() -> bool:
     try:
@@ -18,6 +21,17 @@ def test_camera_accessible() -> bool:
     except:
         return False
 
+def take_picture() -> list[int]:
+    # print("Taking picture!")
+    camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+    # print("Camera made")
+    _, frame = camera.read()
+    # print("Picture taken")
+    camera.release()
+    if frame is None:
+        raise CameraNotAccessible("The camera is not accessible")
+    # print("Camera Released")
+    return frame
 
 def get_facial_emotion(testing_mode: bool = False) -> tuple[str, dict[str, float]]:
     """
@@ -25,27 +39,15 @@ def get_facial_emotion(testing_mode: bool = False) -> tuple[str, dict[str, float
     If the camera is not accessible, it returns 0.0 for each emotion.
     WARNING: Takes 0.7 seconds to run from start to finish.
     """
-    try:
-        # print("Taking picture!")
-        camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-        # print("Camera made")
-        _, frame = camera.read()
-        # print("Camera taken")
-        camera.release()
-        # print("Release")
-    except:
-        return "camera_being_used_already", NO_FEATURES_DETECTED
-
-    if frame is None:
-        return "no_camera_detected", NO_FEATURES_DETECTED
-    # print("Taken!")
     if testing_mode:
-        # cv2.imshow("test", frame)
-        # cv2.waitKey(0)
-        return "testing_mode", NO_FEATURES_DETECTED
+        frame = cv2.imread('assets/images/smiling_man_raw.png', cv2.IMREAD_COLOR)
+    else:
+        try:
+            frame = take_picture()
+        except CameraNotAccessible:
+            return "camera_not_accessible", NO_FEATURES_DETECTED  # Either it's being used by something else, or no camera is connected
 
-    model_name = "enet_b0_8_best_afew"
-    fer = HSEmotionRecognizer(model_name=model_name, device="cpu")  # device is cpu or gpu
+    fer = HSEmotionRecognizer(model_name="enet_b2_8", device="cpu")  # device is cpu | gpu
     emotion, scores = fer.predict_emotions(frame, logits=True)
     scores = list(zip(EMOTION_NAMES, scores))
     sorted_scores = dict(sorted(scores, key=lambda x: x[1], reverse=True))
@@ -53,11 +55,5 @@ def get_facial_emotion(testing_mode: bool = False) -> tuple[str, dict[str, float
 
 
 if __name__ == "__main__":
-    print(get_facial_emotion(testing_mode=True))
-    """
-    import time
-    start_time = time.time()
-    for i in range(10):
-        print(test_camera_accessible())
-        print(time.time() - start_time)
-    """
+    #take_picture()
+    print(get_facial_emotion(testing_mode=False))

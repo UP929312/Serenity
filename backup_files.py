@@ -32,3 +32,35 @@ def get_aws_sts_assume_role_credentials():
 
 # self.last_agent_response = ""
         # self.last_human_response = ""
+
+
+"""
+async def send(_ws, audio_data) -> Literal[True]:
+    while True:
+        try:
+            data = base64.b64encode(audio_data).decode("utf-8")
+            # print(f"{data=}")
+            json_data = json.dumps({"audio_data": str(data)})
+            await _ws.send(json_data)
+        except websockets.exceptions.ConnectionClosedError as e:  # type: ignore
+            print(e)
+            assert e.code == 4008
+            break
+        except Exception as e:
+            assert False, "Not a websocket 4008 error"
+        await asyncio.sleep(0.01)
+    return True
+
+
+async def receive(_ws) -> None:
+    while True:
+        try:
+            result_str = await _ws.recv()
+            print(json.loads(result_str)["text"])
+        except websockets.exceptions.ConnectionClosedError as e:  # type: ignore
+            print(e)
+            assert e.code == 4008
+            break
+        except Exception as e:
+            assert False, "Not a websocket 4008 error"
+"""

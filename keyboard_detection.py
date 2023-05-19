@@ -12,31 +12,14 @@ class KeyboardDetection:
         self.on_key_press = on_key_press
         self.on_key_release = on_key_release
 
-        self.thread_exists = False
-
         self.down_barrier = 1
-        self.up_barrier = 1
-
-    # def handle_thread(self) -> None:
-    #    if not self.thread_exists:
-    #        thread = Thread(target=self.detect_key_press)
-    #        thread.start()
 
     def detect_key_press(self) -> None:
-        self.thread_exists = True
-        # print("Thread started")
-        for _ in range(1):
-            # while True:
-            # print("loop")
+        for _ in range(1):  # TODO: Remove this kind of stuff
             k = cv2.waitKey(32)  # 32 is the minimum/maximum delay
             # print(k)
-            if k == -1:  # No key pressed
-                # print("Nothing")
+            if k == -1 and chr(k) != self.key_to_press:  # No key pressed
                 if self.key_pressed:
-                    # if self.up_barrier:  # If the initial stop is active, disable it, then the next case will pass
-                    #    self.up_barrier -= 1
-                    #    continue
-                    # print("A stopped being pressed")
                     self.key_pressed = False
                     self.on_key_release()
             else:
@@ -51,7 +34,6 @@ class KeyboardDetection:
                     continue
                 self.on_key_press()
                 self.key_pressed = True
-                # self.up_barrier = 0
                 self.down_barrier = 1
                 # print("A started being pressed")
 
@@ -66,8 +48,8 @@ if __name__ == "__main__":
         cv2.imshow(WINDOW_NAME, inactive)
         print("Key released")
 
-    active = cv2.imread("being_pressed.png")
-    inactive = cv2.imread("not_being_pressed.png")
+    active = cv2.imread("assets/images/being_pressed.png")
+    inactive = cv2.imread("assets/images/not_being_pressed.png")
     cv2.imshow(WINDOW_NAME, inactive)
     keyboard_detection = KeyboardDetection("b", on_key_press, on_key_release)
     while True:

@@ -1,4 +1,4 @@
-from langchain import OpenAI, ConversationChain, LLMChain, PromptTemplate
+from langchain import OpenAI, LLMChain, PromptTemplate#, ConversationChain
 from langchain.agents import load_tools
 from langchain.memory import ConversationBufferWindowMemory
 
@@ -31,7 +31,7 @@ class AgentInterface:
     def continue_chain(self, human_input) -> str:
         output = self.chatgpt_chain.predict(human_input=human_input)
         if "As an AI language model" in output:
-            print("Nooooooo, we need to account for thissssss")  # Todo
+            print("Nooooooo, we need to account for thissssss")  # TODO: Account for this
         return output
 
     # def gauge_tone(self, message: str) -> str:

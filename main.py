@@ -1,3 +1,4 @@
+import asyncio
 from datetime import datetime
 from typing import TYPE_CHECKING
 
@@ -8,7 +9,7 @@ from detect_facial_expression import get_facial_emotion, test_camera_accessible
 from keyboard_detection import KeyboardDetection
 from pyaudio_interface import AudioRecordingHandler
 from sentiment_analysis import detect_sentiment
-from speech_to_text import convert_speech_to_text
+from speech_to_text import STTWebhookHandler
 from text_to_speech import convert_text_to_speech
 
 import cv2  # type: ignore[import]
@@ -19,8 +20,8 @@ if TYPE_CHECKING:
 username = "test_user"
 WINDOW_NAME = "Serenity"
 
-active = cv2.imread("being_pressed.png")
-inactive = cv2.imread("not_being_pressed.png")
+active = cv2.imread("assets/images/being_pressed.png")
+inactive = cv2.imread("assets/images/not_being_pressed.png")
 
 
 class Handler:
@@ -32,9 +33,15 @@ class Handler:
         self.keyboard_detection = KeyboardDetection("b", self.on_press_speak_key, self.on_release_speak_key)
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
-        self.audio_handler = AudioRecordingHandler()
+        self.current_monolog_text = ""
+        self.audio_handler = AudioRecordingHandler(self.on_save_speech_segment)  # type: ignore
+        self.speech_to_text_wh_handler = STTWebhookHandler()
 
         self.last_agent_response_sentiment = "neutral"
+
+    #def on_save_speech_segment(self, speech_segment: bytes) -> None:
+        #event_loop = asyncio.get_event_loop()
+        #self.current_monolog_text += event_loop.run_until_complete(self.speech_to_text_wh_handler.send(speech_segment))
 
     def on_press_speak_key(self) -> None:
         """Start recording mic data"""
@@ -81,5 +88,5 @@ if test_camera_accessible():
     handler = Handler(username)
     handler.main_loop()
 else:
-    cv2.imshow("Camera not accessible", cv2.imread("camera_not_accessible.png"))
+    cv2.imshow("Camera not accessible", cv2.imread("assets/images/camera_not_accessible.png"))
     cv2.waitKey(0)

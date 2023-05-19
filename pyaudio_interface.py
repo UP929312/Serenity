@@ -2,7 +2,9 @@ import pyaudio
 import wave
 import threading
 import time
+import asyncio
 from datetime import datetime
+from typing import Callable
 
 CHUNK_SIZE = 4096
 FORMAT = pyaudio.paInt16
@@ -13,9 +15,10 @@ ONE_SECONDS_WORTH = RATE
 
 
 class AudioRecordingHandler:
-    def __init__(self) -> None:
+    def __init__(self, on_save_audio: Callable[[bytes], None]) -> None:
         self.stream: pyaudio.Stream | None = None
         self.frames: list[bytes] = []  # Each frame should be 1 second of audio
+        self.on_save_audio = on_save_audio
 
     def save_one_second(self) -> None:
         while True:
@@ -32,6 +35,8 @@ class AudioRecordingHandler:
             time_taken = (end_time - start_time).total_seconds()
             if time_taken < 1:
                 time.sleep(1 - time_taken)
+            #event_loop = asyncio.get_event_loop()
+            #event_loop.run_until_complete(on_save_audio(frame))
 
     def start_recording(self) -> None:
         stream: pyaudio._Stream = p.open(
@@ -68,12 +73,14 @@ class AudioRecordingHandler:
             file.writeframes(complete_recording)
         print("Post saving file (won't happen normally))")
 
+def on_save_audio(frame: bytes)-> None:
+    pass
 
 if __name__ == "__main__":
-    audio_handler = AudioRecordingHandler()
+    audio_handler = AudioRecordingHandler(on_save_audio)
     print("Start recording!")
     audio_handler.start_recording()
     time.sleep(5)
     print("Slept 5 seconds")
     print("Stop recording!")
-    audio_handler.stop_recording("test.wav")
+    audio_handler.stop_recording("assets/audio/test.wav")

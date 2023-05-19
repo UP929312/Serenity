@@ -29,7 +29,7 @@ def convert_text_to_speech(message: str, play_message: bool) -> None:
         VoiceId="Amy",
     )
     streaming_body = response["AudioStream"]
-    with open("main.mp3", "wb") as file:
+    with open("assets/images/main.mp3", "wb") as file:
         file.write(streaming_body.read())
     if play_message:
-        playsound("main.mp3")
+        playsound("assets/images/main.mp3")

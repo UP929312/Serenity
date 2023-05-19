@@ -26,3 +26,13 @@ Tensor storage:
 We need to store the data the the user inputs while chatting with a bot. This data will be used to train the bot, and also to build a report for the user.
 The messages wil be stored in one hot encoding, [explanation](https://machinelearningmastery.com/why-one-hot-encode-data-in-machine-learning/),
 [Medium article](https://medium.com/vector-database)
+
+Later:
+
+- Generate an avatar which will react and be human
+- Speech detection to remove the need for push to talk
+- In the future, asynchronously also do further analysis on the user's input, potentially while Serentity is speaking
+- > Flagged things [here](https://www.assemblyai.com/docs/Models/content_moderation#understanding-the-response)
+- If the user explicitally mentions their emotions, get confidence score and adjust thresholds
+- Check if second highest emotion is high, and use that instead of neutral
+- Move processing to our hosted hardware, and have light clients

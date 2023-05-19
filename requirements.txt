@@ -10,6 +10,8 @@ requests
 hsemotion
 timm-0.6.11
 
+pytest
+
 types-playsound
 types-boto3
 types-pyaudio

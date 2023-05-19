@@ -15,4 +15,4 @@ Price: `??? per second` of audio [pricing](https://www.assemblyai.com/pricing), 
 ## OpenAI (as the LLM)
 
 Price: gpt-3.5-turbo: `$0.002 per 1000 tokens` [pricing](https://openai.com/pricing), [usage](https://platform.openai.com/account/usage)
-Price: gpt-4: `$0.006 per 8000 tokens context` [pricing](https://openai.com/pricing), [usage](https://platform.openai.com/account/usage)
+Price: gpt-4: `$0.006 per 8000 tokens context (completion)` [pricing](https://openai.com/pricing), [usage](https://platform.openai.com/account/usage)
