@@ -1,5 +1,5 @@
-#import openai
-#openai.api_key
+# import openai
+# openai.api_key
 
 """
 messages = [{"role": "system", "content":
@@ -31,7 +31,7 @@ def get_aws_sts_assume_role_credentials():
 """
 
 # self.last_agent_response = ""
-        # self.last_human_response = ""
+# self.last_human_response = ""
 
 
 """

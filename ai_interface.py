@@ -1,5 +1,5 @@
 from langchain import OpenAI, LLMChain, PromptTemplate  # , ConversationChain
-from langchain.agents import load_tools
+# from langchain.agents import load_tools
 from langchain.memory import ConversationBufferWindowMemory
 
 import json
@@ -14,7 +14,7 @@ with open("keys/openai_key.txt", "r") as file:
 class AgentInterface:
     def __init__(self) -> None:
         # fmt: off
-        template = prompts["system"]+ """
+        template = prompts["system"] + """
 
         {history}
         Human: {human_input}

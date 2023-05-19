@@ -1,11 +1,11 @@
-import asyncio
+# import asyncio
 from datetime import datetime
 from typing import TYPE_CHECKING
 
 from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
 from conversation_store import store_conversation_row
-from detect_facial_expression import get_facial_emotion, test_camera_accessible
+from detect_facial_expression import test_camera_accessible  # , get_facial_emotion
 from keyboard_detection import KeyboardDetection
 from pyaudio_interface import AudioRecordingHandler
 from sentiment_analysis import detect_sentiment
@@ -56,7 +56,7 @@ class Handler:
         # return
         # emotion = get_facial_emotion()  # Currently Unused
         assert self.stream is not None
-        speech_segment = self.audio_handler.stop_recording()
+        # speech_segment = self.audio_handler.stop_recording()
         # user_input = convert_speech_to_text(speech_segment)
         user_input = "Hello there"
         user_sentiment, confidence = detect_sentiment(user_input)

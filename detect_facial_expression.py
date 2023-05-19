@@ -19,7 +19,7 @@ def test_camera_accessible() -> bool:
             return False
         # print("All worked fine")
         return True
-    except:
+    except IOError:
         return False
 
 
