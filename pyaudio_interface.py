@@ -35,8 +35,8 @@ class AudioRecordingHandler:
             time_taken = (end_time - start_time).total_seconds()
             if time_taken < 1:
                 time.sleep(1 - time_taken)
-            #event_loop = asyncio.get_event_loop()
-            #event_loop.run_until_complete(on_save_audio(frame))
+            # event_loop = asyncio.get_event_loop()
+            # event_loop.run_until_complete(on_save_audio(frame))
 
     def start_recording(self) -> None:
         stream: pyaudio._Stream = p.open(
@@ -73,8 +73,10 @@ class AudioRecordingHandler:
             file.writeframes(complete_recording)
         print("Post saving file (won't happen normally))")
 
-def on_save_audio(frame: bytes)-> None:
+
+def on_save_audio(frame: bytes) -> None:
     pass
+
 
 if __name__ == "__main__":
     audio_handler = AudioRecordingHandler(on_save_audio)

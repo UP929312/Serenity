@@ -20,6 +20,7 @@ with open("keys/assemblyai_key.txt", "r") as file:
 # We then need to somehow combine the text inputs, but we might have to send the audio as they come in, potentially by giving the recording handler a callback?
 # To not die, it must send audio at least once every second, so we probably need a function that sends empty sound for 1 second every minute, cost wise, not sure how this will work?
 
+
 class STTWebhookHandler:
     def __init__(self) -> None:
         URL = "wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000"
@@ -44,7 +45,8 @@ class STTWebhookHandler:
         result_str = await self.webhook.recv()
         print(json.loads(result_str)["text"])
 
-'''
+
+"""
 async def send(_ws, audio_data) -> None:
     while True:
         data = base64.b64encode(audio_data).decode("utf-8")
@@ -64,7 +66,7 @@ async def send_receive(audio_data: bytes):
         test = await _ws.recv()  # Initial recieve, probably just a "connected" message
         print(test)
         await asyncio.gather(send(_ws, audio_data), receive(_ws))
-'''
+"""
 
 # while True:
 #     asyncio.run(send_receive())
@@ -85,6 +87,6 @@ params = {"sample_rate": sample_rate, "word_boost": json.dumps(word_boost)}
 url = f"wss://api.assemblyai.com/v2/realtime/ws?{urlencode(params)}"
 """
 
-#async def convert_speech_to_text(audio_data: bytes) -> str:
+# async def convert_speech_to_text(audio_data: bytes) -> str:
 #    asyncio.run(send_receive(audio_data))
 #    return "I NEVER UPDATED THIS, AHH"

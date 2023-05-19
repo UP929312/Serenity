@@ -39,9 +39,9 @@ class Handler:
 
         self.last_agent_response_sentiment = "neutral"
 
-    #def on_save_speech_segment(self, speech_segment: bytes) -> None:
-        #event_loop = asyncio.get_event_loop()
-        #self.current_monolog_text += event_loop.run_until_complete(self.speech_to_text_wh_handler.send(speech_segment))
+    # def on_save_speech_segment(self, speech_segment: bytes) -> None:
+    # event_loop = asyncio.get_event_loop()
+    # self.current_monolog_text += event_loop.run_until_complete(self.speech_to_text_wh_handler.send(speech_segment))
 
     def on_press_speak_key(self) -> None:
         """Start recording mic data"""

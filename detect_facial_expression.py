@@ -6,8 +6,10 @@ EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral",
 
 NO_FEATURES_DETECTED = {emotion: 0.0 for emotion in EMOTION_NAMES}
 
+
 class CameraNotAccessible(Exception):
     pass
+
 
 def test_camera_accessible() -> bool:
     try:
@@ -21,6 +23,7 @@ def test_camera_accessible() -> bool:
     except:
         return False
 
+
 def take_picture() -> list[int]:
     # print("Taking picture!")
     camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
@@ -33,6 +36,7 @@ def take_picture() -> list[int]:
     # print("Camera Released")
     return frame
 
+
 def get_facial_emotion(testing_mode_image: str | None = None) -> tuple[str, dict[str, float]]:
     """
     Takes a picture of the user and returns the emotion and the scores for each emotion.
@@ -40,7 +44,7 @@ def get_facial_emotion(testing_mode_image: str | None = None) -> tuple[str, dict
     WARNING: Takes 0.7 seconds to run from start to finish.
     """
     if testing_mode_image:
-        frame = cv2.imread(f'assets/images/{testing_mode_image}.png', cv2.IMREAD_COLOR)
+        frame = cv2.imread(f"assets/images/{testing_mode_image}.png", cv2.IMREAD_COLOR)
     else:
         try:
             frame = take_picture()
@@ -49,11 +53,11 @@ def get_facial_emotion(testing_mode_image: str | None = None) -> tuple[str, dict
 
     fer = HSEmotionRecognizer(model_name="enet_b2_8", device="cpu")  # device is cpu | gpu
     emotion, scores = fer.predict_emotions(frame, logits=True)
-    scores = list(zip(EMOTION_NAMES, scores))
+    scores: list[tuple[str, float]] = list(zip(EMOTION_NAMES, scores))
     sorted_scores = dict(sorted(scores, key=lambda x: x[1], reverse=True))
     return str(emotion), sorted_scores
 
 
 if __name__ == "__main__":
-    #take_picture()
+    # take_picture()
     print(get_facial_emotion(testing_mode_image="smiling_man.png"))
