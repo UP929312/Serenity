@@ -2,6 +2,9 @@ keys/openai_key.txt
 keys/aws_access_keys.txt
 keys/assemblyai_key.txt
 backup_files.py
+keys/*
+
+.vscode/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
