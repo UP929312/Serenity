@@ -6,7 +6,7 @@ from ai_interface import AgentInterface
 from conversation_store import store_conversation_row
 from detect_facial_expression import get_facial_emotion, test_camera_accessible
 from keyboard_detection import KeyboardDetection
-from pyaudio_interface import start_recording, stop_recording
+from pyaudio_interface import AudioRecordingHandler
 from sentiment_analysis import detect_sentiment
 from speech_to_text import convert_speech_to_text
 from text_to_speech import convert_text_to_speech
@@ -32,6 +32,7 @@ class Handler:
         self.keyboard_detection = KeyboardDetection("b", self.on_press_speak_key, self.on_release_speak_key)
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
+        self.audio_handler = AudioRecordingHandler()
 
         self.last_agent_response_sentiment = "neutral"
 
@@ -39,7 +40,7 @@ class Handler:
         """Start recording mic data"""
         print("Key pressed")
         cv2.imshow(WINDOW_NAME, active)
-        self.stream, self.start_recording_datetime = start_recording()
+        self.audio_handler.start_recording()
 
     def on_release_speak_key(self) -> None:
         """Stop recording mic data"""
@@ -48,7 +49,7 @@ class Handler:
         #return
         # emotion = get_facial_emotion()  # Currently Unused
         assert self.stream is not None
-        speech_segment = stop_recording(self.stream, self.start_recording_datetime)
+        speech_segment = self.audio_handler.stop_recording()
         #user_input = convert_speech_to_text(speech_segment)
         user_input = "Hello there"
         user_sentiment, confidence = detect_sentiment(user_input)

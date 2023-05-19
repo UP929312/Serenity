@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="MKs6Hx3hVW7b_2Y0VP6X" name="Page-1">
-        <mxGraphModel dx="1138" dy="571" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1419" dy="555" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -236,8 +236,8 @@
                 <mxCell id="6" value="Start capturing microphone data" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6600CC;" parent="144" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="91" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF8000;" parent="144" vertex="1">
-                    <mxGeometry x="107" y="53" width="9" height="2" as="geometry"/>
+                <mxCell id="207" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" vertex="1" parent="144">
+                    <mxGeometry x="111.03999999999996" y="49" width="8" height="10" as="geometry"/>
                 </mxCell>
                 <mxCell id="145" value="" style="group" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="460" y="370.53" width="120" height="59.47" as="geometry"/>
@@ -257,8 +257,8 @@
                 <mxCell id="8" value="[End of press] End capturing of Mic data" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#6600CC;" parent="146" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="92" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF8000;" parent="146" vertex="1">
-                    <mxGeometry x="108" y="52" width="9" height="2" as="geometry"/>
+                <mxCell id="208" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" vertex="1" parent="146">
+                    <mxGeometry x="112" y="48.930000000000064" width="8" height="10" as="geometry"/>
                 </mxCell>
                 <mxCell id="147" style="edgeStyle=none;html=1;fontSize=11.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="131" target="18" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -422,25 +422,6 @@
                 </mxCell>
                 <mxCell id="85" value="" style="shape=cross;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF3333;rotation=45;" parent="199" vertex="1">
                     <mxGeometry x="109" y="49" width="10" height="10" as="geometry"/>
-                </mxCell>
-                <mxCell id="205" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;dashed=1;fillColor=#0050ef;strokeColor=#FF9999;" edge="1" parent="1" source="204">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="260" y="520" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="160" y="785"/>
-                            <mxPoint x="160" y="520"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="206" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;strokeColor=#FF9999;" edge="1" parent="1" source="204" target="6">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="520" y="785"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="204" value="Current problem: With recording audio, the reading of the audio data has such a long run time, the record window gets shifted, cutting you off and adding silence" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="270" y="730" width="170" height="110" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
