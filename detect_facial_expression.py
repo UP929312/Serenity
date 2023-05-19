@@ -33,14 +33,14 @@ def take_picture() -> list[int]:
     # print("Camera Released")
     return frame
 
-def get_facial_emotion(testing_mode: bool = False) -> tuple[str, dict[str, float]]:
+def get_facial_emotion(testing_mode_image: str | None = None) -> tuple[str, dict[str, float]]:
     """
     Takes a picture of the user and returns the emotion and the scores for each emotion.
     If the camera is not accessible, it returns 0.0 for each emotion.
     WARNING: Takes 0.7 seconds to run from start to finish.
     """
-    if testing_mode:
-        frame = cv2.imread('assets/images/smiling_man_raw.png', cv2.IMREAD_COLOR)
+    if testing_mode_image:
+        frame = cv2.imread(f'assets/images/{testing_mode_image}.png', cv2.IMREAD_COLOR)
     else:
         try:
             frame = take_picture()
@@ -56,4 +56,4 @@ def get_facial_emotion(testing_mode: bool = False) -> tuple[str, dict[str, float
 
 if __name__ == "__main__":
     #take_picture()
-    print(get_facial_emotion(testing_mode=False))
+    print(get_facial_emotion(testing_mode_image="smiling_man.png"))

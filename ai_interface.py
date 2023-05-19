@@ -2,7 +2,7 @@ from langchain import OpenAI, LLMChain, PromptTemplate#, ConversationChain
 from langchain.agents import load_tools
 from langchain.memory import ConversationBufferWindowMemory
 
-from prompts import prompts
+from assets.files.prompts import prompts
 
 with open("keys/openai_key.txt", "r") as file:
     api_key = file.read().strip()
