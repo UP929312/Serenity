@@ -1,5 +1,4 @@
-# import asyncio
-from datetime import datetime
+
 from typing import TYPE_CHECKING
 
 from agent_avatar import AgentAvatar
@@ -58,13 +57,13 @@ class MainLoopHandler:
         # user_input = "Hello there"
         user_sentiment, confidence = detect_sentiment(user_input)
         # store_conversation_row(
-        #    self.username, user_input, "user", datetime.now(), user_sentiment if confidence > 0.1 else None, facial_emotion=None
+        #    self.username, user_input, "user", user_sentiment if confidence > 0.1 else None, facial_emotion=None
         # )  # fmt: ignore
 
         agent_output = self.agent.continue_chain(human_input=user_input)
         # self.last_agent_response_sentiment = detect_sentiment(agent_output)[0]
         # store_conversation_row(
-        #    self.username, agent_output, "agent", datetime.now(), self.last_agent_response_sentiment, facial_emotion=None
+        #    self.username, agent_output, "agent", self.last_agent_response_sentiment, facial_emotion=None
         # )  # fmt: ignore
 
         convert_text_to_speech(agent_output, play_message=True)

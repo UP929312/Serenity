@@ -28,7 +28,7 @@ class DatetimeDecoder(json.JSONDecoder):
 
 
 def store_conversation_row(
-    username: str, message: str, user: str, dt: datetime, tone: str | None, facial_emotion: str | None
+    username: str, message: str, user: str, tone: str | None, facial_emotion: str | None
 ) -> None:  # fmt: ignore
     # print("Storing conversation row")
     with open("assets/files/file_store.json", "r", encoding="utf-8") as file:
@@ -37,7 +37,7 @@ def store_conversation_row(
         {
             "message": message,
             "user": user,
-            "dt": str(dt),
+            "dt": str(datetime.now()),
             "tone": tone,
             "facial_emoji": facial_emotion,
         }

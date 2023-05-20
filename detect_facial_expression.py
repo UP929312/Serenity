@@ -12,13 +12,7 @@ class CameraNotAccessible(Exception):
 
 def test_camera_accessible() -> bool:
     try:
-        camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-        _, image = camera.read()
-        camera.release()
-        if image is None:  # If it can't detect a camera, it will return None
-            return False
-        # print("All worked fine")
-        return True
+        return bool(take_picture())
     except IOError:
         return False
 
