@@ -1,4 +1,5 @@
 from langchain import OpenAI, LLMChain, PromptTemplate  # , ConversationChain
+
 # from langchain.agents import load_tools
 from langchain.memory import ConversationBufferWindowMemory
 
@@ -36,10 +37,6 @@ class AgentInterface:
         if "As an AI language model" in output:
             print("Nooooooo, we need to account for thissssss")  # TODO: Account for this
         return output
-
-    # def gauge_tone(self, message: str) -> str:
-    #    return "neutral"
-
 
 if __name__ == "__main__":
     while True:

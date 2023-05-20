@@ -16,6 +16,7 @@ comprehend = boto3.client(
 
 
 def detect_sentiment(text: str) -> tuple[str, int]:
+    print(f"{text=} in detect sentiment")
     data = comprehend.detect_sentiment(Text=text, LanguageCode="en")
     sentiment = data["Sentiment"]
     return sentiment, data["SentimentScore"][sentiment.title()]

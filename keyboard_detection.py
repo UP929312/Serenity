@@ -1,4 +1,3 @@
-# from threading import Thread
 from typing import Callable, Any
 import cv2  # type: ignore[import]
 
@@ -15,27 +14,22 @@ class KeyboardDetection:
         self.down_barrier = 1
 
     def detect_key_press(self) -> None:
-        for _ in range(1):  # TODO: Remove this kind of stuff
-            k = cv2.waitKey(32)  # 32 is the minimum/maximum delay
-            # print(k)
-            if k == -1 and chr(k) != self.key_to_press:  # No key pressed
-                if self.key_pressed:
-                    self.key_pressed = False
-                    self.on_key_release()
-            else:
-                # print("Key pressed!", self.key_to_press)
-                if chr(k) != self.key_to_press:  # If it's not the key we want
-                    continue
-                if self.key_pressed:  # If it's already pressed
-                    continue
-                # print(self.down_barrier)
-                if self.down_barrier > 0:  # If the initial stop is active, disable it, then the next case will pass
-                    self.down_barrier -= 1
-                    continue
-                self.on_key_press()
-                self.key_pressed = True
-                self.down_barrier = 1
-                # print("A started being pressed")
+        k = cv2.waitKey(32)  # 32 is the minimum/maximum delay
+        # print(k)
+        if k == -1 or chr(k) != self.key_to_press:  # No key pressed
+            if self.key_pressed:
+                self.key_pressed = False
+                self.on_key_release()
+        else:
+            # print("Key pressed!", self.key_to_press)
+            if self.key_pressed or chr(k) != self.key_to_press:  # If it's already pressed, or a different key
+                return
+            if self.down_barrier > 0:  # If the initial stop is active, disable it, then the next case will pass
+                self.down_barrier -= 1
+                return
+            self.on_key_press()
+            self.key_pressed = True
+            self.down_barrier = 1
 
 
 if __name__ == "__main__":
@@ -51,6 +45,6 @@ if __name__ == "__main__":
     active = cv2.imread("assets/images/being_pressed.png")
     inactive = cv2.imread("assets/images/not_being_pressed.png")
     cv2.imshow(WINDOW_NAME, inactive)
-    keyboard_detection = KeyboardDetection("b", on_key_press, on_key_release)
+    keyboard_detection = KeyboardDetection(" ", on_key_press, on_key_release)
     while True:
         keyboard_detection.detect_key_press()

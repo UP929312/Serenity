@@ -1,10 +1,12 @@
-# import asyncio
+import asyncio
 import time
 import pyaudio
 import threading
 import wave
 from datetime import datetime
 from typing import Callable
+
+from speech_to_text import STTWebhookHandler
 
 CHUNK_SIZE = 4096
 FORMAT = pyaudio.paInt16
@@ -15,10 +17,14 @@ ONE_SECONDS_WORTH = RATE
 
 
 class AudioRecordingHandler:
-    def __init__(self, on_save_audio: Callable[[bytes], None]) -> None:
+    def __init__(self) -> None:
         self.stream: pyaudio.Stream | None = None
         self.frames: list[bytes] = []  # Each frame should be 1 second of audio
-        self.on_save_audio = on_save_audio
+        self.speech_to_text_wh_handler = STTWebhookHandler(self.on_receive)
+        self.current_monolog_text = ""
+
+    def on_receive(self, text: str) -> None:
+        self.current_monolog_text = text
 
     def save_one_second(self) -> None:
         while True:
@@ -35,8 +41,7 @@ class AudioRecordingHandler:
             time_taken = (end_time - start_time).total_seconds()
             if time_taken < 1:
                 time.sleep(1 - time_taken)
-            # event_loop = asyncio.get_event_loop()
-            # event_loop.run_until_complete(on_save_audio(frame))
+            self.speech_to_text_wh_handler.send(frame)
 
     def start_recording(self) -> None:
         stream: pyaudio._Stream = p.open(
@@ -51,16 +56,18 @@ class AudioRecordingHandler:
         thread = threading.Thread(target=self.save_one_second)
         thread.start()
 
-    def stop_recording(self, file_name: str | None = None) -> bytes:
-        time.sleep(0.5)  # This is to make sure the chunks don't get truncated
+    def stop_recording(self, file_name: str | None = None) -> str:
+        time.sleep(0.5)  # This is to make sure the chunks don't get truncated early
         assert self.stream is not None
         self.stream.stop_stream()
         self.stream.close()
         self.stream = None
+        time.sleep(0.5)  # To wait for the remaining webhooks to come in
         complete_recording = b"".join(self.frames)
         if file_name:
             self.save_audio_file(complete_recording, file_name)
-        return complete_recording
+        print(f"{self.current_monolog_text=}")
+        return self.current_monolog_text
 
     def save_audio_file(self, complete_recording: bytes, file_name: str) -> None:
         print("Saving audio file as ", file_name)
@@ -74,12 +81,8 @@ class AudioRecordingHandler:
         print("Post saving file (won't happen normally))")
 
 
-def on_save_audio(frame: bytes) -> None:
-    pass
-
-
 if __name__ == "__main__":
-    audio_handler = AudioRecordingHandler(on_save_audio)
+    audio_handler = AudioRecordingHandler()
     print("Start recording!")
     audio_handler.start_recording()
     time.sleep(5)

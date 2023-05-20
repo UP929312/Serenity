@@ -64,3 +64,35 @@ async def receive(_ws) -> None:
         except Exception as e:
             assert False, "Not a websocket 4008 error"
 """
+
+# Handle agent avatar
+# self.agent_avatar.animate(self.last_agent_response_sentiment)  # Should be threaded, but currently does nothing
+
+"""
+class STTWebhookHandler:
+    def __init__(self, on_receive: Callable[[str], None]) -> None:
+        self.on_receive = on_receive
+
+        URL = "wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000"
+        self.webhook = websockets.connect(URL, extra_headers=(("Authorization", auth_key),), ping_interval=5, ping_timeout=20)  # type: ignore[attr-defined]
+        self.last_send = datetime.now()
+
+        thread = threading.Thread(target=self.keep_alive)
+        thread.start()
+        # #self.webhook.close()  # Somewhere, we need to close the websocket, or we can just let it die?
+
+    async def keep_alive(self) -> None:
+        if self.last_send + timedelta(seconds=55) < datetime.now():  # If the last send was more than 55 seconds ago
+            asyncio.run(self.send(b""))
+
+    async def send(self, audio_data: bytes) -> None:
+        data = base64.b64encode(audio_data).decode("utf-8")
+        json_data = json.dumps({"audio_data": str(data)})
+        await self.webhook.send(json_data)
+        self.last_send = datetime.now()
+
+    async def receive(self) -> None:
+        result_str = await self.webhook.recv()
+        string = json.loads(result_str)["text"]
+        self.on_receive(string)
+"""
