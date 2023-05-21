@@ -13,7 +13,7 @@ class AgentAvatar:
 # https://www.turbosquid.com/3d-models/female-rigged-3d-model-1686129
 # This would also be cool, but it's $35
 
-#https://www.turbosquid.com/3d-models/young-woman-3d-model-1206633
+# https://www.turbosquid.com/3d-models/young-woman-3d-model-1206633
 # This one is $20
 
 # https://www.turbosquid.com/3d-models/nurse-medical-max/978859

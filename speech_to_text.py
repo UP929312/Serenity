@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from typing import Callable
-import websocket
+import websocket  # type: ignore[import]
 import base64
 import json
 import threading
@@ -26,12 +26,14 @@ URL = "wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000"
 
 # We have an ID for each session right, so we can join on ID?
 
+
 class STTWebhookHandler:
-    '''
+    """
     A class that handles the websocket connection to AssemblyAI's Speech to Text API. It sends audio data to the API and receives text data back.\n
     It also keeps the connection alive by sending empty audio data every minute.\n
     It also has a callback function, `on_receive`, that is called whenever a new text is received from the API.
-    '''
+    """
+
     def __init__(self, on_receive: Callable[[str], None]) -> None:
         self.on_receive = on_receive
 
@@ -43,13 +45,13 @@ class STTWebhookHandler:
         thread2 = threading.Thread(target=lambda: self.webhook.run_forever())
         thread2.start()
 
-        self.webhook_ids = {}
+        self.webhook_ids: dict[datetime, str] = {}
 
     def keep_alive(self) -> None:
-        '''
+        """
         A function that sends empty audio data every minute to keep the connection alive.\n
         This function runs in a separate thread, so won't affect the main loop.
-        '''
+        """
         print("Ah, ah, ah, ah, staying alive, staying alive")
         if self.last_send + timedelta(seconds=55) < datetime.now():  # If the last send was more than 55 seconds ago
             self.webhook.send('{"audio_data": ""}')
@@ -62,8 +64,8 @@ class STTWebhookHandler:
         self.webhook.send(json_data)
         self.last_send = datetime.now()
 
-    def on_message_receive(self, _, message_raw) -> None:
-        ''' Fires when a message is received from the websocket (containing a dictionary, including the text).'''
+    def on_message_receive(self, _: websocket.WebSocketApp, message_raw: str) -> None:
+        """Fires when a message is received from the websocket (containing a dictionary, including the text)."""
         message = json.loads(message_raw)
         # print(f"{message=}")
         # if message["message_type"] == "SessionBegins":
@@ -73,12 +75,13 @@ class STTWebhookHandler:
             if message["text"] != "":
                 print(message)
                 self.webhook_ids[message["created"]] = message["text"]
-                
+
                 print(f"Partial transcript received: {message['text']}")
                 self.on_receive(message["text"])
-        if message['message_type'] == 'FinalTranscript':
+        if message["message_type"] == "FinalTranscript":
             print(f"Final transcript received: {message['text']}")
             self.on_receive(message["text"])
+
 
 if __name__ == "__main__":
     handler = STTWebhookHandler(lambda x: print(x))

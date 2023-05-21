@@ -1,4 +1,3 @@
-
 from typing import TYPE_CHECKING
 
 from agent_avatar import AgentAvatar
@@ -33,7 +32,7 @@ class MainLoopHandler:
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
         self.current_monolog_text = ""
-        self.audio_handler = AudioRecordingHandler()  # type: ignore
+        self.audio_handler = AudioRecordingHandler()
 
         self.last_agent_response_sentiment = "neutral"
 
@@ -47,7 +46,7 @@ class MainLoopHandler:
             self.keyboard_detection.detect_key_press()
 
     def on_press_speak_key(self) -> None:
-        """ Calls the audio handler to start recording mic data. """
+        """Calls the audio handler to start recording mic data."""
         print("Key pressed")
         cv2.imshow(WINDOW_NAME, active)
         self.audio_handler.start_recording()
