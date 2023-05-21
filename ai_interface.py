@@ -13,6 +13,7 @@ with open("keys/openai_key.txt", "r") as file:
 
 
 class AgentInterface:
+    ''' A class which handles the interface between the application and LLM/Agent '''
     def __init__(self) -> None:
         # fmt: off
         template = prompts["system"] + """

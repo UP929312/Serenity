@@ -16,7 +16,11 @@ comprehend = boto3.client(
 
 
 def detect_sentiment(text: str) -> tuple[str, int]:
-    print(f"{text=} in detect sentiment")
+    '''
+    Takes a setence and returns the sentiment and the confidence of that sentiment, will be one of: \n
+    "POSITIVE", "NEGATIVE", "NEUTRAL", "MIXED" 
+    '''
+    #print(f"{text=} in detect sentiment")
     data = comprehend.detect_sentiment(Text=text, LanguageCode="en")
     sentiment = data["Sentiment"]
     return sentiment, data["SentimentScore"][sentiment.title()]
@@ -28,4 +32,6 @@ if __name__ == "__main__":
     sentiment = detect_sentiment("I really enjoy these sessions, they're so much fun and helpful")
     print(sentiment)
     sentiment = detect_sentiment("Things are going okay today")
+    print(sentiment)
+    sentiment = detect_sentiment("I'm feeling very sad down today but I'm super happy too")
     print(sentiment)

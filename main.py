@@ -17,6 +17,7 @@ if TYPE_CHECKING:
 
 username = "test_user"
 WINDOW_NAME = "Serenity"
+BYPASS_CAMERA_CHECK = True
 
 active = cv2.imread("assets/images/being_pressed.png")
 inactive = cv2.imread("assets/images/not_being_pressed.png")
@@ -36,8 +37,17 @@ class MainLoopHandler:
 
         self.last_agent_response_sentiment = "neutral"
 
+    def main_loop(self) -> None:
+        """
+        The main program loop, polls the keyboard for key presses, \n
+        and when it detects the right one, will fire `on_press_speak_key()`
+        """
+        while True:
+            print("Loopady doop")
+            self.keyboard_detection.detect_key_press()
+
     def on_press_speak_key(self) -> None:
-        """Start recording mic data"""
+        """ Calls the audio handler to start recording mic data. """
         print("Key pressed")
         cv2.imshow(WINDOW_NAME, active)
         self.audio_handler.start_recording()
@@ -68,12 +78,8 @@ class MainLoopHandler:
 
         convert_text_to_speech(agent_output, play_message=True)
 
-    def main_loop(self) -> None:
-        while True:
-            self.keyboard_detection.detect_key_press()
 
-
-if test_camera_accessible() or True:
+if BYPASS_CAMERA_CHECK or test_camera_accessible():
     cv2.namedWindow(WINDOW_NAME)
     handler = MainLoopHandler(username)
     handler.main_loop()

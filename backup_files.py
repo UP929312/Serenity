@@ -96,3 +96,13 @@ class STTWebhookHandler:
         string = json.loads(result_str)["text"]
         self.on_receive(string)
 """
+
+"""
+    def on_error(self, _, error) -> None:
+        if isinstance(error, Exception):
+            print("Error: ", error)
+        else:
+            error_message = json.loads(error)
+            print(f"{error_message=}")
+
+"""

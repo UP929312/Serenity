@@ -30,6 +30,7 @@ class DatetimeDecoder(json.JSONDecoder):
 def store_conversation_row(
     username: str, message: str, user: str, tone: str | None, facial_emotion: str | None
 ) -> None:  # fmt: ignore
+    ''' Stores a single monologue in the database, with which profile said it, what it had, the tone and facial expression. '''
     # print("Storing conversation row")
     with open("assets/files/file_store.json", "r", encoding="utf-8") as file:
         data = json.load(file)
@@ -47,7 +48,8 @@ def store_conversation_row(
 
 
 def load_conversation_history(username: str) -> list[dict]:
+    ''' Loads a list of dictionaries containing the conversation history for a given user. Sorted by datetime.'''
     # print("Loading conversation history")
     with open("assets/files/file_store.json", "r", encoding="utf-8") as file:
         data = json.load(file, cls=DatetimeDecoder)
-    return data[username]
+    return sorted(data[username], key=lambda x: x["dt"])

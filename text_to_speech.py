@@ -17,6 +17,7 @@ client = boto3.client(
 
 
 def convert_text_to_speech(message: str, play_message: bool) -> None:
+    ''' Convert text to speech using AWS Polly, and play the message if play_message is True'''
     response = client.synthesize_speech(
         Engine="neural",
         LanguageCode="en-GB",

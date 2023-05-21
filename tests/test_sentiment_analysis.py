@@ -25,3 +25,7 @@ def test_negative_sentiment_1() -> None:
 @pytest.mark.xfail(reason="This one fails for some reason")  # ('NEUTRAL', 0.32802483439445496)
 def test_negative_sentiment_2() -> None:
     assert detect_sentiment("It's just all going wrong, what else can fail?")[0] == "NEGATIVE"
+
+
+def test_mixed_sentiment_1() -> None:
+    assert detect_sentiment("I'm feeling very sad down today but I'm super happy too")[0] == "MIXED"
