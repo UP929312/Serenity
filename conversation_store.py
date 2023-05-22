@@ -14,6 +14,7 @@ class ConversationRow(TypedDict):
 
 
 class DatetimeEncoder(json.JSONEncoder):
+    """A custom encoder to convert datetime objects to strings"""
     def default(self, o: Any) -> Any:
         try:
             return super().default(o)
@@ -22,13 +23,14 @@ class DatetimeEncoder(json.JSONEncoder):
 
 
 class DatetimeDecoder(json.JSONDecoder):
+    """When reading a json file, will convert any key with the name in the set to a datetime object."""
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         json.JSONDecoder.__init__(self, object_hook=self.object_hook, *args, **kwargs)
 
     def object_hook(self, obj: Any) -> dict[Any, Any]:
         ret = {}
         for key, value in obj.items():
-            ret[key] = datetime.fromisoformat(value) if key in {"timestamp", "expires"} else value
+            ret[key] = datetime.fromisoformat(value) if key in {"timestamp", "expires", "dt", "datetime"} else value
         return ret
 
 

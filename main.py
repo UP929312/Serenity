@@ -31,9 +31,9 @@ class MainLoopHandler:
         self.keyboard_detection = KeyboardDetection(" ", self.on_press_speak_key, self.on_release_speak_key)
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
-        self.current_monolog_text = ""
         self.audio_handler = AudioRecordingHandler()
 
+        self.current_monolog_text = ""
         self.last_agent_response_sentiment = "neutral"
 
     def main_loop(self) -> None:
@@ -58,7 +58,7 @@ class MainLoopHandler:
         # emotion = get_facial_emotion()  # Currently Unused
         user_input = self.audio_handler.stop_recording()
         print(f"{user_input=}")
-        if user_input == "":
+        if user_input == "": 
             print("Nothing, so returning")
             return
         print("Returning anyway")

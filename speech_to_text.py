@@ -27,6 +27,10 @@ URL = "wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000"
 # We have an ID for each session right, so we can join on ID?
 
 
+
+# https://developers.deepgram.com/docs/getting-started-with-live-streaming-audio
+# Use this instead...
+
 class STTWebhookHandler:
     """
     A class that handles the websocket connection to AssemblyAI's Speech to Text API. It sends audio data to the API and receives text data back.\n
@@ -73,7 +77,7 @@ class STTWebhookHandler:
         # expires_at = message["expires_at"]
         if message["message_type"] == "PartialTranscript":
             if message["text"] != "":
-                print(message)
+                #print(message)
                 self.webhook_ids[message["created"]] = message["text"]
 
                 print(f"Partial transcript received: {message['text']}")

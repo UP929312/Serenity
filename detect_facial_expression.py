@@ -1,6 +1,8 @@
 import cv2  # type: ignore[import]
 from hsemotion.facial_emotions import HSEmotionRecognizer  # type: ignore[import]
 
+# https://github.com/HSE-asavchenko/hsemotion
+
 import numpy as np
 from typing import TypedDict
 
