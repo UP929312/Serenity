@@ -18,6 +18,8 @@ pyinstaller  # For creating the .exe
 
 elevenlabs  # Used for the ElevenLabs API
 
+google-cloud-core  # No idea what's this for, but it cannot build without it
+
 # And a bunch of types for the above packages
 
 types-playsound
