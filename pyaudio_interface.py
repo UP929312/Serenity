@@ -1,4 +1,3 @@
-import asyncio
 import time
 import pyaudio
 import threading
@@ -6,6 +5,7 @@ import wave
 from datetime import datetime
 
 from speech_to_text import STTWebhookHandler
+from new_STT_exp import STTHandler
 
 CHUNK_SIZE = 4096
 FORMAT = pyaudio.paInt16
@@ -24,11 +24,13 @@ class AudioRecordingHandler:
     def __init__(self) -> None:
         self.stream: pyaudio.Stream | None = None
         self.frames: list[bytes] = []  # Each frame should be 1 second of audio
-        self.speech_to_text_wh_handler = STTWebhookHandler(self.on_receive)
+        # self.speech_to_text_wh_handler = STTWebhookHandler(self.on_receive)
+        self.speech_to_text_wh_handler = STTHandler(self.on_receive)
         self.current_monolog_text = ""
 
     def on_receive(self, text: str) -> None:
         """Runs when the STTWebhookHandler receives a new text from the API."""
+        print("Received text from API:", text)
         self.current_monolog_text = text
 
     def save_one_second(self) -> None:
