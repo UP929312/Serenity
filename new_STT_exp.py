@@ -9,9 +9,8 @@ with open("keys/deepgram_key.txt", "r") as f:
 API_SETTINGS = {
     'punctuate': True,
     'interim_results': False,
-    'language': 'en-UK',
+    'language': 'en-GB',
     'model': 'nova',
-    #'model': 'base',
 }
 
 """
@@ -70,3 +69,4 @@ class STTHandler:
         #thread.start()
 
 stt_handler = STTHandler(print)
+print("post")
