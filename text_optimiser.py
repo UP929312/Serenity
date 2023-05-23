@@ -40,6 +40,29 @@ WORD_MAPPING = {
     "knead": "need",
     "leased": "least",
     "bee": "b",
+    "where": "wear",
+    ### These were generated from: https://7esl.com/homonyms/
+    "allowed": "aloud",
+    "aural": "oral",
+    "baize": "bays",
+    "berry": "bury",
+    "billed": "build",
+    "census": "sense",
+    "choral": "coral",
+    "done": "dun",
+    "earn": "urn",
+    "farther": "father",
+    "foreword": "forward",
+    "hour": "our",
+    "knew": "new",
+    "knight": "night",
+    "levee": "levy",
+    "links": "lynx",
+    "might": "mite",
+    "oar": "or",
+    "passed": "past",
+    "rouse": "rows",
+    "sauce": "seen",
 }
 """
     "": "",
@@ -84,9 +107,13 @@ class TextOptimiser:
     def optimise_text(self) -> str:
         self.optimised_text = self.text
         for longer, shorter in WORD_MAPPING.items():
-            if self.optimised_text.startswith(longer + " "):
-                self.optimised_text = self.optimised_text.replace(longer + " ", shorter + " ")
-            self.optimised_text = self.optimised_text.replace(" " + longer + " ", " " + shorter + " ")
+            for i in range(2):
+                if i == 1:
+                    longer = longer.capitalize()
+                    shorter = shorter.capitalize()
+                if self.optimised_text.startswith(longer + " "):
+                    self.optimised_text = self.optimised_text.replace(longer + " ", shorter + " ")
+                self.optimised_text = self.optimised_text.replace(" " + longer + " ", " " + shorter + " ")
         if self.print_improvement:
             amount_saved = len(self.text) - len(self.optimised_text)
             print(
