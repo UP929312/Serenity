@@ -27,7 +27,7 @@ class AgentInterface:
         prompt = PromptTemplate(input_variables=["history", "human_input"], template=template)
 
         self.chatgpt_chain = LLMChain(
-            llm=OpenAI(temperature=0, openai_api_key=api_key),  # model="gpt-3.5-turbo-0301" <- Not sure where to put this
+            llm=OpenAI(temperature=0, openai_api_key=api_key, client="idk"),  # model="gpt-3.5-turbo-0301" <- Not sure where to put this
             prompt=prompt,
             verbose=True,
             memory=ConversationBufferWindowMemory(k=2),
