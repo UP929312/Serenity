@@ -4,22 +4,21 @@ openapi-python-client  # Needed for LangChain
 opencv-contrib-python  # Used for the image, video, and more
 pyaudio  # Used to record audio
 boto3  # Used for the AWS Polly API and AWS Comprehend API
-# websockets  # Used to power the interaction between AssemblyAI and the app
+# websockets  # Used to power the interaction between AssemblyAI and the app, currently moving to deepgram-sdk
 
-# deepgram-sdk  # Used to convert speech to text
-# allosaurus  # Used to convert audio to phonemes
-# pydub  # Used to convert the .mp3's into .wav  - Frick, needs ffmpeg
+deepgram-sdk  # Used to convert speech to text
+allosaurus  # Used to convert audio to phonemes
+pydub  # Used to convert the .mp3's into .wav  - Frick, needs ffmpeg
 
 hsemotion  # Used to judge facial expressions
 timm-0.6.11  # Required for hsemotion (has to be this specific version)
 
 pytest  # Used for running tests
+pyinstaller  # For creating the .exe
 
 elevenlabs  # Used for the ElevenLabs API
 
-
 # And a bunch of types for the above packages
-
 
 types-playsound
 types-boto3

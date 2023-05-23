@@ -4,6 +4,7 @@ End goals:
 
 - As immersive as possible (excluding uncanny voices or faces)
 - The ability to respond relatively quickly to avoid long awkward pauses (less than 5 seconds).
+- Run on windows 10 and 11 machines immediately, with other platforms to follow.
 
 Units:
 
@@ -29,6 +30,7 @@ The messages wil be stored in one hot encoding, [explanation](https://machinelea
 
 Later:
 
+- Different options, such as voices and 3d models, so users can choose their own
 - Generate an avatar which will react and be human
 - Speech detection to remove the need for push to talk
 - In the future, asynchronously also do further analysis on the user's input, potentially while Serentity is speaking
