@@ -14,8 +14,10 @@ NO_FEATURES_DETECTED = {emotion: 0.0 for emotion in EMOTION_NAMES}
 class CameraNotAccessible(Exception):
     pass
 
+
 class ImageData(TypedDict):
     data: np.ndarray[int, np.dtype[np.int32]]
+
 
 def test_camera_accessible() -> bool:
     """Returns True if the camera is accessible, False otherwise."""

@@ -7,6 +7,7 @@ from detect_facial_expression import test_camera_accessible  # , get_facial_emot
 from keyboard_detection import KeyboardDetection
 from pyaudio_interface import AudioRecordingHandler
 from sentiment_analysis import detect_sentiment
+from text_optimiser import TextOptimiser
 from text_to_speech import convert_text_to_speech
 
 import cv2  # type: ignore[import]
@@ -58,7 +59,7 @@ class MainLoopHandler:
         # emotion = get_facial_emotion()  # Currently Unused
         user_input = self.audio_handler.stop_recording()
         print(f"{user_input=}")
-        if user_input == "": 
+        if user_input == "":
             print("Nothing, so returning")
             return
         print("Returning anyway")
@@ -75,7 +76,8 @@ class MainLoopHandler:
         #    self.username, agent_output, "agent", self.last_agent_response_sentiment, facial_emotion=None
         # )  # fmt: ignore
 
-        convert_text_to_speech(agent_output, play_message=True)
+        optimised_text = TextOptimiser(agent_put, False).optimised_text
+        convert_text_to_speech(optimised_text, play_message=True)
 
 
 if BYPASS_CAMERA_CHECK or test_camera_accessible():

@@ -142,3 +142,90 @@ def convert_text_to_speech(message: str, play_message: bool) -> None:
     if play_message:
         playsound("assets/audio/main.mp3")
 '''
+
+"""
+class STTHandler:
+    def __init__(self, on_receive: Callable[[str], None]) -> None:
+        self.on_receive = on_receive
+        self.queue: list[bytes] = []
+
+        thread = Thread(target=lambda: asyncio.run(self.handle_socket()))
+        thread.start()
+
+    async def handle_socket(self) -> None:
+        deepgram = Deepgram(DEEPGRAM_API_KEY)
+        print("Here")
+        self.socket: LiveTranscription = await deepgram.transcription.live(API_SETTINGS)  
+        print("Post")
+        event: LiveTranscriptionEvent = self.socket.event  # type: ignore[attr-defined]
+        self.socket.registerHandler(event.CLOSE, lambda c: print(f'Connection closed with code {c}.'))
+        self.socket.registerHandler(event.TRANSCRIPT_RECEIVED, self.on_receive)
+
+    def close(self) -> None:
+        asyncio.run(self.socket.finish())
+
+    def while_running(self) -> None:
+        while True:
+            if self.queue:
+                audio_data = self.queue.pop(0)
+                print("Sending data")
+                self.socket.send(audio_data)
+    
+    def send(self, audio_data: bytes) -> None:
+        self.queue.append(audio_data)
+"""
+
+if __name__ == "__main__" and False:
+    print("Before initialisation of STTHandler")
+    stt_handler = STTHandler(print)
+    import time
+    time.sleep(5)
+    with open("assets/audio/test.mp3", "rb") as file:
+        stt_handler.send(file.read())
+    print("post")
+
+"""
+{
+  "channel_index": [0, 1],
+  "duration": 2.0900002,
+  "start": 7.04,
+  "is_final": true,
+  "speech_final": true,
+  "channel": {
+    "alternatives": [
+      {
+        "transcript": "I said it before, and I'll say it again.",
+        "confidence": 0.9896645,
+        "words": [
+          {
+            "word": "i",
+            "start": 7.2599998,
+            "end": 7.46,
+            "confidence": 0.8708194,
+            "punctuated_word": "I"
+          },
+          {
+            "word": "said",
+            "start": 7.46,
+            "end": 7.58,
+            "confidence": 0.9085592,
+            "punctuated_word": "said"
+          },
+          ...
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "request_id": "4d9a5590-fe66-46f1-81d5-a95b9140ac04",
+    "model_uuid": "41757536-6114-494d-83fd-c2694524d80b"
+  }
+}
+"""
+
+'''
+    def on_receive(self, text: str) -> None:
+        """Runs when the STTWebhookHandler receives a new text from the API."""
+        print("Received text from API:", text)
+        self.current_monolog_text = text
+    '''

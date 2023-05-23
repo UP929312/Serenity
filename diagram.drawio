@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="MKs6Hx3hVW7b_2Y0VP6X" name="Page-1">
-        <mxGraphModel dx="1419" dy="672" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="983" dy="560" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -177,29 +177,13 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="115" value="" style="group" parent="1" vertex="1" connectable="0">
-                    <mxGeometry x="1060" y="489.46000000000004" width="120" height="60.071067811865476" as="geometry"/>
+                    <mxGeometry x="1260" y="490.00000000000006" width="120" height="60.071067811865476" as="geometry"/>
                 </mxCell>
                 <mxCell id="31" value="Store response and metadata" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#99004D;" parent="115" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="89" value="" style="shape=cross;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF3333;rotation=45;" parent="115" vertex="1">
                     <mxGeometry x="107" y="48" width="10" height="10" as="geometry"/>
-                </mxCell>
-                <mxCell id="117" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=default;strokeWidth=1;fontSize=13;endSize=7;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="35" target="31" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="1300" y="420.53" as="targetPoint"/>
-                        <Array as="points">
-                            <mxPoint x="1320" y="519"/>
-                            <mxPoint x="1210" y="519.53"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="118" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=default;strokeWidth=1;fontSize=13;endSize=7;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" parent="1" source="31" target="36" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="1120" y="470"/>
-                        </Array>
-                    </mxGeometry>
                 </mxCell>
                 <mxCell id="129" value="" style="group" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="460" y="130.6" width="120.07106781186553" height="60.071067811865476" as="geometry"/>
@@ -269,7 +253,7 @@
                 <mxCell id="150" value="" style="group;rounded=0;" parent="163" vertex="1" connectable="0">
                     <mxGeometry width="120" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="151" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;u style=&quot;font-size: 13px;&quot;&gt;Services:&lt;/u&gt;&lt;/font&gt;&lt;br&gt;&lt;div style=&quot;text-align: left; font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;AWS&lt;/font&gt;&lt;/div&gt;&lt;span style=&quot;background-color: initial; font-size: 6px;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;Assembly AI&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;LangChain/OpenAI&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="150" vertex="1">
+                <mxCell id="151" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;u style=&quot;font-size: 13px;&quot;&gt;Services:&lt;/u&gt;&lt;/font&gt;&lt;br&gt;&lt;div style=&quot;text-align: left; font-size: 11px;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;AWS Comprehend&lt;/font&gt;&lt;/div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;font-size: 11px;&quot;&gt;Deepgram&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 6px; text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;LangChain/OpenAI&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 6px; text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="150" vertex="1">
                     <mxGeometry width="120" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="155" value="" style="whiteSpace=wrap;html=1;rounded=1;dashed=1;dashPattern=12 12;strokeColor=#FFB366;fontSize=6;fontColor=#FFB366;fillColor=#FFB366;" parent="150" vertex="1">
@@ -305,7 +289,7 @@
                 <mxCell id="172" value="" style="group;rounded=0;" parent="171" vertex="1" connectable="0">
                     <mxGeometry width="120" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="173" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;u style=&quot;font-size: 12px;&quot;&gt;Frameworks ext:&lt;br&gt;&lt;/u&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left; font-size: 11px;&quot;&gt;HSE&lt;/div&gt;&lt;div style=&quot;text-align: left; font-size: 11px;&quot;&gt;Vector Database&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;background-color: initial; font-size: 6px;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;Unknown&lt;/font&gt;&lt;span style=&quot;font-size: 11px; background-color: initial;&quot;&gt;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="172" vertex="1">
+                <mxCell id="173" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;u style=&quot;font-size: 12px;&quot;&gt;Frameworks ext:&lt;br&gt;&lt;/u&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left; font-size: 11px;&quot;&gt;HSE&lt;/div&gt;&lt;div style=&quot;text-align: left; font-size: 11px;&quot;&gt;Vector Database&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;br&gt;&lt;/div&gt;&lt;span style=&quot;background-color: initial; font-size: 6px;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;ElevenLabs&lt;/font&gt;&lt;span style=&quot;font-size: 11px; background-color: initial;&quot;&gt;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="172" vertex="1">
                     <mxGeometry width="120" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="174" value="" style="whiteSpace=wrap;html=1;rounded=1;dashed=1;dashPattern=12 12;strokeColor=#FFE1B5;fontSize=6;fontColor=#FFB366;fillColor=#FFE1B5;" parent="172" vertex="1">
@@ -352,13 +336,13 @@
                 <mxCell id="79" value="" style="group;strokeColor=none;" parent="178" vertex="1" connectable="0">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="Send audio to &lt;br&gt;AssemblyAI (speech-to-text)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#546BE6;" parent="79" vertex="1">
+                <mxCell id="18" value="Send audio to &lt;br&gt;speech-to-text API" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#546BE6;" parent="79" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="75" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="178" vertex="1">
                     <mxGeometry x="109" y="47" width="8" height="10" as="geometry"/>
                 </mxCell>
-                <mxCell id="181" value="&lt;font style=&quot;font-size: 18px;&quot; color=&quot;#808080&quot;&gt;AssemblyAI&lt;/font&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=12 12;strokeWidth=0.2;fontSize=20;fontColor=#FF3333;" parent="182" vertex="1">
+                <mxCell id="181" value="&lt;font style=&quot;font-size: 18px;&quot; color=&quot;#808080&quot;&gt;Deepgram&lt;/font&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=12 12;strokeWidth=0.2;fontSize=20;fontColor=#FF3333;" parent="182" vertex="1">
                     <mxGeometry x="100" y="10" width="130" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="195" style="edgeStyle=none;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;dashed=1;strokeWidth=0.75;fontSize=20;fontColor=#808080;" parent="1" source="104" edge="1">
@@ -378,7 +362,7 @@
                 <mxCell id="198" value="" style="group" parent="1" vertex="1" connectable="0">
                     <mxGeometry x="1060" y="370.53" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="36" value="Call AWS-Polly (text-to-speech)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FFB366;" parent="198" vertex="1">
+                <mxCell id="36" value="Call ElevenLabs&lt;br&gt;(text-to-speech)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#FF99FF;" parent="198" vertex="1">
                     <mxGeometry width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="80" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" parent="198" vertex="1">
@@ -413,6 +397,29 @@
                 </mxCell>
                 <mxCell id="85" value="" style="shape=cross;whiteSpace=wrap;html=1;strokeColor=#FFFFFF;strokeWidth=0.3;fillColor=#FF3333;rotation=45;" parent="199" vertex="1">
                     <mxGeometry x="109" y="49" width="10" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="209" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="35" target="31">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="210" style="edgeStyle=none;html=1;" edge="1" parent="1" source="212">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1130" y="540" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="211" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="1060" y="490" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="212" value="Optimise input text, &lt;br&gt;to reduce characters" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#CCCCFF;" vertex="1" parent="211">
+                    <mxGeometry width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="213" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.tick;fillColor=#33FF33;strokeWidth=0.3;" vertex="1" parent="211">
+                    <mxGeometry x="109" y="47" width="8" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="214" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="31" target="212">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="215" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="212" target="36">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

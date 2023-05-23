@@ -4,4 +4,5 @@
 
 [Future plan, face id to login to your account](https://github.com/ageitgey/face_recognition)
 
-Potentially better TTS? [here](https://beta.elevenlabs.io)
+We need to install FFMPEG to run the audio stuff, which can be found [here](https://stackoverflow.com/questions/56370173/how-to-export-ffmpeg-into-my-python-program)
+[This is the direct link](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z)
