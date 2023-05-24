@@ -76,7 +76,7 @@ class MainLoopHandler:
         #    self.username, agent_output, "agent", self.last_agent_response_sentiment, facial_emotion=None
         # )  # fmt: ignore
 
-        optimised_text = TextOptimiser(agent_put, False).optimised_text
+        optimised_text = TextOptimiser(agent_output, False).optimised_text
         convert_text_to_speech(optimised_text, play_message=True)
 
 

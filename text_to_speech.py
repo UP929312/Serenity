@@ -1,6 +1,6 @@
 import json
 
-from elevenlabs import Accent, Age, Gender, Voice, VoiceDesign, generate, play, save, set_api_key  # , voices
+from elevenlabs import Accent, Age, Gender, Voice, VoiceDesign, generate, play, save, set_api_key  #  type: ignore[import]
 
 # https://github.com/elevenlabs/elevenlabs-python
 # https://beta.elevenlabs.io/speech-synthesis
