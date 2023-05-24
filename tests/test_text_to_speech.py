@@ -6,8 +6,8 @@ TEST_PROMPT_2 = "I've been very depressed lately, and because of that, I'm becom
 
 
 def test_text_to_speech_failure_1() -> None:
-    assert convert_text_to_speech(TEST_PROMPT_1, False) is not None  # type: ignore[func-returns-value]
+    assert convert_text_to_speech(TEST_PROMPT_1, voice_type="young-female-british", play_message=False) is not None  # type: ignore[func-returns-value]
 
 
 def test_text_to_speech_failure_2() -> None:  # Example sentence
-    assert convert_text_to_speech(TEST_PROMPT_2, False) is not None  # type: ignore[func-returns-value]
+    assert convert_text_to_speech(TEST_PROMPT_2, voice_type="young-female-british", play_message=False) is not None  # type: ignore[func-returns-value]
