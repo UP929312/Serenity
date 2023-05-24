@@ -1,10 +1,11 @@
+from typing import TypedDict
+
 import cv2  # type: ignore[import]
+import numpy as np
 from hsemotion.facial_emotions import HSEmotionRecognizer  # type: ignore[import]
 
 # https://github.com/HSE-asavchenko/hsemotion
 
-import numpy as np
-from typing import TypedDict
 
 EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise")  # fmt: ignore
 

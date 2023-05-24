@@ -1,5 +1,7 @@
 from typing import TYPE_CHECKING
 
+import cv2  # type: ignore[import]
+
 from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
 from conversation_store import store_conversation_row
@@ -9,8 +11,6 @@ from pyaudio_interface import AudioRecordingHandler
 from sentiment_analysis import detect_sentiment
 from text_optimiser import TextOptimiser
 from text_to_speech import convert_text_to_speech
-
-import cv2  # type: ignore[import]
 
 if TYPE_CHECKING:
     from pyaudio import Stream

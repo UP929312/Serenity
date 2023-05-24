@@ -1,4 +1,5 @@
 from typing import TypedDict
+
 from allosaurus.app import read_recognizer
 from pydub import AudioSegment
 

@@ -1,4 +1,5 @@
-from typing import Callable, Any
+from typing import Any, Callable
+
 import cv2  # type: ignore[import]
 
 WINDOW_NAME = "Serenity"

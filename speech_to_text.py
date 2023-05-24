@@ -1,9 +1,10 @@
-from datetime import datetime, timedelta
-from typing import Callable
-import websocket  # type: ignore[import]
 import base64
 import json
 import threading
+from datetime import datetime, timedelta
+from typing import Callable
+
+import websocket  # type: ignore[import]
 
 with open("keys/assemblyai_key.txt", "r") as file:
     auth_key = file.read()

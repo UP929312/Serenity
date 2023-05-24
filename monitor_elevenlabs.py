@@ -1,5 +1,4 @@
-from elevenlabs import set_api_key
-from elevenlabs import User
+from elevenlabs import User, set_api_key
 
 with open("keys/eleven_labs_keys.txt", "r") as file:
     keys = file.read().strip().split("\n")

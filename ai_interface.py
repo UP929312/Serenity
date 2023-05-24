@@ -1,9 +1,9 @@
-from langchain import OpenAI, LLMChain, PromptTemplate  # , ConversationChain
+import json
+
+from langchain import LLMChain, OpenAI, PromptTemplate  # , ConversationChain
 
 # from langchain.agents import load_tools
 from langchain.memory import ConversationBufferWindowMemory
-
-import json
 
 with open("assets/files/prompts.json", "r") as file:
     prompts = json.load(file)
