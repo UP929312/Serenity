@@ -19,6 +19,7 @@ pyinstaller  # For creating the .exe
 elevenlabs  # Used for the ElevenLabs API
 
 google-cloud-core  # No idea what's this for, but it cannot build without it
+pillow~=9.0.1  # Same for this
 
 # And a bunch of types for the above packages
 
