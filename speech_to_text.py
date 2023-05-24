@@ -1,94 +1,41 @@
-import base64
-import json
-import threading
-from datetime import datetime, timedelta
-from typing import Callable
+import time
 
-import websocket  # type: ignore[import]
+from deepgram import Deepgram  # type: ignore[import]
+from deepgram._types import BufferSource  # type: ignore[import]
+from deepgram.transcription import PrerecordedOptions  # type: ignore[import]
 
-with open("keys/assemblyai_key.txt", "r") as file:
-    auth_key = file.read()
+with open("keys/deepgram_key.txt", "r") as f:
+    DEEPGRAM_API_KEY = f.read()
 
-headers = {"Authorization": auth_key}
-URL = "wss://api.assemblyai.com/v2/realtime/ws?sample_rate=16000"
-
-# https://www.assemblyai.com/docs/Models/entity_detection
-# https://www.assemblyai.com/docs/Guides/real-time_streaming_transcription
-
-# "format_text": False  <- Removes punctuation, to stop sentences being broken up incorrectly
-# "disfluencies": True  <- Keeps the "ums" and "uhs"
-
-# Current plan:
-# We need to create a permanent webhook that keeps itself alive, and then we need to chunk up the audio data, one-two frames at a time, and send it to the websocket.
-# We then need to somehow combine the text inputs, but we might have to send the audio as they come in, potentially by giving the recording handler a callback?
-# To not die, it must send audio at least once every second, so we probably need a function that sends empty sound for 1 second every minute, cost wise, not sure how this will work?
-
-# https://stackoverflow.com/a/69109651/10177123
-
-# We have an ID for each session right, so we can join on ID?
+# keywords=['first:5', 'second'] 
+# keywords=["Serenity", "sad", "depressed", "feelings", "thoughts"]
+API_SETTINGS = PrerecordedOptions(punctuate=True, model="nova", language="en-GB")
 
 
-# https://developers.deepgram.com/docs/getting-started-with-live-streaming-audio
-# Use this instead...
+class STTHandler:
+    def __init__(self, audio_data: bytes, /, time_transcription: bool = False) -> None:
+        self.deepgram = Deepgram(DEEPGRAM_API_KEY)
+        self.source: BufferSource = {"buffer": audio_data, "mimetype": "audio/mp3"}
+        self.time_transcription = time_transcription
 
-
-class STTWebhookHandler:
-    """
-    A class that handles the websocket connection to AssemblyAI's Speech to Text API. It sends audio data to the API and receives text data back.\n
-    It also keeps the connection alive by sending empty audio data every minute.\n
-    It also has a callback function, `on_receive`, that is called whenever a new text is received from the API.
-    """
-
-    def __init__(self, on_receive: Callable[[str], None]) -> None:
-        self.on_receive = on_receive
-
-        self.webhook = websocket.WebSocketApp(URL, header=headers, on_message=self.on_message_receive)
-        self.last_send = datetime.now()
-
-        thread = threading.Thread(target=self.keep_alive)
-        thread.start()
-        thread2 = threading.Thread(target=lambda: self.webhook.run_forever())
-        thread2.start()
-
-        self.webhook_ids: dict[datetime, str] = {}
-
-    def keep_alive(self) -> None:
-        """
-        A function that sends empty audio data every minute to keep the connection alive.\n
-        This function runs in a separate thread, so won't affect the main loop.
-        """
-        print("Ah, ah, ah, ah, staying alive, staying alive")
-        if self.last_send + timedelta(seconds=55) < datetime.now():  # If the last send was more than 55 seconds ago
-            self.webhook.send('{"audio_data": ""}')
-            self.last_send = datetime.now()
-
-    def send(self, audio_data: bytes) -> None:
-        # print("Webhook is sending some data")
-        data = base64.b64encode(audio_data).decode("utf-8")
-        json_data = json.dumps({"audio_data": str(data)})
-        self.webhook.send(json_data)
-        self.last_send = datetime.now()
-
-    def on_message_receive(self, _: websocket.WebSocketApp, message_raw: str) -> None:
-        """Fires when a message is received from the websocket (containing a dictionary, including the text)."""
-        message = json.loads(message_raw)
-        # print(f"{message=}")
-        # if message["message_type"] == "SessionBegins":
-        # session_id = message["session_id"]
-        # expires_at = message["expires_at"]
-        if message["message_type"] == "PartialTranscript":
-            if message["text"] != "":
-                # print(message)
-                self.webhook_ids[message["created"]] = message["text"]
-
-                print(f"Partial transcript received: {message['text']}")
-                self.on_receive(message["text"])
-        if message["message_type"] == "FinalTranscript":
-            print(f"Final transcript received: {message['text']}")
-            self.on_receive(message["text"])
+    def transcribe(self) -> str:
+        if len(self.source["buffer"]) < 10:
+            raise Exception("Audio data is too short to transcribe")
+        transcription_start_time = time.time()
+        response = self.deepgram.transcription.sync_prerecorded(self.source, option=API_SETTINGS)
+        assert "results" in response
+        raw_text: str = response["results"]["channels"][0]["alternatives"][0]["transcript"]
+        if self.time_transcription:
+            print(f"Transcription took {round(time.time()-transcription_start_time, 2)} seconds")
+        #if raw_text == "":
+        #    raise Exception("Transcription failed, and had empty text")
+        return raw_text
+        # print(json.dumps(response, indent=4))  # Formats the response nicely
 
 
 if __name__ == "__main__":
-    handler = STTWebhookHandler(lambda x: print(x))
-    while True:
-        pass
+    file_name = "assets/audio/input_test.mp3"  # recent_user_speech
+    with open(file_name, "rb") as file:
+        audio_bytes = file.read()
+    text = STTHandler(audio_bytes, True).transcribe()
+    print(text)

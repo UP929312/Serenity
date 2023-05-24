@@ -7,8 +7,9 @@ from ai_interface import AgentInterface
 from conversation_store import store_conversation_row
 from detect_facial_expression import test_camera_accessible  # , get_facial_emotion
 from keyboard_detection import KeyboardDetection
-from pyaudio_interface import AudioRecordingHandler
+from microphone_interface import AudioRecordingHandler
 from sentiment_analysis import detect_sentiment
+from speech_to_text import STTHandler
 from text_optimiser import TextOptimiser
 from text_to_speech import convert_text_to_speech
 
@@ -43,7 +44,7 @@ class MainLoopHandler:
         and when it detects the right one, will fire `on_press_speak_key()`
         """
         while True:
-            print("Loopady doop")
+            #print("Loopady doop")
             self.keyboard_detection.detect_key_press()
 
     def on_press_speak_key(self) -> None:
@@ -57,9 +58,10 @@ class MainLoopHandler:
         cv2.imshow(WINDOW_NAME, inactive)
         print("Key released")
         # emotion = get_facial_emotion()  # Currently Unused
-        user_input = self.audio_handler.stop_recording()
-        print(f"{user_input=}")
-        if user_input == "":
+        user_input_audio_bytes = self.audio_handler.stop_recording("assets/audio/most_recent_user_speech.wav")
+        user_input_text = STTHandler(user_input_audio_bytes, False).transcribe()
+        print(f"{user_input_text=}")
+        if user_input_text == "":
             print("Nothing, so returning")
             return
         print("Returning anyway")

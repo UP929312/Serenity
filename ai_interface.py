@@ -2,6 +2,9 @@ import json
 
 from langchain import LLMChain, OpenAI, PromptTemplate  # , ConversationChain
 
+# https://www.python-engineer.com/posts/langchain-crash-course/
+# https://python.langchain.com/en/latest/modules/agents/agent_executors/examples/agent_vectorstore.html
+
 # from langchain.agents import load_tools
 from langchain.memory import ConversationBufferWindowMemory
 
