@@ -1,17 +1,14 @@
 import boto3
 
 with open("keys/aws_access_keys.txt", "r", encoding="utf-8") as file:
-    aws_access_key_id, aws_secret_access_key, aws_session_token = (
-        *file.read().strip().split("\n"),
-        None,
-    )
+    aws_access_key_id, aws_secret_access_key = (*file.read().strip().split("\n"),)
 
 comprehend = boto3.client(
     "comprehend",
     region_name="eu-west-2",
     aws_access_key_id=aws_access_key_id,
     aws_secret_access_key=aws_secret_access_key,
-    aws_session_token=aws_session_token,
+    aws_session_token=None,
 )
 
 

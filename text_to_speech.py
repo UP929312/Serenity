@@ -44,6 +44,7 @@ VOICE_IDS = {
 
 
 def convert_text_to_speech(text: str, voice_type: str, play_message: bool, file_name: str | None = None) -> bytes:
+    """Converts text to speech using the Eleven Labs API, takes in a string, and voice type, usually `young-female-british`."""
     global current_index
     # api_key = keys[current_index % len(keys)]
     api_key = open("keys/eleven_labs_dev_key.txt", "r").read()

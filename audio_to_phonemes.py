@@ -1,7 +1,7 @@
 from typing import TypedDict
 
-from allosaurus.app import read_recognizer
-from pydub import AudioSegment
+from allosaurus.app import read_recognizer  # type: ignore[import]
+from pydub import AudioSegment  # type: ignore[import]
 
 # import time
 

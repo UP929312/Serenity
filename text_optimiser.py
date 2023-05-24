@@ -96,7 +96,7 @@ class TextOptimiser:
     """
     This class will take an input string and optimise it for lower character count, giving us\n
     more space under the ElevenLabs free trial, which gives 10k chars per account per month.\n
-    By using this, we can increase the amount of free words we get
+    By using this, we can increase the amount of free words we get, normally about 3-5% effective
     """
 
     def __init__(self, text: str, print_improvement: bool = False) -> None:

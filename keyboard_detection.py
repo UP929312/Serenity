@@ -31,7 +31,7 @@ class KeyboardDetection:
             # print("Key pressed!", self.key_to_press)
             if self.key_pressed or chr(k) != self.key_to_press:  # If it's already pressed, or a different key
                 return
-            if self.down_barrier:  # If the initial stop is active, disable it, then the next case will pass
+            if self.down_barrier:  # If the initial stop is active, disable it, then the next case will pass (prevents double presses)
                 self.down_barrier = False
                 return
             self.on_key_press()

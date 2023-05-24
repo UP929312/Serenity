@@ -44,7 +44,7 @@ class MainLoopHandler:
         and when it detects the right one, will fire `on_press_speak_key()`
         """
         while True:
-            #print("Loopady doop")
+            # print("Loopady doop")
             self.keyboard_detection.detect_key_press()
 
     def on_press_speak_key(self) -> None:
@@ -61,25 +61,27 @@ class MainLoopHandler:
         user_input_audio_bytes = self.audio_handler.stop_recording("assets/audio/most_recent_user_speech.wav")
         user_input_text = STTHandler(user_input_audio_bytes, False).transcribe()
         print(f"{user_input_text=}")
+        """
         if user_input_text == "":
             print("Nothing, so returning")
             return
         print("Returning anyway")
         return
-        # user_input = "Hello there"
-        user_sentiment, confidence = detect_sentiment(user_input)
+        """
+        user_sentiment, confidence = detect_sentiment(user_input_text)
+        print(f"{user_sentiment=} {confidence=}")
         # store_conversation_row(
         #    self.username, user_input, "user", user_sentiment if confidence > 0.1 else None, facial_emotion=None
         # )  # fmt: ignore
 
-        agent_output = self.agent.continue_chain(human_input=user_input)
+        agent_output = self.agent.continue_chain(human_input=user_input_text)
         # self.last_agent_response_sentiment = detect_sentiment(agent_output)[0]
         # store_conversation_row(
         #    self.username, agent_output, "agent", self.last_agent_response_sentiment, facial_emotion=None
         # )  # fmt: ignore
 
         optimised_text = TextOptimiser(agent_output, False).optimised_text
-        convert_text_to_speech(optimised_text, play_message=True)
+        convert_text_to_speech(optimised_text, voice_type="young-female-british", play_message=True)
 
 
 if BYPASS_CAMERA_CHECK or test_camera_accessible():

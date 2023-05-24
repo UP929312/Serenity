@@ -38,9 +38,8 @@ class AgentInterface:
         # tools = load_tools(["wikipedia"], llm=self.chatgpt_chain)  # In the future
 
     def continue_chain(self, human_input: str) -> str:
+        """Takes an input of text from the user and sends it to the LLMChain, returning the output as a string"""
         output = self.chatgpt_chain.predict(human_input=human_input)
-        if "As an AI language model" in output:
-            print("Nooooooo, we need to account for thissssss")  # TODO: Account for this
         return output
 
 

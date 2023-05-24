@@ -1,10 +1,9 @@
 numpy
-# wikipedia 
 openapi-python-client  # Needed for LangChain
 opencv-contrib-python  # Used for the image, video, and more
 pyaudio  # Used to record audio
-boto3  # Used for the AWS Polly API and AWS Comprehend API
-# websockets  # Used to power the interaction between AssemblyAI and the app, currently moving to deepgram-sdk
+boto3  # Used for the AWS Comprehend API
+# wikipedia 
 
 deepgram-sdk  # Used to convert speech to text
 allosaurus  # Used to convert audio to phonemes

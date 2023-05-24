@@ -39,7 +39,6 @@ def take_picture() -> ImageData:
     # print("Camera made")
     frame: ImageData
     _, frame = camera.read()
-    print(type(frame))
     # print("Picture taken")
     camera.release()
     if frame is None:

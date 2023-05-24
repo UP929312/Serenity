@@ -12,22 +12,17 @@ ONE_SECONDS_WORTH = RATE
 
 # https://people.csail.mit.edu/hubert/pyaudio/docs/#example-callback-mode-audio-i-o
 
+
 class AudioRecordingHandler:
-    """
-    A class that handles the recording of audio from the microphone, compiling it as a single file/string of bytes (instead of frames).
-    """
+    """Handles the recording of audio from the microphone, compiling it as a single file/string of bytes (instead of frames)."""
+
     def __init__(self) -> None:
         self.stream: pyaudio.Stream | None = None
 
     def callback(self, in_data: bytes, frame_count: int, time_info: dict[str, float], status: int) -> tuple[bytes, int]:
+        """Used as a callback for the pyaudio module, which runs this on it's own thread."""
         self.frames.append(in_data)
-        """
-        frame_count=4096
-        time_info={'input_buffer_adc_time': 0.0, 'current_time': 0.0, 'output_buffer_dac_time': 0.0}
-        status=0
-        """
-        # If len(data) is less than requested frame_count, PyAudio automatically
-        # assumes the stream is finished, and the stream stops.
+        # If len(data) is less than requested frame_count, PyAudio automatically assumes the stream is finished, and the stream stops.
         return (in_data, pyaudio.paContinue)  # This is required
 
     def start_recording(self) -> None:
@@ -51,10 +46,9 @@ class AudioRecordingHandler:
         self.save_audio_file(self.frames, file_name)  # We save and load because for some reason this fixes things
         return self.load_audio_file(file_name)  # return b"".join(self.frames)  # This doesn't work for some reason
 
-
     @staticmethod
     def load_audio_file(file_name: str) -> bytes:
-        """Loads an audio file from the file system and returns it as a byte string"""
+        """Loads an audio file from file and returns it as a byte string"""
         with open(file_name, "rb") as file:
             return file.read()
 
@@ -66,19 +60,21 @@ class AudioRecordingHandler:
             file.setsampwidth(p.get_sample_size(FORMAT))
             file.setframerate(RATE)
             file.writeframes(b"".join(audio_bytes))
-        
 
 
 if __name__ == "__main__":
-    
+
     from speech_to_text import STTHandler
+
     file_name = "assets/audio/recent_user_speech.wav"
     audio_handler = AudioRecordingHandler()
 
     print("About to start recording!")
     audio_handler.start_recording()
-    time.sleep(5); print("Slept 5 seconds, stop recording!")
-    audio_bytes = audio_handler.stop_recording(file_name); print("Done recording")
+    time.sleep(5)
+    print("Slept 5 seconds, stop recording!")
+    audio_bytes = audio_handler.stop_recording(file_name)
+    print("Done recording")
 
     print("Now transcribing")
     text = STTHandler(audio_bytes, time_transcription=True).transcribe()
