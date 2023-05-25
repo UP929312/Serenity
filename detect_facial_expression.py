@@ -1,8 +1,6 @@
-from typing import TypedDict
-
-import cv2  # type: ignore[import]
-import numpy as np
 from hsemotion.facial_emotions import HSEmotionRecognizer  # type: ignore[import]
+
+from cv2_utils import CameraNotAccessible, take_picture
 
 # https://github.com/HSE-asavchenko/hsemotion
 
@@ -12,41 +10,6 @@ EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral",
 NO_FEATURES_DETECTED = {emotion: 0.0 for emotion in EMOTION_NAMES}
 
 
-class CameraNotAccessible(Exception):
-    pass
-
-
-class ImageData(TypedDict):
-    data: np.ndarray[int, np.dtype[np.int32]]
-
-
-def test_camera_accessible() -> bool:
-    """Returns True if the camera is accessible, False otherwise."""
-    try:
-        return bool(take_picture())
-    except CameraNotAccessible:
-        return False
-
-
-def take_picture() -> ImageData:
-    """
-    Takes a single frame picture of the user, or raises a CameraNotAccessible exception.\n
-    `WARNING:` Takes 0.7 seconds to run from start to finish.\n
-    Returns a 2d array of integers representing the image's data (each colour value as decimal).
-    """
-    # print("Taking picture!")
-    camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    # print("Camera made")
-    frame: ImageData
-    _, frame = camera.read()
-    # print("Picture taken")
-    camera.release()
-    if frame is None:
-        raise CameraNotAccessible("The camera is not accessible")
-    # print("Camera Released")
-    return frame
-
-
 def get_facial_emotion(testing_mode_image: str | None = None) -> tuple[str, dict[str, float]]:
     """
     Takes a picture of the user and returns the emotion and the scores for each emotion.
@@ -54,6 +17,7 @@ def get_facial_emotion(testing_mode_image: str | None = None) -> tuple[str, dict
     WARNING: Takes 0.7 seconds to run from start to finish.
     """
     if testing_mode_image:
+        import cv2  # type: ignore[import]
         frame = cv2.imread(f"assets/images/{testing_mode_image}.png", cv2.IMREAD_COLOR)
     else:
         try:

@@ -1,8 +1,8 @@
 WORD_MAPPING = {
     "and": "&",
-    "for": "4",
-    "to": "2",
-    "too": "2",
+    # "for": "4",
+    # "to": "2",
+    # "too": "2",
     "you": "u",
     "are": "r",
     "your": "ur",

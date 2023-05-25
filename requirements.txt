@@ -35,6 +35,7 @@ types-commonmark
 types-google-cloud-ndb
 types-playsound
 types-protobuf
+types-pyinstaller
 types-pywin32
 types-redis
 types-regex

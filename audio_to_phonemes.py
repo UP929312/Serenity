@@ -10,7 +10,7 @@ class PhonemeRow(TypedDict):
     phoneme: str
 
 
-def convert_mp3_to_wav(original_file_path, wav_file_path) -> None:
+def convert_mp3_to_wav(original_file_path: str, wav_file_path: str) -> None:
     sound = AudioSegment.from_mp3(original_file_path)
     sound.export(wav_file_path, format="wav")
 
@@ -22,7 +22,7 @@ def convert_audio_to_phonemes(file_path: str, convert_to_wav: bool) -> list[Phon
         file_path = wav_file_path
 
     model = read_recognizer("latest")
-    data: str = model.recognize(file_path, timestamp=True)  # type: ignore[Unknown]
+    data: str = model.recognize(file_path, timestamp=True)
     lines = data.split("\n")
     formatted_data: list[PhonemeRow] = [
         {"timestamp": float(line.split(" ")[0]), "duration": float(line.split(" ")[1]), "phoneme": str(line.split(" ")[2])}

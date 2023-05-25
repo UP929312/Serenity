@@ -8,8 +8,10 @@ End goals:
 
 Units:
 
+- Microphone capturing and storing
 - Speech to Text (user)
 - Text to Speech (bot)
+- Keyboard detection for push to talk
 - Digital face animation with expressions
 - Facial reading, to gather additiona user emotion data
 - Natural pauses and mannerisms (to avoid it sounding too robotic)
@@ -33,8 +35,18 @@ Later:
 - Different options, such as voices and 3d models, so users can choose their own
 - Generate an avatar which will react and be human
 - Speech detection to remove the need for push to talk
+- Face-ID type situation, so no one else can use your account, repo found [here](https://github.com/ageitgey/face_recognition)
 - In the future, asynchronously also do further analysis on the user's input, potentially while Serentity is speaking
 - > Flagged things [here](https://www.assemblyai.com/docs/Models/content_moderation#understanding-the-response)
 - If the user explicitally mentions their emotions, get confidence score and adjust thresholds
 - Check if second highest emotion is high, and use that instead of neutral
 - Move processing to our hosted hardware, and have light clients
+- Have a single .exe file, so no installation is particularly required
+
+Considerations:
+
+- Rogue AI, what happens if it says something wrong, like reassures suicide
+- GDPR, shouldn't be an issue because it's all stored locally, but maybe some key word training, for Deepgram?
+- Pricing, which is partially rectified by assets/documents/pricing.md, but more work needs doing.
+- Team contributions and split
+- Legal "You accept the risks, we don't offer medically graded advice"
