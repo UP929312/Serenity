@@ -1,24 +1,24 @@
-numpy
-openapi-python-client  # Needed for LangChain
-opencv-contrib-python  # Used for the image, video, and more
-pyaudio  # Used to record audio
-boto3  # Used for the AWS Comprehend API
+numpy==1.24.3
+openapi-python-client==0.13.4  # Needed for LangChain
+opencv-contrib-python==4.7.0.72  # Used for the image, video, and more
+pyaudio==0.2.13  # Used to record audio
+boto3==1.26.133  # Used for the AWS Comprehend API
 # wikipedia 
 
-deepgram-sdk  # Used to convert speech to text
-allosaurus  # Used to convert audio to phonemes
-pydub  # Used to convert the .mp3's into .wav  - Frick, needs ffmpeg
+deepgram-sdk==2.5.0  # Used to convert speech to text
+allosaurus==1.0.2  # Used to convert audio to phonemes
+pydub==0.25.1  # Used to convert the .mp3's into .wav  - Frick, needs ffmpeg
 
-hsemotion  # Used to judge facial expressions
-timm-0.6.11  # Required for hsemotion (has to be this specific version)
+hsemotion==0.3.0  # Used to judge facial expressions
+timm==0.6.11  # Required for hsemotion (has to be this specific version)
 
-pytest  # Used for running tests
-pyinstaller  # For creating the .exe
+pytest==7.3.1  # Used for running tests
+pyinstaller==5.11.0  # For creating the .exe
 
-elevenlabs  # Used for the ElevenLabs API
+elevenlabs==0.2.15  # Used for the ElevenLabs API
 
-google-cloud-core  # No idea what's this for, but it cannot build without it
-pillow~=9.0.1  # Same for this
+google-cloud-core==2.3.2  # No idea what's this for, but it cannot build without it
+pillow==9.0.1  # Same for this
 
 # And a bunch of types for the above packages
 
