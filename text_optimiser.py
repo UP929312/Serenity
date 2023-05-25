@@ -99,9 +99,12 @@ class TextOptimiser:
     By using this, we can increase the amount of free words we get, normally about 3-5% effective
     """
 
-    def __init__(self, text: str, print_improvement: bool = False) -> None:
+    def __init__(self, text: str, print_improvement: bool = False, disabled: bool = False) -> None:
         self.text = text
         self.print_improvement = print_improvement
+        if disabled:
+            self.optimised_text = text
+            return
         self.optimise_text()
 
     def optimise_text(self) -> str:

@@ -1,5 +1,4 @@
-from typing import TYPE_CHECKING
-
+from datetime import datetime, timedelta
 from elevenlabs import play
 
 from agent_avatar import AgentAvatar
@@ -11,30 +10,23 @@ from keyboard_detection import KeyboardDetection
 from microphone_interface import AudioRecordingHandler
 from sentiment_analysis import detect_sentiment
 from speech_to_text import STTHandler
-
-# from text_optimiser import TextOptimiser
+from text_optimiser import TextOptimiser
 from text_to_speech import convert_text_to_speech
 
 from cv2_utils import show_image, show_text, test_camera_accessible
 
-if TYPE_CHECKING:
-    from pyaudio import Stream
 
-WINDOW_NAME = "Serenity"
 BYPASS_CAMERA_CHECK = True
 
 
 class MainLoopHandler:
     def __init__(self, username: str) -> None:
         self.username = username
-        self.stream: Stream | None = None
         self.keyboard_detection = KeyboardDetection(" ", self.on_press_speak_key, self.on_release_speak_key)
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
         self.audio_handler = AudioRecordingHandler()
-
-        self.current_monolog_text = ""
-        self.last_agent_response_sentiment = "neutral"
+        self.session_start_time = datetime.now()
 
     def main_loop(self) -> None:
         """
@@ -56,11 +48,15 @@ class MainLoopHandler:
         self.audio_handler.start_recording()
 
     def on_release_speak_key(self) -> None:
-        """Stop recording mic data"""
+        """Stop recording mic data, and calls the main processing function"""
         show_image("inactive")
         # emotion = get_facial_emotion()  # Currently Unused
         user_input_audio_bytes = self.audio_handler.stop_recording("assets/audio/most_recent_user_speech.wav")
-        user_input_text = STTHandler(user_input_audio_bytes, False).transcribe()
+        self.new_human_input(user_input_audio_bytes)
+
+    def new_human_input(self, user_input_audio_bytes: bytes) -> None:
+        """Takes a segment of human speech, and processes it."""
+        user_input_text, entities = STTHandler(user_input_audio_bytes, False).transcribe()
         # show_text("inactive", user_input_text, position=(10, 500), color=(255, 255, 255))
         print(f"{user_input_text=}")
 
@@ -68,24 +64,24 @@ class MainLoopHandler:
             with open("assets/audio/no_input_script.mp3", "rb") as f:
                 play(f.read())
             return
+
         user_sentiment, confidence = detect_sentiment(user_input_text)
         print(f"{user_sentiment=} {confidence=}")
-        # store_conversation_row(
-        #    self.username, user_input, "user", user_sentiment if confidence > 0.1 else None, facial_emotion=None
-        # )  # fmt: ignore
+        # store_conversation_row(self.username, user_input, "user", user_sentiment if confidence > 0.1 else None, facial_emotion=None)  # fmt: ignore
 
         # When the AI is called, it will have the following data:
         # Human's text, Human's facial expression (Sad, Happy, etc), Human's text's sentiment (Positive, Negative, Neutral)
         agent_output = self.agent.continue_chain(human_input=user_input_text)
-        # self.last_agent_response_sentiment = detect_sentiment(agent_output)[0]
-        # store_conversation_row(
-        #    self.username, agent_output, "agent", self.last_agent_response_sentiment, facial_emotion=None
-        # )  # fmt: ignore
+        # last_agent_response_sentiment = detect_sentiment(agent_output)[0]
+        # store_conversation_row(self.username, agent_output, "agent", last_agent_response_sentiment, facial_emotion=None)  # fmt: ignore
 
-        # optimised_text = TextOptimiser(agent_output, False).optimised_text
-        optimised_text = agent_output
+        optimised_text = TextOptimiser(agent_output, print_improvement=False, disabled=True).optimised_text
         print(f"{optimised_text=}")
         convert_text_to_speech(optimised_text, voice_type="young-female-british", play_message=True)
+
+        # If it's been an hour
+        if datetime.now() > self.session_start_time + timedelta(hours=1):
+            print("It's been an hour!")
 
 
 if BYPASS_CAMERA_CHECK or test_camera_accessible():

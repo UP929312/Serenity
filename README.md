@@ -14,4 +14,4 @@ The CodeTour VSCode plugin should also be installed, which will guide you around
 
 ## Linting, CI/CD
 
-Black is used to format the code, using the command: `black . --line-length 140`, and mypy with `mypy . --strict`.
+Black is used to format the code, using the command: `black . --line-length 140`, and mypy with `mypy . --strict`. Pygount also can be run with `pygount --format=summary --verbose --folders-to-skip="[...],*__pycache__,.vscode,.mypy_cache,.git,__pycache__,build" .` to get a summary of the codebase.

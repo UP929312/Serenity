@@ -1,4 +1,6 @@
-from typing import TypedDict
+from typing import (
+    TypedDict,
+)
 
 import cv2  # type: ignore[import]
 import numpy as np
@@ -12,15 +14,14 @@ presets = {
 
 cv2.namedWindow(WINDOW_NAME)
 
+ImageDataType = np.ndarray[int, np.dtype[np.int32 | np.generic]]
 
-def load_image_or_string(image: str | cv2.Mat) -> np.ndarray[int, np.dtype[np.generic]]:
+def load_image_or_string(image: str | cv2.Mat) -> ImageDataType:
     if isinstance(image, str):
         if image in presets:
             return presets[image]
-        else:
-            return cv2.imread(image)
-    else:
-        return image
+        return cv2.imread(image)
+    return image
 
 
 def show_image(image: str | cv2.Mat, wait_for_key_press: bool = False) -> None:
@@ -29,14 +30,7 @@ def show_image(image: str | cv2.Mat, wait_for_key_press: bool = False) -> None:
         cv2.waitKey(0)
 
 
-def show_text(
-    img: str | cv2.Mat,
-    text: str,
-    position: tuple[int, int],
-    font_size: float = 1,
-    color: tuple[int, int, int] = (255, 255, 255),
-    thickness: int = 2,
-) -> None:
+def show_text(img: str | cv2.Mat, text: str, position: tuple[int, int], font_size: float = 1, color: tuple[int, int, int,] = (255, 255, 255), thickness: int = 2) -> None:
     cv2.putText(
         img=load_image_or_string(img),
         text=text,
@@ -54,10 +48,6 @@ class CameraNotAccessible(Exception):
     pass
 
 
-class ImageData(TypedDict):
-    data: np.ndarray[int, np.dtype[np.int32]]
-
-
 def test_camera_accessible() -> bool:
     """Returns True if the camera is accessible, False otherwise."""
     try:
@@ -66,7 +56,7 @@ def test_camera_accessible() -> bool:
         return False
 
 
-def take_picture() -> ImageData:
+def take_picture() -> ImageDataType:
     """
     Takes a single frame picture of the user, or raises a CameraNotAccessible exception.\n
     `WARNING:` Takes 0.7 seconds to run from start to finish.\n
@@ -75,7 +65,7 @@ def take_picture() -> ImageData:
     # print("Taking picture!")
     camera = cv2.VideoCapture(0, cv2.CAP_DSHOW)
     # print("Camera made")
-    frame: ImageData
+    frame: ImageDataType
     _, frame = camera.read()
     # print("Picture taken")
     camera.release()
