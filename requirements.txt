@@ -18,7 +18,7 @@ pyinstaller==5.11.0  # For creating the .exe
 elevenlabs==0.2.15  # Used for the ElevenLabs API
 
 google-cloud-core==2.3.2  # No idea what's this for, but it cannot build without it
-pillow==9.0.1  # Same for this
+pillow~=9.0.1  # Same for this
 
 # And a bunch of types for the above packages
 
