@@ -4,13 +4,15 @@ from elevenlabs import play
 
 from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
+
 # from conversation_store import store_conversation_row
-#from detect_facial_expression import get_facial_emotion
+# from detect_facial_expression import get_facial_emotion
 from keyboard_detection import KeyboardDetection
 from microphone_interface import AudioRecordingHandler
 from sentiment_analysis import detect_sentiment
 from speech_to_text import STTHandler
-#from text_optimiser import TextOptimiser
+
+# from text_optimiser import TextOptimiser
 from text_to_speech import convert_text_to_speech
 
 from cv2_utils import show_image, show_text, test_camera_accessible
@@ -60,9 +62,9 @@ class MainLoopHandler:
         # emotion = get_facial_emotion()  # Currently Unused
         user_input_audio_bytes = self.audio_handler.stop_recording("assets/audio/most_recent_user_speech.wav")
         user_input_text = STTHandler(user_input_audio_bytes, False).transcribe()
-        #show_text("inactive", user_input_text, position=(10, 500), color=(255, 255, 255))
+        # show_text("inactive", user_input_text, position=(10, 500), color=(255, 255, 255))
         print(f"{user_input_text=}")
-        
+
         if user_input_text == "":
             with open("assets/audio/no_input_script.mp3", "rb") as f:
                 play(f.read())

@@ -41,12 +41,13 @@ VOICE_IDS = {
 USED_VOICE = "I2m6FH4JfVIzqFpePxGU"
 # Old voice (for no numbers) is "v68waeCuaiRz1jVfp33y"
 
+
 def convert_text_to_speech(text: str, voice_type: str, play_message: bool, file_name: str | None = None) -> bytes:
     """Converts text to speech using the Eleven Labs API, takes in a string, and voice type, usually `young-female-british`."""
     global current_index
     current_index = 0
     api_key = keys[current_index % len(keys)]
-    #with open("keys/eleven_labs_dev_key.txt", "r") as file:
+    # with open("keys/eleven_labs_dev_key.txt", "r") as file:
     #    api_key = file.read()
     # print(api_key)
     # api_key = keys[6 % len(keys)]
@@ -61,18 +62,23 @@ def convert_text_to_speech(text: str, voice_type: str, play_message: bool, file_
     current_index += 1
     return audio_bytes
 
+
 def generate_original_scripts() -> None:
     with open("assets/files/scripts.json", "r", encoding="utf-8") as file:
         all_scripts = json.load(file)
 
     introduction_script_text = all_scripts["introduction"].format(agent_name="Serenity")
-    convert_text_to_speech(introduction_script_text, voice_type="young-female-british", play_message=True, file_name="assets/audio/introduction_script.mp3")
+    convert_text_to_speech(
+        introduction_script_text, voice_type="young-female-british", play_message=True, file_name="assets/audio/introduction_script.mp3"
+    )
     no_input_script_text = all_scripts["no_input"]
-    convert_text_to_speech(no_input_script_text, voice_type="young-female-british", play_message=True, file_name="assets/audio/no_input_script.mp3")
+    convert_text_to_speech(
+        no_input_script_text, voice_type="young-female-british", play_message=True, file_name="assets/audio/no_input_script.mp3"
+    )
 
 
 if __name__ == "__main__":
-    #generate_original_scripts()
+    # generate_original_scripts()
     """
     import time
     start = time.time()

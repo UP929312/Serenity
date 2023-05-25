@@ -49,6 +49,7 @@ def show_text(
         bottomLeftOrigin=True,
     )
 
+
 class CameraNotAccessible(Exception):
     pass
 

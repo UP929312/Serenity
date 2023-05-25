@@ -21,4 +21,4 @@ if __name__ == "__main__":
         print(f"{key_string}'s remaining balance: {remaining_chars}")
     key = keys[0]
     set_api_key(key)
-    print([x for x in voices() if x.category != 'premade'])
+    print([x for x in voices() if x.category != "premade"])

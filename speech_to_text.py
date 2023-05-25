@@ -9,7 +9,7 @@ with open("keys/deepgram_key.txt", "r") as f:
 
 # keywords=['first:5', 'second']
 # keywords=["Serenity", "sad", "depressed", "feelings", "thoughts"]
-API_SETTINGS = PrerecordedOptions(punctuate=True, model="nova", language="en-GB")
+API_SETTINGS = PrerecordedOptions(punctuate=True, model="nova", language="en-GB")  # "fr" for french
 
 
 class STTHandler:

@@ -20,11 +20,13 @@ class AgentInterface:
 
     def __init__(self) -> None:
         # fmt: off
-        template = prompts["system"] + """
+        template = prompts["system"] + "\n" + \
+        prompts["initial"] + \
+        """
 
         {history}
         Human: {human_input}
-        Serenity:""".replace("        ", "")
+        Agent: """.replace("        ", "")
         # fmt: on
 
         prompt = PromptTemplate(input_variables=["history", "human_input"], template=template)
