@@ -5,6 +5,7 @@ End goals:
 - As immersive as possible (excluding uncanny voices or faces)
 - The ability to respond relatively quickly to avoid long awkward pauses (less than 5 seconds).
 - Run on windows 10 and 11 machines immediately, with other platforms to follow.
+- Create an accurate repor of the user, which can be used to track progress, and also to help the user.
 
 Units:
 

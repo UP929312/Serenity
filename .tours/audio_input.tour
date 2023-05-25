@@ -1,0 +1,36 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Audio Input",
+  "steps": [
+    {
+      "file": "microphone_interface.py",
+      "description": "This is the main audio recording handler.\r\nIt uses threads to record and save audio in the background, while other parts of the app can run.",
+      "line": 16,
+      "title": "Main class"
+    },
+    {
+      "file": "microphone_interface.py",
+      "description": "The start_recording function is called when the push to talk button is initially pressed.",
+      "line": 28,
+      "title": "Start Recording"
+    },
+    {
+      "file": "microphone_interface.py",
+      "description": "We open a audio input stream, and provide it with a callback function, which it will run on another thread.",
+      "line": 31,
+      "title": "Create Audio Stream"
+    },
+    {
+      "file": "microphone_interface.py",
+      "description": "This callback function runs regularly, and to prevent a long wait at the end of the recording (while it collects all the frames), instead we do it in sections in real time, so at the end, there is no delay. This appends the current frame to the list of frames (sections of audio)",
+      "line": 22,
+      "title": "Threaded Callback"
+    },
+    {
+      "file": "microphone_interface.py",
+      "description": "Then, when the push to talk button is released, we wait a little to prevent cutting them off early, before ending the audio input streams.\r\nWe save and then load the audio file, because returning the bytes regularly doesn't work.\r\nThis also allows the option to send it off while the Agent is responding, to fix the history.\r\nIt returns the complete audio bytes of continuous audio from when they started to stopped recording the microphone input.",
+      "line": 41,
+      "title": "Stop Recording"
+    }
+  ]
+}

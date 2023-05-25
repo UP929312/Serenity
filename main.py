@@ -51,14 +51,13 @@ class MainLoopHandler:
 
     def on_press_speak_key(self) -> None:
         """Calls the audio handler to start recording mic data."""
-        # print("Key pressed")
+
         show_image("active")
         self.audio_handler.start_recording()
 
     def on_release_speak_key(self) -> None:
         """Stop recording mic data"""
         show_image("inactive")
-        # print("Key released")
         # emotion = get_facial_emotion()  # Currently Unused
         user_input_audio_bytes = self.audio_handler.stop_recording("assets/audio/most_recent_user_speech.wav")
         user_input_text = STTHandler(user_input_audio_bytes, False).transcribe()
@@ -75,6 +74,8 @@ class MainLoopHandler:
         #    self.username, user_input, "user", user_sentiment if confidence > 0.1 else None, facial_emotion=None
         # )  # fmt: ignore
 
+        # When the AI is called, it will have the following data:
+        # Human's text, Human's facial expression (Sad, Happy, etc), Human's text's sentiment (Positive, Negative, Neutral)
         agent_output = self.agent.continue_chain(human_input=user_input_text)
         # self.last_agent_response_sentiment = detect_sentiment(agent_output)[0]
         # store_conversation_row(

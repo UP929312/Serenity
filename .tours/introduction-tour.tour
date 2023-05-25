@@ -1,0 +1,54 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Introduction",
+  "steps": [
+    {
+      "file": "main.py",
+      "description": "The is the main loop handler. It holds the global loop and synchronises everything related to the application.\r\nIt also interfaces with each other unit, such as the audio handler, and collects them all in one central class/instance.\r\nIt's also where the aggregation of data commences, mostly in the following function:",
+      "line": 27,
+      "title": "Main Class"
+    },
+    {
+      "file": "main.py",
+      "description": "This function is called by the keyboard_detection script, which is regularly polled by the global loop.\r\nWhen it detects the correct key, it will call this function when it's released.",
+      "line": 58,
+      "title": "Release Key"
+    },
+    {
+      "file": "main.py",
+      "description": "The first step is ending the audio stream, and collecting all the data into a single string of bytes.",
+      "line": 62,
+      "title": "Stop Recording"
+    },
+    {
+      "file": "main.py",
+      "description": "It is then transcribed by an external API (Deepgram), where it will return the text transcript, after taking in the audio bytes.",
+      "line": 63,
+      "title": "Transcribe Input"
+    },
+    {
+      "file": "main.py",
+      "description": "Sometimes, audio isn't captured, or alternatively, the user will enable the mic and say nothing, in this case, play a message saying that they couldn't hear what you said.",
+      "line": 67,
+      "title": "No Speech"
+    },
+    {
+      "file": "main.py",
+      "description": "If there is a message, we can detect it's positivity score, positive, negative, neutral, or mixed.\r\nThis will get fed into the Agent later.",
+      "line": 71,
+      "title": "Detect Positivity"
+    },
+    {
+      "file": "main.py",
+      "description": "Then, we feed all this data into the agent, and get it to progress to the next link in the chain, which gets returned here.",
+      "line": 79,
+      "title": "Progress Chain"
+    },
+    {
+      "file": "main.py",
+      "description": "Finally, the AI responds in their voice, reading it out to the user.",
+      "line": 88,
+      "title": "Respond with Speech"
+    }
+  ]
+}
