@@ -1,4 +1,4 @@
 {
-    "introduction": "Well hello there, it's a pleasure to meet you for the first time. I'm {agent_name} and I'm here to help. Why don't you begin by telling me a little about yourself? Maybe explain how your day's been so far, or maybe tell me about a positive memory you've had recently?",
+    "introduction": "Well hello there, it's a pleasure to meet you for the first time. I'm {agent_name} and I'm here to help. Why don't you begin by telling me a little about yourself? Maybe explain how your day's been so far, or maybe tell me about a positive memory you've had recently? There's no rush so take your time, and share as much as you feel comfortable with.",
     "no_input": "I'm sorry, I didn't catch what you said. Would you mind repeating that?"
 }

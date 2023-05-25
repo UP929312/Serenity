@@ -122,7 +122,7 @@ class TextOptimiser:
             print(
                 f"Improvement:\nOriginal had {len(self.text)} chars, optimised has {len(self.optimised_text)} chars\nThat's a {round(100-(len(self.optimised_text)/len(self.text))*100, 2)}% improvement, of {amount_saved} chars"
             )
-        return self.optimised_text
+        return self.optimised_text.strip()
 
 
 if __name__ == "__main__":

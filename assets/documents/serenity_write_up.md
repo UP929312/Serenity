@@ -51,3 +51,9 @@ Considerations:
 - Pricing, which is partially rectified by assets/documents/pricing.md, but more work needs doing.
 - Team contributions and split
 - Legal "You accept the risks, we don't offer medically graded advice"
+
+Sales reasons:
+
+- Accessibility, price, stigma, continuation, performance (100%), do it at the office, therapy for everyone, no limitations on gender, age, etc. No external damage (e.g. sister died), don't have to travel to therapist, can share anything. Almost no commitment
+- a
+- b

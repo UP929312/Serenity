@@ -17,7 +17,7 @@ from cv2_utils import show_image, show_text, test_camera_accessible
 
 
 BYPASS_CAMERA_CHECK = True
-
+SKIP_INTRO = False
 
 class MainLoopHandler:
     def __init__(self, username: str) -> None:
@@ -34,8 +34,9 @@ class MainLoopHandler:
         and when it detects the right one, will fire `on_press_speak_key()`
         """
         show_image("inactive")
-        with open("assets/audio/introduction_script.mp3", "rb") as f:
-            play(f.read())
+        if not SKIP_INTRO:
+            with open("assets/audio/introduction_script.mp3", "rb") as f:
+                play(f.read())
 
         while True:
             # print("Loopady doop")
@@ -43,12 +44,13 @@ class MainLoopHandler:
 
     def on_press_speak_key(self) -> None:
         """Calls the audio handler to start recording mic data."""
-
+        print("Key pressed", end="    ")
         show_image("active")
         self.audio_handler.start_recording()
 
     def on_release_speak_key(self) -> None:
         """Stop recording mic data, and calls the main processing function"""
+        print("Key released")
         show_image("inactive")
         # emotion = get_facial_emotion()  # Currently Unused
         user_input_audio_bytes = self.audio_handler.stop_recording("assets/audio/most_recent_user_speech.wav")
@@ -66,7 +68,7 @@ class MainLoopHandler:
             return
 
         user_sentiment, confidence = detect_sentiment(user_input_text)
-        print(f"{user_sentiment=} {confidence=}")
+        print(f"User's sentiment: {user_sentiment}, confidence: {confidence}")
         # store_conversation_row(self.username, user_input, "user", user_sentiment if confidence > 0.1 else None, facial_emotion=None)  # fmt: ignore
 
         # When the AI is called, it will have the following data:

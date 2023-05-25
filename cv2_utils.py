@@ -1,6 +1,4 @@
-from typing import (
-    TypedDict,
-)
+from typing import TypedDict
 
 import cv2  # type: ignore[import]
 import numpy as np

@@ -43,7 +43,7 @@ class AgentInterface:
     def continue_chain(self, human_input: str) -> str:
         """Takes an input of text from the user and sends it to the LLMChain, returning the output as a string"""
         output = self.chatgpt_chain.predict(human_input=human_input)
-        return output
+        return output.strip()
 
 
 if __name__ == "__main__":
