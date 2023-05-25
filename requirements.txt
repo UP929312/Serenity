@@ -22,7 +22,6 @@ pillow~=9.0.1  # Same for this
 
 # And a bunch of types for the above packages
 
-types-playsound
 types-boto3
 types-pyaudio
 

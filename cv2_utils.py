@@ -40,13 +40,13 @@ def show_text(
     cv2.putText(
         img=load_image_or_string(img),
         text=text,
-        org=True,
+        org=position,
         fontFace=cv2.FONT_HERSHEY_SIMPLEX,
         fontScale=font_size,
         color=color,
         thickness=thickness,
         lineType=cv2.LINE_AA,
-        bottomLeftOrigin=position,
+        bottomLeftOrigin=True,
     )
 
 class CameraNotAccessible(Exception):

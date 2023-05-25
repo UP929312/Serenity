@@ -1,4 +1,4 @@
-from elevenlabs import User, set_api_key  # type: ignore[import]
+from elevenlabs import User, set_api_key, voices  # type: ignore[import]
 
 with open("keys/eleven_labs_keys.txt", "r", encoding="utf-8") as file:
     keys = file.read().strip().split("\n")
@@ -19,3 +19,6 @@ def monitor_elevenlabs_keys(redact_keys: bool = True) -> dict[str, int]:
 if __name__ == "__main__":
     for key_string, remaining_chars in monitor_elevenlabs_keys(False).items():
         print(f"{key_string}'s remaining balance: {remaining_chars}")
+    key = keys[0]
+    set_api_key(key)
+    print([x for x in voices() if x.category != 'premade'])
