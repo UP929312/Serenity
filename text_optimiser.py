@@ -127,7 +127,7 @@ if __name__ == "__main__":
     print(f"Optimised text: {optimised}")
     optimised = TextOptimiser(" ".join(WORD_MAPPING.keys()), True).optimised_text
     print(f"Optimised text: {optimised}")
-    with open("assets/files/bee_movie_script.txt", "r") as f:
+    with open("assets/files/bee_movie_script.txt", "r", encoding="utf-8") as f:
         bee_movie = f.read()
     bee_movie_optimised = TextOptimiser(bee_movie, True).optimised_text
     # print(f"Optimised text: {bee_movie_optimised}")

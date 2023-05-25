@@ -1,6 +1,6 @@
 from elevenlabs import User, set_api_key
 
-with open("keys/eleven_labs_keys.txt", "r") as file:
+with open("keys/eleven_labs_keys.txt", "r", encoding="utf-8") as file:
     keys = file.read().strip().split("\n")
 
 
@@ -17,5 +17,5 @@ def monitor_elevenlabs_keys(redact_keys: bool = True) -> dict[str, int]:
 # Creation dates: 24/05/2023, roughly 9am, datetime(2023, 5, 24, 9, 0, 0, 0)
 
 if __name__ == "__main__":
-    for key, remaining_chars in monitor_elevenlabs_keys(False).items():
-        print(f"{key}'s remaining balance: {remaining_chars}")
+    for key_string, remaining_chars in monitor_elevenlabs_keys(False).items():
+        print(f"{key_string}'s remaining balance: {remaining_chars}")

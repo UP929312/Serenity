@@ -8,10 +8,10 @@ from langchain import LLMChain, OpenAI, PromptTemplate  # , ConversationChain
 # from langchain.agents import load_tools
 from langchain.memory import ConversationBufferWindowMemory
 
-with open("assets/files/prompts.json", "r") as file:
+with open("assets/files/prompts.json", "r", encoding="utf-8") as file:
     prompts = json.load(file)
 
-with open("keys/openai_key.txt", "r") as file:
+with open("keys/openai_key.txt", "r", encoding="utf-8") as file:
     api_key = file.read().strip()
 
 
@@ -32,7 +32,7 @@ class AgentInterface:
         self.chatgpt_chain = LLMChain(
             llm=OpenAI(temperature=0, openai_api_key=api_key, client="idk"),  # model="gpt-3.5-turbo-0301" <- Not sure where to put this
             prompt=prompt,
-            #verbose=True,  # Prints stuff to chat
+            # verbose=True,  # Prints stuff to chat
             verbose=False,
             memory=ConversationBufferWindowMemory(k=2),
         )

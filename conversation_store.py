@@ -53,7 +53,7 @@ def store_conversation_row(username: str, message: str, user: str, tone: str | N
             "facial_emoji": facial_emotion,
         }
     )
-    with open("assets/files/file_store.json", "w") as file:
+    with open("assets/files/file_store.json", "w", encoding="utf-8") as file:
         json.dump(data, file, cls=DatetimeEncoder, indent=4)
 
 

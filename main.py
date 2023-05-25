@@ -4,7 +4,8 @@ import cv2  # type: ignore[import]
 
 from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
-from conversation_store import store_conversation_row
+
+# from conversation_store import store_conversation_row
 from detect_facial_expression import test_camera_accessible
 from keyboard_detection import KeyboardDetection
 from microphone_interface import AudioRecordingHandler
@@ -16,7 +17,6 @@ from text_to_speech import convert_text_to_speech
 if TYPE_CHECKING:
     from pyaudio import Stream
 
-username = "test_user"
 WINDOW_NAME = "Serenity"
 BYPASS_CAMERA_CHECK = True
 
@@ -86,7 +86,7 @@ class MainLoopHandler:
 
 if BYPASS_CAMERA_CHECK or test_camera_accessible():
     cv2.namedWindow(WINDOW_NAME)
-    handler = MainLoopHandler(username)
+    handler = MainLoopHandler(username="test_user")
     handler.main_loop()
 else:
     cv2.imshow("Camera not accessible", cv2.imread("assets/images/camera_not_accessible.png"))

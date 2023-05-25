@@ -28,7 +28,7 @@ class AudioRecordingHandler:
     def start_recording(self) -> None:
         """Starts capturing audio data from the microphone and also starts a new thread to regularly save the audio data"""
         self.frames: list[bytes] = []  # Each frame should be a chunk of audio
-        stream: pyaudio._Stream = p.open(
+        stream: pyaudio.Stream = p.open(
             format=FORMAT,
             channels=CHANNELS,
             rate=RATE,

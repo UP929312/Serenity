@@ -6,7 +6,7 @@ from elevenlabs import Accent, Age, Gender, Voice, VoiceDesign, generate, play, 
 # https://beta.elevenlabs.io/speech-synthesis
 # https://docs.elevenlabs.io/voicelab/voice-design
 
-with open("keys/eleven_labs_keys.txt", "r") as file:
+with open("keys/eleven_labs_keys.txt", "r", encoding="utf-8") as file:
     keys = file.read().strip().split("\n")
 
 current_index = 0
@@ -14,7 +14,7 @@ current_index = 0
 # Stability: 0.75
 # Similarity Boost: 0.55
 
-with open("assets/files/introduction_script.json", "r") as file:
+with open("assets/files/introduction_script.json", "r", encoding="utf-8") as file:
     script_text = json.load(file)["introduction"]
     script_text = script_text.format(name="Katrina", agent_name="Serenity")
 
@@ -47,7 +47,8 @@ def convert_text_to_speech(text: str, voice_type: str, play_message: bool, file_
     """Converts text to speech using the Eleven Labs API, takes in a string, and voice type, usually `young-female-british`."""
     global current_index
     # api_key = keys[current_index % len(keys)]
-    api_key = open("keys/eleven_labs_dev_key.txt", "r").read()
+    with open("keys/eleven_labs_dev_key.txt", "r") as file:
+        api_key = file.read()
     # print(api_key)
     # api_key = keys[6 % len(keys)]
     set_api_key(api_key)

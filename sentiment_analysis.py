@@ -21,8 +21,8 @@ def detect_sentiment(text: str) -> tuple[str, int]:
         return "NEUTRAL", 0
     # print(f"{text=} in detect sentiment")
     data = comprehend.detect_sentiment(Text=text, LanguageCode="en")
-    sentiment = data["Sentiment"]
-    return sentiment, data["SentimentScore"][sentiment.title()]
+    sentiment_name = data["Sentiment"]
+    return sentiment_name, data["SentimentScore"][sentiment_name.title()]
 
 
 if __name__ == "__main__":

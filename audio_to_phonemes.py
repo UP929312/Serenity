@@ -41,9 +41,8 @@ if __name__ == "__main__":
     # end = time.time()
     # print("Time to convert to wav: ", end - start)
     # start = time.time()
-    
-    original_file_path = "assets/audio/elevenlabs_audio_example.mp3"
-    phonemes = convert_audio_to_phonemes(original_file_path, True)
+
+    phonemes = convert_audio_to_phonemes(file_path="assets/audio/elevenlabs_audio_example.mp3", convert_to_wav=True)
     print(phonemes)
     for phoneme in phonemes:
         if phoneme["phoneme"] in list_of_all_phonemes and phoneme["phoneme"] not in list_of_all_english_phonemes:
