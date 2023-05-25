@@ -32,7 +32,8 @@ class AgentInterface:
         self.chatgpt_chain = LLMChain(
             llm=OpenAI(temperature=0, openai_api_key=api_key, client="idk"),  # model="gpt-3.5-turbo-0301" <- Not sure where to put this
             prompt=prompt,
-            verbose=True,
+            #verbose=True,  # Prints stuff to chat
+            verbose=False,
             memory=ConversationBufferWindowMemory(k=2),
         )
         # tools = load_tools(["wikipedia"], llm=self.chatgpt_chain)  # In the future

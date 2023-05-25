@@ -5,7 +5,7 @@ import cv2  # type: ignore[import]
 from agent_avatar import AgentAvatar
 from ai_interface import AgentInterface
 from conversation_store import store_conversation_row
-from detect_facial_expression import test_camera_accessible  # , get_facial_emotion
+from detect_facial_expression import test_camera_accessible
 from keyboard_detection import KeyboardDetection
 from microphone_interface import AudioRecordingHandler
 from sentiment_analysis import detect_sentiment

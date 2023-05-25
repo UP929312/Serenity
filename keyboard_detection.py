@@ -1,4 +1,4 @@
-from typing import Any, Callable
+from typing import Callable
 
 import cv2  # type: ignore[import]
 
@@ -8,7 +8,7 @@ WINDOW_NAME = "Serenity"
 class KeyboardDetection:
     """A class which will be regularly polled to check if the correct key was pressed, and if so, will call the appropriate function."""
 
-    def __init__(self, key_to_press: str, on_key_press: Callable[..., Any], on_key_release: Callable[..., Any]) -> None:
+    def __init__(self, key_to_press: str, on_key_press: Callable[[], None], on_key_release: Callable[[], None]) -> None:
         self.key_to_press = key_to_press
         self.key_pressed = False
         self.on_key_press = on_key_press
