@@ -4,6 +4,8 @@
 
 We need to install FFMPEG to run the audio stuff, which can be found [here](https://stackoverflow.com/questions/56370173/how-to-export-ffmpeg-into-my-python-program)
 
+Control Shift V to view markdown.
+
 ## Installation
 
 This project requires Python 3.10 to be installed, which can be found [here](https://www.python.org/downloads/), as well as FFMPEG, which can be found at [This direct link](https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z). You should also run:
