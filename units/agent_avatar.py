@@ -1,4 +1,4 @@
-from audio_to_phonemes import PhonemeRow
+from units.audio_to_phonemes import PhonemeRow
 
 
 class AgentAvatar:

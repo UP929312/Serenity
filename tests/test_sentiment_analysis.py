@@ -1,5 +1,5 @@
 import pytest
-from sentiment_analysis import detect_sentiment
+from units.sentiment_analysis import detect_sentiment
 
 
 def test_positive_sentiment_1() -> None:

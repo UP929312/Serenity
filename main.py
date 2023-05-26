@@ -1,23 +1,22 @@
 from datetime import datetime, timedelta
+
 from elevenlabs import play
 
-from agent_avatar import AgentAvatar
-from ai_interface import AgentInterface
-
+from cv2_utils import show_image, show_text, test_camera_accessible
+from microphone_interface import AudioRecordingHandler
+from units.agent_avatar import AgentAvatar
+from units.ai_interface import AgentInterface
 # from conversation_store import store_conversation_row
 # from detect_facial_expression import get_facial_emotion
-from keyboard_detection import KeyboardDetection
-from microphone_interface import AudioRecordingHandler
-from sentiment_analysis import detect_sentiment
-from speech_to_text import STTHandler
-from text_optimiser import TextOptimiser
-from text_to_speech import convert_text_to_speech
-
-from cv2_utils import show_image, show_text, test_camera_accessible
-
+from units.keyboard_detection import KeyboardDetection
+from units.sentiment_analysis import detect_sentiment
+from units.speech_to_text import STTHandler
+from units.text_optimiser import TextOptimiser
+from units.text_to_speech import convert_text_to_speech
 
 BYPASS_CAMERA_CHECK = True
 SKIP_INTRO = False
+
 
 class MainLoopHandler:
     def __init__(self, username: str) -> None:

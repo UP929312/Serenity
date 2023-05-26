@@ -3,11 +3,12 @@ openapi-python-client==0.13.4  # Needed for LangChain
 opencv-contrib-python==4.7.0.72  # Used for the image, video, and more
 pyaudio==0.2.13  # Used to record audio
 boto3==1.26.133  # Used for the AWS Comprehend API
+langchain==0.0.170  # Used for the agent
 # wikipedia 
 
 deepgram-sdk==2.5.0  # Used to convert speech to text
 allosaurus==1.0.2  # Used to convert audio to phonemes
-pydub==0.25.1  # Used to convert the .mp3's into .wav  - Frick, needs ffmpeg
+pydub==0.25.1  # Used to convert the .mp3's into .wav
 
 hsemotion==0.3.0  # Used to judge facial expressions
 timm==0.6.11  # Required for hsemotion (has to be this specific version)
@@ -18,7 +19,7 @@ pyinstaller==5.11.0  # For creating the .exe
 elevenlabs==0.2.15  # Used for the ElevenLabs API
 
 google-cloud-core==2.3.2  # No idea what's this for, but it cannot build without it
-pillow~=9.0.1  # Same for this
+pillow==9.5.0  # Same for this
 
 # And a bunch of types for the above packages
 

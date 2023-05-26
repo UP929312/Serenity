@@ -64,7 +64,7 @@ class AudioRecordingHandler:
 
 if __name__ == "__main__":
 
-    from speech_to_text import STTHandler
+    from units.speech_to_text import STTHandler
 
     file_name = "assets/audio/recent_user_speech.wav"
     audio_handler = AudioRecordingHandler()
