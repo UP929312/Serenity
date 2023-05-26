@@ -7,6 +7,11 @@ Serenity has been specially trained on dozens of transcripts and university leve
 The more she knows about you, the better she can help you and advise you, and she'll check back on tasks she's set you in previous sessions.
 We don't store any of your data, it's all stored on your device, unaccessible to anyone, so there's no risk of us getting hacked, or your data being stolen or sold.
 
+## How did you come up with the name?
+
+When considering a name for the project, we weren't really sure what to call it. We had many boring and generic names thought up, "Therapist-AI", "TherApIst", etc.
+Eventually, we had the idea of asking Serenity herself, what we should call her, and she named herself - Serenity. We thought this was a great name, as it's a word which is often associated with mental health, and it's also a word relating to calmness, which is what we want our users to feel when using Serenity.
+
 ## How does it work?
 
 Serenity is made up of an arrangement of different units, which all work together to create the final product. These units include:
