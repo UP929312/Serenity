@@ -1,13 +1,14 @@
+from typing import Literal
 from hsemotion.facial_emotions import HSEmotionRecognizer  # type: ignore[import]
 
 from cv2_utils import CameraNotAccessible, take_picture
 
 # https://github.com/HSE-asavchenko/hsemotion
 
-
 EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise")  # fmt: ignore
-
 NO_FEATURES_DETECTED = {emotion: 0.0 for emotion in EMOTION_NAMES}
+# FACIAL_OPTIONS = (Literal["Anger"] | Literal["Contempt"] | Literal[ "Disgust"] | Literal[ "Fear"] | Literal["Happiness"] | 
+#                   Literal["Neutral"] | Literal["Sadness"] | Literal["Surprise"] | Literal["camera_not_accessible"])
 
 
 def get_facial_emotion(testing_mode_image: str | None = None) -> tuple[str, dict[str, float]]:

@@ -10,9 +10,8 @@ with open("keys/deepgram_key.txt", "r") as f:
 
 # keywords=['first:5', 'second']
 # keywords=["Serenity", "sad", "depressed", "feelings", "thoughts"]
-# Puncuate, not sentiment work here
-API_SETTINGS = PrerecordedOptions(punctuate=True, model="nova", language="en-GB", sentiment=True, detect_entities=True)  # "fr" for french
-
+# Detect entities and sentiment make this take from 1-2 second up to 4-8 seconds, rip
+API_SETTINGS = PrerecordedOptions(punctuate=True, model="nova", language="en-GB")#, detect_entities=True)#, sentiment=True)  # "fr" for french
 
 class Entity(TypedDict):
     label: str
@@ -57,5 +56,5 @@ if __name__ == "__main__":
     file_name = "assets/audio/input_test.mp3"
     with open(file_name, "rb") as file:
         audio_bytes = file.read()
-    text = STTHandler(audio_bytes, True).transcribe()
+    text, entities = STTHandler(audio_bytes, True).transcribe()
     print(text)

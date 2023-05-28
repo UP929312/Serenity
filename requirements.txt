@@ -16,7 +16,7 @@ timm==0.6.11  # Required for hsemotion (has to be this specific version)
 pytest==7.3.1  # Used for running tests
 pyinstaller==5.11.0  # For creating the .exe
 
-elevenlabs==0.2.15  # Used for the ElevenLabs API
+elevenlabs==0.2.15  # Used for the ElevenLabs API, and plays the audio
 
 google-cloud-core==2.3.2  # No idea what's this for, but it cannot build without it
 pillow==9.5.0  # Same for this
@@ -33,7 +33,6 @@ types-beautifulsoup4
 types-colorama
 types-commonmark
 types-google-cloud-ndb
-types-playsound
 types-protobuf
 types-pyinstaller
 types-pywin32

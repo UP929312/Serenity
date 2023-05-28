@@ -12,7 +12,7 @@ Price: `$0.0044/min` of audio [pricing](https://deepgram.com/pricing/), [usage](
 
 ## Elevenlabs (Text to Speech)
 
-*Free** 10,000 characters per month, so can just balance a few accounts.
+**Free** 10,000 characters per month, so can just balance a few accounts.
 Price: `$0.0001 per character` [pricing](Unknown), [usage](https://beta.elevenlabs.io/subscription)
 
 ## OpenAI (as the LLM)

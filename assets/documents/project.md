@@ -5,7 +5,12 @@
 Serenity is a virtual AI therapist, which can be used to help people with their mental health, and be someone who can aid in the ever-increasing amount of lonely people who currently have no alternative solution. It's designed to be as immersive as possible, and to be as human as possible. It's also designed to be as accessible as possible, so it can be used by almost anyone, anywhere, at any time.
 Serenity has been specially trained on dozens of transcripts and university level degree slides, meaning she's got plenty of experience to advise with, even more than a traditional therapist. She's also constantly learning, so she'll get the newest techniques and information, rather than having 20 year-old knowledge.
 The more she knows about you, the better she can help you and advise you, and she'll check back on tasks she's set you in previous sessions.
+
+## Is my data safe?
+
 We don't store any of your data, it's all stored on your device, unaccessible to anyone, so there's no risk of us getting hacked, or your data being stolen or sold.
+Serenity can work better with the more information you provide her with, but it never leaves your device. We don't even have access to it, so you can be sure that your data is safe.
+We also cannot be audited for your data from any third party organisation or government, it's completely between you and your profile.
 
 ## How did you come up with the name?
 
@@ -37,9 +42,9 @@ While Serenity's purpose is not to replace traditional therapy, it does have som
 - Reachable: Serenity is reachable where-ever, whenever, you don't need to wait for an appointment, or for her to be available. She can also be accessed from anywhere.
 - Stigma: Many people are embarrassed to go to therapy, or feel they don't need it, but Serenity can be used privately in the comfort of your own home, and for a price that is much more affordable, unlocking the access to therapy for everyone.
 - Nine-to-five: Like many other services, therapists are often only available during working hours, but Serenity is available 24/7, so you're able to talk to her whenever you need to. You can do it in the middle of the night, or on a Sunday morning, during your lunch hour - it's up to you, Serenity is always there for you.
-- Extendable: In traditional therapy, when the hour is over, the conversation comes to a close, potentially leaving the client admist a vulnerable story. With Serenity, you can easily extend the session, and finish the conversation on your own terms
+- Extendable: In traditional therapy, when the hour is over, the conversation comes to a close, potentially leaving the client admist a vulnerable story. With Serenity, you can easily extend the session, and finish the conversation on your own terms.
 - Relatable: Finding a therapist that you feel comfortable with isn't an easy task, but with the ability to choose from multiple different avatars and voices, you're much more likely to find someone you feel comfortable with.
-- Judgement: Serenity doesn't gossip, nor does she have the capacity to judge you, so you know not only that your secret is safe, but that you can share absolutely anything, and she'll be happy to listen.
+- Judgement: Serenity doesn't gossip, nor does she have the capacity to judge you, so you know not only that your secret is safe, but you can share absolutely anything, and she'll be happy to listen.
 - Commitment: To commit to a real person, opening yourself up, speaking through your problems, and being vulnerable is a big step, but with Serenity, you can take it at your own pace, and you there is almost no commitment, you can decide after the first session if you want to continue.
 
 - Diversity: While many different products can only reach a hugely reduced section of the market, Serenity can be used by almost anyone, albeit if they're English-speaking and over 18 years old. Men, women, the elderly, young adults, traditional people, modern ideologies, any religion, orientation, ethnicity can use Serenity, so she's much more accessible than other products.
