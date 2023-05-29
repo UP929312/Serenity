@@ -19,6 +19,8 @@ The CodeTour VSCode plugin should also be installed, which will guide you around
 
 Black is used to format the code, using the command: `black . --line-length 140`, and mypy with `mypy . --strict`. Pygount also can be run with `pygount --format=summary --verbose --folders-to-skip="[...],*__pycache__,.vscode,.mypy_cache,.git,__pycache__,build" .` to get a summary of the codebase.
 
+To build the project, build.py can be run, which will create a `dist` folder, which contains the executable.
+
 ## Todo list
 
 ### Ben
@@ -41,6 +43,11 @@ Black is used to format the code, using the command: `black . --line-length 140`
   - Will do later.
 - Deepgram params not working
   - Fixed on their side by my PR: [here](https://github.com/deepgram/deepgram-python-sdk/pull/90)
+- Research breath recognition, and get frequency for breaths per minute.
+- Research slowing down the voice with -- in the strings?
+  - Done, have a parameter for it, pause_length, which takes a int
+- Optimisation with Elevenlabs, it's a setting
+  - Also done, used level 3/4 because 4 disables more features, and 3 is ~2x faster
 
 ### Vito
 

@@ -8,16 +8,12 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 16000  # Amount of bits per second
 p = pyaudio.PyAudio()
-ONE_SECONDS_WORTH = RATE
 
 # https://people.csail.mit.edu/hubert/pyaudio/docs/#example-callback-mode-audio-i-o
 
 
 class AudioRecordingHandler:
-    """Handles the recording of audio from the microphone, compiling it as a single file/string of bytes (instead of frames)."""
-
-    def __init__(self) -> None:
-        self.stream: pyaudio.Stream | None = None
+    """Handles the recording of audio from the microphone, compiling it as a single string of bytes (instead of frames)."""
 
     def callback(self, in_data: bytes, frame_count: int, time_info: dict[str, float], status: int) -> tuple[bytes, int]:
         """Used as a callback for the pyaudio module, which runs this on it's own thread."""
@@ -42,9 +38,10 @@ class AudioRecordingHandler:
         """Stops capturing audio data from the microphone and returns the audio bytes."""
         time.sleep(0.5)  # This is to make sure the chunks don't get truncated early
         assert self.stream is not None
-        self.stream.stop_stream(); self.stream.close(); self.stream = None  # fmt: skip
+        self.stream.stop_stream()
+        self.stream.close()
         self.save_audio_file(self.frames, file_name)  # We save and load because for some reason this fixes things
-        return self.load_audio_file(file_name)  # return b"".join(self.frames)  # This doesn't work for some reason
+        return self.load_audio_file(file_name)  # b"".join(self.frames)  # This doesn't work for some reason, we have to save and load
 
     @staticmethod
     def load_audio_file(file_name: str) -> bytes:

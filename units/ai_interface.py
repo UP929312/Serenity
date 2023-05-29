@@ -1,6 +1,7 @@
 import json
 
-from langchain import LLMChain, OpenAI, PromptTemplate  # , ConversationChain
+from langchain import LLMChain, PromptTemplate
+from langchain.chat_models import ChatOpenAI
 
 # https://www.python-engineer.com/posts/langchain-crash-course/
 # https://python.langchain.com/en/latest/modules/agents/agent_executors/examples/agent_vectorstore.html
@@ -32,10 +33,9 @@ class AgentInterface:
         prompt = PromptTemplate(input_variables=["history", "human_input"], template=template)
 
         self.chatgpt_chain = LLMChain(
-            llm=OpenAI(temperature=0, openai_api_key=api_key, client="idk"),  # model="gpt-3.5-turbo-0301" <- Not sure where to put this
+            llm=ChatOpenAI(temperature=0, openai_api_key=api_key, client="idk" , model_name="gpt-3.5-turbo"),  # gpt-3.5-turbo-0301
             prompt=prompt,
-            # verbose=True,  # Prints stuff to chat
-            verbose=False,
+            verbose=False,  # Prints stuff to chat
             memory=ConversationBufferWindowMemory(k=2),
         )
         # tools = load_tools(["wikipedia"], llm=self.chatgpt_chain)  # In the future
@@ -47,8 +47,15 @@ class AgentInterface:
 
 
 if __name__ == "__main__":
+    agent = AgentInterface()
+    import time
+    start_time = time.time()
+    for i in range(1):
+        agent.continue_chain("How are you?")
+    print(f"Time taken: {time.time() - start_time}")
+    """
     while True:
-        agent = AgentInterface()
         human_input = input("Human: ")
         output = agent.continue_chain(human_input)
         print(output)
+    """

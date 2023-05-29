@@ -1,6 +1,7 @@
 from typing import Callable
 
 import cv2  # type: ignore[import]
+from cv2_utils import show_image
 
 WINDOW_NAME = "Serenity"
 
@@ -19,7 +20,7 @@ class KeyboardDetection:
     def detect_key_press(self) -> None:
         """
         Detects if the selected key was pressed, and if so, calls the appropriate function.\n
-        This function also filters out a bug with the library where it detects the keystroke twice, hence the gate.
+        This function also filters out a bug with the library where it detects the keystroke twice, hence the gate/barrier.
         """
         k = cv2.waitKey(32)  # 32 is the minimum/maximum delay
         # print(k)
@@ -35,23 +36,20 @@ class KeyboardDetection:
                 self.down_barrier = False
                 return
             self.on_key_press()
-            self.key_pressed = True
-            self.down_barrier = True
+            self.key_pressed, self.down_barrier = True, True
 
 
 if __name__ == "__main__":
 
     def on_key_press() -> None:
-        cv2.imshow(WINDOW_NAME, active)
+        show_image("active")
         print("Key pressed")
 
     def on_key_release() -> None:
-        cv2.imshow(WINDOW_NAME, inactive)
+        show_image("inactive")
         print("Key released")
 
-    active = cv2.imread("assets/images/being_pressed.png")
-    inactive = cv2.imread("assets/images/not_being_pressed.png")
-    cv2.imshow(WINDOW_NAME, inactive)
+    show_image("inactive")
     keyboard_detection = KeyboardDetection(" ", on_key_press, on_key_release)
     while True:
         keyboard_detection.detect_key_press()

@@ -16,9 +16,7 @@ ImageDataType = np.ndarray[int, np.dtype[np.int32 | np.generic]]
 
 def load_image_or_string(image: str | cv2.Mat) -> ImageDataType:
     if isinstance(image, str):
-        if image in presets:
-            return presets[image]
-        return cv2.imread(image)
+        return presets.get(image) or cv2.imread(image)
     return image
 
 

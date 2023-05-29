@@ -57,9 +57,9 @@ class MainLoopHandler:
 
     def new_human_input(self, user_input_audio_bytes: bytes) -> None:
         """Takes a segment of human speech, and processes it."""
-        user_input_text, entities = STTHandler(user_input_audio_bytes, False).transcribe()
+        user_input_text, _ = STTHandler(user_input_audio_bytes, False).transcribe()
         # show_text("inactive", user_input_text, position=(10, 500), color=(255, 255, 255))
-        print(f"{user_input_text=}")
+        print(f"{user_input_text=}", end=" ")
 
         if user_input_text == "":
             with open("assets/audio/no_input_script.mp3", "rb") as f:
@@ -77,7 +77,7 @@ class MainLoopHandler:
         # store_conversation_row(self.username, agent_output, "agent", last_agent_response_sentiment, facial_emotion=None)  # fmt: ignore
 
         optimised_text = TextOptimiser(agent_output, print_improvement=False, disabled=True).optimised_text
-        print(f"{optimised_text=}")
+        #print(f"{optimised_text=}")
         convert_text_to_speech(optimised_text, voice_type="young-female-british", play_message=True)
 
         # If it's been an hour
