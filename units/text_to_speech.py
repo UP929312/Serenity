@@ -52,7 +52,8 @@ def debug_stuff():
         time.sleep(1.0)
 """
 
-def convert_text_to_speech(text: str, voice_type: str, play_message: bool, pause_length: int=0, file_name: str | None = None) -> bytes:
+
+def convert_text_to_speech(text: str, voice_type: str, play_message: bool, pause_length: int = 0, file_name: str | None = None) -> bytes:
     """Converts text to speech using the Eleven Labs API, takes in a string, and voice type, usually `young-female-british`."""
     global current_index
     current_index = 2
@@ -60,9 +61,9 @@ def convert_text_to_speech(text: str, voice_type: str, play_message: bool, pause
     # with open("keys/eleven_labs_dev_key.txt", "r") as file:
     #    api_key = file.read()
 
-    text = text.replace(".", (". "+"-"*pause_length) if pause_length else ".").removesuffix("-"*pause_length)
+    text = text.replace(".", (". " + "-" * pause_length) if pause_length else ".").removesuffix("-" * pause_length)
 
-    audio = generate(text=text, api_key=api_key,voice=USED_VOICE)
+    audio = generate(text=text, api_key=api_key, voice=USED_VOICE)
     audio_bytes = audio if isinstance(audio, bytes) else b"".join(audio)
     if play_message:
         play(audio_bytes)
@@ -88,15 +89,21 @@ def generate_original_scripts() -> None:
 
 if __name__ == "__main__":
     # generate_original_scripts()
-    #"""
+    # """
     import time
+
     start = time.time()
-    #script_text = "Testing, testing"
-    #"""
-    convert_text_to_speech("This sentence should have no breaks in it. It's simply flows continuously. Here's another.", 
-                           voice_type="young-female-british", play_message=False, pause_length=3, file_name="assets/audio/test.mp3")
-    #"""
-    #generate_voices()
+    # script_text = "Testing, testing"
+    # """
+    convert_text_to_speech(
+        "This sentence should have no breaks in it. It's simply flows continuously. Here's another.",
+        voice_type="young-female-british",
+        play_message=False,
+        pause_length=3,
+        file_name="assets/audio/test.mp3",
+    )
+    # """
+    # generate_voices()
     end = time.time()
     print(f"Time taken: {end - start}")
-    #"""
+    # """

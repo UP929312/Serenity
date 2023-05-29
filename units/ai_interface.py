@@ -33,7 +33,7 @@ class AgentInterface:
         prompt = PromptTemplate(input_variables=["history", "human_input"], template=template)
 
         self.chatgpt_chain = LLMChain(
-            llm=ChatOpenAI(temperature=0, openai_api_key=api_key, client="idk" , model_name="gpt-3.5-turbo"),  # gpt-3.5-turbo-0301
+            llm=ChatOpenAI(temperature=0, openai_api_key=api_key, client="idk", model_name="gpt-3.5-turbo"),  # gpt-3.5-turbo-0301
             prompt=prompt,
             verbose=False,  # Prints stuff to chat
             memory=ConversationBufferWindowMemory(k=2),
@@ -49,6 +49,7 @@ class AgentInterface:
 if __name__ == "__main__":
     agent = AgentInterface()
     import time
+
     start_time = time.time()
     for i in range(1):
         agent.continue_chain("How are you?")

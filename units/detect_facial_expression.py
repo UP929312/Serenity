@@ -7,7 +7,7 @@ from cv2_utils import CameraNotAccessible, take_picture
 
 EMOTION_NAMES = ("Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise")  # fmt: ignore
 NO_FEATURES_DETECTED = {emotion: 0.0 for emotion in EMOTION_NAMES}
-# FACIAL_OPTIONS = (Literal["Anger"] | Literal["Contempt"] | Literal[ "Disgust"] | Literal[ "Fear"] | Literal["Happiness"] | 
+# FACIAL_OPTIONS = (Literal["Anger"] | Literal["Contempt"] | Literal[ "Disgust"] | Literal[ "Fear"] | Literal["Happiness"] |
 #                   Literal["Neutral"] | Literal["Sadness"] | Literal["Surprise"] | Literal["camera_not_accessible"])
 
 

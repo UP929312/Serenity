@@ -5,7 +5,8 @@ from elevenlabs import User, set_api_key, voices  # type: ignore[import]
 from monitor_elevenlabs import monitor_elevenlabs_keys
 
 today = datetime.now().date()
-before = today-timedelta(days=99)
+before = today - timedelta(days=99)
+
 
 def test_open_ai_cost() -> None:
     """
@@ -24,11 +25,12 @@ def test_open_ai_cost() -> None:
         for cost_point in cost_day["line_items"]:
             if cost_point["cost"] != 0.0:
                 cost_points[timestamp] = cost_point
-    
-    #cost_points = {1683849600.0: {'name': 'Chat models', 'cost': 0.8586}, 1683936000.0: {'name': 'Chat models', 'cost': 7.5728}, 1684108800.0: {'name': 'Chat models', 'cost': 0.3294}, 1684195200.0: {'name': 'Instruct models', 'cost': 10.162}, 1684281600.0: {'name': 'Instruct models', 'cost': 0.202}, 1684454400.0: {'name': 'Instruct models', 'cost': 0.434}, 1684886400.0: {'name': 'Instruct models', 'cost': 0.376}, 1684972800.0: {'name': 'Instruct models', 'cost': 11.346}}
+
+    # cost_points = {1683849600.0: {'name': 'Chat models', 'cost': 0.8586}, 1683936000.0: {'name': 'Chat models', 'cost': 7.5728}, 1684108800.0: {'name': 'Chat models', 'cost': 0.3294}, 1684195200.0: {'name': 'Instruct models', 'cost': 10.162}, 1684281600.0: {'name': 'Instruct models', 'cost': 0.202}, 1684454400.0: {'name': 'Instruct models', 'cost': 0.434}, 1684886400.0: {'name': 'Instruct models', 'cost': 0.376}, 1684972800.0: {'name': 'Instruct models', 'cost': 11.346}}
     datetime_instead = {str(datetime.fromtimestamp(x).date()): y["cost"] for x, y in cost_points.items()}
     for date, cost in datetime_instead.items():
         assert cost < 15, f"Spent £{cost} on {date}, which is too much"
+
 
 def test_deepgram_remaining_credits() -> None:
     """
@@ -39,17 +41,18 @@ def test_deepgram_remaining_credits() -> None:
 
     DEEPGRAM_PROJECT_ID = "64152c31-f748-4ac9-82a5-2106f12d1091"
     url = f"https://api.deepgram.com/v1/projects/{DEEPGRAM_PROJECT_ID}/balances"
-    
+
     headers = {"accept": "application/json", "Authorization": f"Token {DEEPGRAM_API_KEY}"}
     response = requests.get(url, headers=headers).json()
     amount_left = response["balances"][0]["amount"]
     assert amount_left > 180, f"Deepgram only has {amount_left} credits left"
+
 
 def test_elevenlabs_remaining_characters() -> None:
     """
     Tests to make sure we've got at least half our capacity left (on average)
     """
     key_dict = monitor_elevenlabs_keys(False).values()
-    half = len(key_dict)*5000
+    half = len(key_dict) * 5000
     current_remaining = sum(key_dict)
     assert current_remaining > half, f"Eleven Labs only has {current_remaining}/{half*2} characters left"

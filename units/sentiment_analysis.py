@@ -14,6 +14,7 @@ comprehend = boto3.client(
 
 sentiment_types = Literal["POSITIVE"] | Literal["NEGATIVE"] | Literal["NEUTRAL"] | Literal["MIXED"]
 
+
 def detect_sentiment(text: str) -> tuple[sentiment_types, int]:
     """
     Takes a setence and returns the sentiment and the confidence of that sentiment, will be one of: \n

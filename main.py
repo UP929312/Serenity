@@ -6,6 +6,7 @@ from cv2_utils import show_image, show_text, test_camera_accessible
 from microphone_interface import AudioRecordingHandler
 from units.agent_avatar import AgentAvatar
 from units.ai_interface import AgentInterface
+
 # from conversation_store import store_conversation_row
 # from detect_facial_expression import get_facial_emotion
 from units.keyboard_detection import KeyboardDetection
@@ -77,7 +78,7 @@ class MainLoopHandler:
         # store_conversation_row(self.username, agent_output, "agent", last_agent_response_sentiment, facial_emotion=None)  # fmt: ignore
 
         optimised_text = TextOptimiser(agent_output, print_improvement=False, disabled=True).optimised_text
-        #print(f"{optimised_text=}")
+        # print(f"{optimised_text=}")
         convert_text_to_speech(optimised_text, voice_type="young-female-british", play_message=True)
 
         # If it's been an hour

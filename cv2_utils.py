@@ -10,9 +10,12 @@ presets = {
     "inactive": cv2.imread("assets/images/not_being_pressed.png"),
 }
 
+COLOUR_TYPE = tuple[int, int, int]
+
 cv2.namedWindow(WINDOW_NAME)
 
 ImageDataType = np.ndarray[int, np.dtype[np.int32 | np.generic]]
+
 
 def load_image_or_string(image: str | cv2.Mat) -> ImageDataType:
     if isinstance(image, str):
@@ -26,7 +29,14 @@ def show_image(image: str | cv2.Mat, wait_for_key_press: bool = False) -> None:
         cv2.waitKey(0)
 
 
-def show_text(img: str | cv2.Mat, text: str, position: tuple[int, int], font_size: float = 1, color: tuple[int, int, int,] = (255, 255, 255), thickness: int = 2) -> None:
+def show_text(
+    img: str | cv2.Mat,
+    text: str,
+    position: tuple[int, int],
+    font_size: float = 1,
+    color: COLOUR_TYPE = (255, 255, 255),
+    thickness: int = 2,
+) -> None:
     cv2.putText(
         img=load_image_or_string(img),
         text=text,

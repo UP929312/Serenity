@@ -11,7 +11,10 @@ with open("keys/deepgram_key.txt", "r") as f:
 # keywords=['first:5', 'second']
 # keywords=["Serenity", "sad", "depressed", "feelings", "thoughts"]
 # Detect entities and sentiment make this take from 1-2 second up to 4-8 seconds, rip
-API_SETTINGS = PrerecordedOptions(punctuate=True, model="nova", language="en-GB")#, detect_entities=True)#, sentiment=True)  # "fr" for french
+API_SETTINGS = PrerecordedOptions(
+    punctuate=True, model="nova", language="en-GB"
+)  # , detect_entities=True)#, sentiment=True)  # "fr" for french
+
 
 class Entity(TypedDict):
     label: str
