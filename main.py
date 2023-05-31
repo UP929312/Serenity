@@ -7,8 +7,8 @@ from microphone_interface import AudioRecordingHandler
 from units.agent_avatar import AgentAvatar
 from units.ai_interface import AgentInterface
 
-# from conversation_store import store_conversation_row
-# from detect_facial_expression import get_facial_emotion
+# from units.vector_database import store_conversation_row
+# from units.detect_facial_expression import get_facial_emotion
 from units.keyboard_detection import KeyboardDetection
 from units.sentiment_analysis import detect_sentiment
 from units.speech_to_text import STTHandler
@@ -16,7 +16,7 @@ from units.text_optimiser import TextOptimiser
 from units.text_to_speech import convert_text_to_speech
 
 BYPASS_CAMERA_CHECK = True
-SKIP_INTRO = False
+SKIP_INTRO = True
 
 
 class MainLoopHandler:
@@ -67,8 +67,8 @@ class MainLoopHandler:
                 play(f.read())
             return
 
-        user_sentiment, confidence = detect_sentiment(user_input_text)
-        print(f"User's sentiment: {user_sentiment}, confidence: {confidence}")
+        #user_sentiment, confidence = detect_sentiment(user_input_text)
+        #print(f"User's sentiment: {user_sentiment}, confidence: {confidence}")
         # store_conversation_row(self.username, user_input, "user", user_sentiment if confidence > 0.1 else None, facial_emotion=None)  # fmt: ignore
 
         # When the AI is called, it will have the following data:

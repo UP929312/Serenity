@@ -68,8 +68,8 @@ WORD_MAPPING = {
 
 class TextOptimiser:
     """
-    This class will take an input string and optimise it for lower character count, giving us\n
-    more space under the ElevenLabs free trial, which gives 10k chars per account per month.\n
+    This class will take an input string and optimises it for lower character count, giving us\n
+    more space with ElevenLabs, which gives 10k chars per account per month.\n
     By using this, we can increase the amount of free words we get, normally about 3-5% effective
     """
 
@@ -93,9 +93,8 @@ class TextOptimiser:
                 self.optimised_text = self.optimised_text.replace(" " + longer + " ", " " + shorter + " ")
         if self.print_improvement:
             amount_saved = len(self.text) - len(self.optimised_text)
-            print(
-                f"Improvement:\nOriginal had {len(self.text)} chars, optimised has {len(self.optimised_text)} chars\nThat's a {round(100-(len(self.optimised_text)/len(self.text))*100, 2)}% improvement, of {amount_saved} chars"
-            )
+            print(f"Improvement:\nOriginal had {len(self.text)} chars, optimised has {len(self.optimised_text)} chars")
+            print(f"That's a {round(100-(len(self.optimised_text)/len(self.text))*100, 2)}% improvement, of {amount_saved} chars")
         return self.optimised_text.strip()
 
 

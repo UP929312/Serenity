@@ -11,11 +11,13 @@ class PhonemeRow(TypedDict):
 
 
 def convert_mp3_to_wav(original_file_path: str, wav_file_path: str) -> None:
+    """ Converts an MP3 file to a WAV file."""
     sound = AudioSegment.from_mp3(original_file_path)
     sound.export(wav_file_path, format="wav")
 
 
 def convert_audio_to_phonemes(file_path: str, convert_to_wav: bool) -> list[PhonemeRow]:
+    """ Takes the name of an audio file and returns a list of phonemes with timestamps and durations."""
     if convert_to_wav:
         wav_file_path = file_path.replace(".mp3", ".wav")
         convert_mp3_to_wav(file_path, wav_file_path)

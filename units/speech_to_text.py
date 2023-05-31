@@ -34,6 +34,7 @@ class STTHandler:
         self.time_transcription = time_transcription
 
     def extract_entities(self, response: PrerecordedTranscriptionResponse) -> list[Entity]:
+        """ Takes a list of entities from the Deepgram API and returns a list of entities with type Entity"""
         entities_raw = response["results"]["channels"][0]["alternatives"][0].get("entities", [])  # type: ignore[params]
         entities: list[Entity] = [{"label": entity["label"]} for entity in entities_raw]  # type: ignore[type]
         return entities

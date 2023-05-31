@@ -28,13 +28,13 @@ VOICE_IDS = {
         "597771e6b6e1487f988e3e7b722adc38": "LhzYJkrR4l0Xq9pcK5Bc",  # Key 1
         "6ada016287feb4ddf24af800f4f3847f": "I2m6FH4JfVIzqFpePxGU",  # Key 2
         "7f3a3a9a33955eae3390f28ebc4573a6": "2vCv0biUKuGQGx6H5LPI",  # Key 3
-        "2ab74212ce3a4400fe7f60e58034f15f": "",
-        "17f5a51df733a1e4f805e4fef97b16a5": "",  # Key 5
-        "5fbc24b16fd500e7e0c05702256f74bf": "",
-        "61e8bc9089eec00de017f2ffc7c6217f": "",
-        "d72a83e6bdf2abd761e91d2e4d34742f": "",
-        "27da0659f5a5b49e1a17aee8f5ce2e32": "",
-        "bf3de73de8e09bacb1c032035ddc7d22": "",  # Key 10
+        "2ab74212ce3a4400fe7f60e58034f15f": "R479jMQ4qbUoaIzTsYXC",  # Key 4
+        "17f5a51df733a1e4f805e4fef97b16a5": "MISSING",  # Key 5
+        "5fbc24b16fd500e7e0c05702256f74bf": "MISSING",
+        "61e8bc9089eec00de017f2ffc7c6217f": "MISSING",
+        "d72a83e6bdf2abd761e91d2e4d34742f": "MISSING",
+        "27da0659f5a5b49e1a17aee8f5ce2e32": "MISSING",
+        "bf3de73de8e09bacb1c032035ddc7d22": "MISSING",  # Key 10
     }
 }
 
@@ -42,7 +42,12 @@ VOICE_IDS = {
 # voice_design = VoiceDesign(name=f"young-female-british", text=required_script, gender=Gender.female, age=Age.young, accent=Accent.british, accent_strength=1.3, generated_voice_id=None, audio=None)
 # voice = Voice.from_design(voice_design)
 
-USED_VOICE = VOICE_IDS["young-female-british"][keys[2]]
+"""
+from elevenlabs import voices, set_api_key
+set_api_key(keys[3])
+print([x for x in voices() if x.category != "premade"])
+1/0
+"""
 
 """
 def debug_stuff():
@@ -51,12 +56,13 @@ def debug_stuff():
         print(f"{i}")
         time.sleep(1.0)
 """
+USED_VOICE = VOICE_IDS["young-female-british"][keys[3]]
 
 
 def convert_text_to_speech(text: str, voice_type: str, play_message: bool, pause_length: int = 0, file_name: str | None = None) -> bytes:
     """Converts text to speech using the Eleven Labs API, takes in a string, and voice type, usually `young-female-british`."""
     global current_index
-    current_index = 2
+    current_index = 3
     api_key = keys[current_index % len(keys)]
     # with open("keys/eleven_labs_dev_key.txt", "r") as file:
     #    api_key = file.read()
@@ -66,7 +72,9 @@ def convert_text_to_speech(text: str, voice_type: str, play_message: bool, pause
     audio = generate(text=text, api_key=api_key, voice=USED_VOICE)
     audio_bytes = audio if isinstance(audio, bytes) else b"".join(audio)
     if play_message:
+        print("Before")
         play(audio_bytes)
+        print("After")
     if file_name:
         save(audio_bytes, file_name)
     current_index += 1

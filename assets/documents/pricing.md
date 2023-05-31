@@ -12,11 +12,11 @@ Price: `$0.0044/min` of audio [pricing](https://deepgram.com/pricing/), [usage](
 
 ## Elevenlabs (Text to Speech)
 
-**Free** 10,000 characters per month, so can just balance a few accounts.
-Price: `$0.0001 per character` [pricing](Unknown), [usage](https://beta.elevenlabs.io/subscription)
+**Not free**, 30,000 charaters per month, for a subscription fee.
+Price: `$5 per month` [pricing](https://beta.elevenlabs.io/subscription), [usage](https://beta.elevenlabs.io/subscription)
 
 ## OpenAI (as the LLM)
 
-**No** free trials or anything, this one is actually costing. How much? Unsure as of yet.
+**No free trials** or anything, this one is actually costing. How much? Unsure as of yet. From what I can tell, not a lot.
 Price: gpt-3.5-turbo: `$0.002 per 1000 tokens` [pricing](https://openai.com/pricing), [usage](https://platform.openai.com/account/usage)
 Price: gpt-4: `$0.006 per 8000 tokens context (completion)` [pricing](https://openai.com/pricing), [usage](https://platform.openai.com/account/usage)

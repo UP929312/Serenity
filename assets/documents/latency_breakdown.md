@@ -2,19 +2,21 @@
 
 ## STT
 
-Takes between 0.8 and 1.6 seconds
+- Takes between 0.8 and 1.6 seconds
 
 ## Sentiment analysis
 
-Takes approximately 0.25 seconds
+- Takes approximately 0.25 seconds
 
 ## Agent/LLM interface
 
-Agent takes a while, between 2 and 5 seconds
+- Agent takes a while, between 2 and 5 seconds
 
 ## TTS
 
-Takes between 0.9 and 1.8 seconds
+- Takes between 0.9 and 1.8 seconds
+
+## Updating the screen with an asset takes 0.0005 seconds (basically nothing)
 
 ## Total
 

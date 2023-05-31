@@ -19,6 +19,5 @@ def monitor_elevenlabs_keys(redact_keys: bool = True) -> dict[str, int]:
 if __name__ == "__main__":
     for key_string, remaining_chars in monitor_elevenlabs_keys(False).items():
         print(f"{key_string}'s remaining balance: {remaining_chars}")
-    key = keys[0]
-    set_api_key(key)
+    set_api_key(keys[0])
     print([x for x in voices() if x.category != "premade"])
