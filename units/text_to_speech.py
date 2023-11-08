@@ -1,6 +1,7 @@
 import json
 
-from elevenlabs import Accent, Age, Gender, Voice, VoiceDesign, generate, play, save  #  type: ignore[import]
+from elevenlabs import generate, play, save  #  type: ignore[import]
+# from elevenlabs import Accent, Age, Gender, Voice, VoiceDesign
 
 # https://github.com/elevenlabs/elevenlabs-python
 # https://beta.elevenlabs.io/speech-synthesis
@@ -70,7 +71,7 @@ def convert_text_to_speech(text: str, voice_type: str, play_message: bool, pause
     text = text.replace(".", (". " + "-" * pause_length) if pause_length else ".").removesuffix("-" * pause_length)
 
     audio = generate(text=text, api_key=api_key, voice=USED_VOICE)
-    audio_bytes = audio if isinstance(audio, bytes) else b"".join(audio)
+    audio_bytes = audio if isinstance(audio, bytes) else b"".join(audio)  # type: ignore[idk]
     if play_message:
         print("Before")
         play(audio_bytes)

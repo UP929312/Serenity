@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from elevenlabs import play
 
-from cv2_utils import show_image, show_text, test_camera_accessible
+from cv2_utils import show_image, test_camera_accessible  # , show_text
 from microphone_interface import AudioRecordingHandler
 from units.agent_avatar import AgentAvatar
 from units.ai_interface import AgentInterface
@@ -26,6 +26,7 @@ class MainLoopHandler:
         self.agent = AgentInterface()
         self.agent_avatar = AgentAvatar()
         self.audio_handler = AudioRecordingHandler()
+        self.stt_handler = STTHandler(time_transcription=False)
         self.session_start_time = datetime.now()
 
     def main_loop(self) -> None:
@@ -44,7 +45,7 @@ class MainLoopHandler:
 
     def on_press_speak_key(self) -> None:
         """Calls the audio handler to start recording mic data."""
-        print("Key pressed", end="    ")
+        print("Key pressed", end="    ->    ")
         show_image("active")
         self.audio_handler.start_recording()
 
@@ -58,7 +59,7 @@ class MainLoopHandler:
 
     def new_human_input(self, user_input_audio_bytes: bytes) -> None:
         """Takes a segment of human speech, and processes it."""
-        user_input_text, _ = STTHandler(user_input_audio_bytes, False).transcribe()
+        user_input_text, _ = self.stt_handler.transcribe(user_input_audio_bytes)
         # show_text("inactive", user_input_text, position=(10, 500), color=(255, 255, 255))
         print(f"{user_input_text=}", end=" ")
 

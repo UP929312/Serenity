@@ -1,9 +1,10 @@
-from typing import TypedDict
 import time
+from typing import TypedDict
 
 from deepgram import Deepgram  # type: ignore[import]
 from deepgram._types import BufferSource  # type: ignore[import]
-from deepgram.transcription import PrerecordedOptions, PrerecordedTranscriptionResponse  # type: ignore[import]
+from deepgram.transcription import PrerecordedOptions, PrerecordedTranscriptionResponse # type: ignore[import]
+
 
 with open("keys/deepgram_key.txt", "r") as f:
     DEEPGRAM_API_KEY = f.read()
@@ -25,12 +26,8 @@ class Entity(TypedDict):
 class STTHandler:
     """A class which handles the interface between the application and Deepgram's STT API"""
 
-    def __init__(self, audio_data: bytes, /, time_transcription: bool = False) -> None:
+    def __init__(self, time_transcription: bool = False) -> None:
         self.deepgram = Deepgram(DEEPGRAM_API_KEY)
-        self.source: BufferSource = {
-            "buffer": audio_data,
-            "mimetype": "audio/mp3",
-        }
         self.time_transcription = time_transcription
 
     def extract_entities(self, response: PrerecordedTranscriptionResponse) -> list[Entity]:
@@ -39,15 +36,16 @@ class STTHandler:
         entities: list[Entity] = [{"label": entity["label"]} for entity in entities_raw]  # type: ignore[type]
         return entities
 
-    def transcribe(self) -> tuple[str, list[Entity]]:
+    def transcribe(self, audio_data: bytes, include_entity_detection: bool=False) -> tuple[str, list[Entity]]:
         """Takes a byte string of audio data and returns the transcription as a string using Deepgram's API"""
-        if len(self.source["buffer"]) < 10:
+        if len(audio_bytes) < 10:
             raise Exception("Audio data is too short to transcribe")
+        source: BufferSource = {"buffer": audio_bytes, "mimetype": "audio/mp3"}
         transcription_start_time = time.time()
-        response = self.deepgram.transcription.sync_prerecorded(self.source, option=API_SETTINGS)
+        response = self.deepgram.transcription.sync_prerecorded(source, option=API_SETTINGS | {"detect_entities": include_entity_detection})
         assert "results" in response
         raw_text: str = response["results"]["channels"][0]["alternatives"][0]["transcript"]
-        entities = self.extract_entities(response)
+        entities = self.extract_entities(response) if include_entity_detection else []
         if self.time_transcription:
             print(f"Transcription took {round(time.time()-transcription_start_time, 2)} seconds")
         # if raw_text == "":
@@ -60,5 +58,5 @@ if __name__ == "__main__":
     file_name = "assets/audio/input_test.mp3"
     with open(file_name, "rb") as file:
         audio_bytes = file.read()
-    text, entities = STTHandler(audio_bytes, True).transcribe()
+    text, entities = STTHandler(time_transcription=True).transcribe(audio_bytes)
     print(text)

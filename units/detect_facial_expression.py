@@ -20,7 +20,7 @@ def get_facial_emotion(testing_mode_image: str | None = None) -> tuple[str, dict
     if testing_mode_image:
         import cv2  # type: ignore[import]
 
-        frame = cv2.imread(f"assets/images/{testing_mode_image}.png", cv2.IMREAD_COLOR)
+        frame = cv2.imread(f"assets/images/{testing_mode_image}.png", cv2.IMREAD_COLOR)  # type: ignore[cv2-is-broken]
     else:
         try:
             frame = take_picture()

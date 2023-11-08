@@ -1,6 +1,6 @@
 from typing import Callable
 
-import cv2  # type: ignore[import]
+from cv2 import waitKey  # type: ignore[import]
 from cv2_utils import show_image
 
 WINDOW_NAME = "Serenity"
@@ -22,7 +22,7 @@ class KeyboardDetection:
         Detects if the selected key was pressed, and if so, calls the appropriate function.\n
         This function also filters out a bug with the library where it detects the keystroke twice, hence the gate/barrier.
         """
-        k = cv2.waitKey(32)  # 32 is the minimum/maximum delay
+        k = waitKey(32)  # 32 is the minimum/maximum delay
         # print(k)
         if k == -1 or chr(k) != self.key_to_press:  # No key pressed
             if self.key_pressed:

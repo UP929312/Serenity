@@ -74,5 +74,5 @@ if __name__ == "__main__":
     print("Done recording")
 
     print("Now transcribing")
-    text = STTHandler(audio_bytes, time_transcription=True).transcribe()
+    text = STTHandler(time_transcription=True).transcribe(audio_bytes)
     print(f"Stop recording function is returning: {text=}")

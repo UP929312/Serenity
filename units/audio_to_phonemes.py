@@ -25,10 +25,9 @@ def convert_audio_to_phonemes(file_path: str, convert_to_wav: bool) -> list[Phon
 
     model = read_recognizer("latest")
     data: str = model.recognize(file_path, timestamp=True)
-    lines = data.split("\n")
     formatted_data: list[PhonemeRow] = [
         {"timestamp": float(line.split(" ")[0]), "duration": float(line.split(" ")[1]), "phoneme": str(line.split(" ")[2])}
-        for line in lines
+        for line in data.split("\n")
     ]
     return formatted_data
 

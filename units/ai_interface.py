@@ -15,23 +15,24 @@ with open("assets/files/prompts.json", "r", encoding="utf-8") as file:
 with open("keys/openai_key.txt", "r", encoding="utf-8") as file:
     api_key = file.read().strip()
 
+# ========================================================================================================
+# Main prompt template
+# fmt: off
+AGENT_TEMPLATE = prompts["system"] + "\n" + \
+prompts["initial"] + \
+"""
+
+{history}
+Human: {human_input}
+Agent: """
+# fmt: on
+prompt = PromptTemplate(input_variables=["history", "human_input"], template=AGENT_TEMPLATE)
+# ========================================================================================================
 
 class AgentInterface:
     """A class which handles the interface between the application and LLM/Agent"""
 
     def __init__(self) -> None:
-        # fmt: off
-        template = prompts["system"] + "\n" + \
-        prompts["initial"] + \
-        """
-
-        {history}
-        Human: {human_input}
-        Agent: """.replace("        ", "")
-        # fmt: on
-
-        prompt = PromptTemplate(input_variables=["history", "human_input"], template=template)
-
         self.chatgpt_chain = LLMChain(
             llm=ChatOpenAI(temperature=0, openai_api_key=api_key, client="idk", model_name="gpt-3.5-turbo"),  # gpt-3.5-turbo-0301
             prompt=prompt,
